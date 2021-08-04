@@ -1,0 +1,907 @@
+import javax.microedition.lcdui.Canvas;
+import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.ChoiceGroup;
+import javax.microedition.lcdui.Item;
+import javax.microedition.lcdui.StringItem;
+import javax.microedition.lcdui.Form;
+import javax.microedition.lcdui.List;
+import javax.microedition.lcdui.Displayable;
+import javax.microedition.lcdui.Screen;
+import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.Font;
+import javax.microedition.lcdui.CommandListener;
+import java.util.Vector;
+import javax.microedition.lcdui.Image;
+
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
+public class h implements Runnable
+{
+    static c[] K;
+    static int x;
+    static Image r;
+    Vector q;
+    CommandListener J;
+    static final Font O;
+    private static final Font H;
+    private static final Font p;
+    static final Font d;
+    static final Font l;
+    static final Command I;
+    static final Command u;
+    static final Command P;
+    static final Command z;
+    static final Command a;
+    static final String[] y;
+    int Q;
+    int B;
+    int N;
+    private ESGame L;
+    Screen i;
+    int f;
+    private int h;
+    Vector n;
+    String M;
+    String[] E;
+    volatile int m;
+    private boolean j;
+    private Thread D;
+    long C;
+    Displayable t;
+    Object s;
+    Object c;
+    int o;
+    int e;
+    int G;
+    Font b;
+    int g;
+    int F;
+    int w;
+    int v;
+    int k;
+    boolean A;
+    
+    public h(final ESGame l, final int q, final int b) {
+        this.A = false;
+        this.L = l;
+        this.Q = q;
+        this.B = b;
+        this.N = 0;
+        this.i = null;
+        this.f = 0;
+        this.s = null;
+        this.c = null;
+        this.M = null;
+        this.E = null;
+        this.D = null;
+        this.q = new Vector(5);
+    }
+    
+    void e() {
+        this.t = (Displayable)h.K[h.x];
+    }
+    
+    void o() {
+        this.t = (Displayable)h.K[h.x];
+    }
+    
+    void a(final String s, final String[] array, final Vector vector) {
+        this.a(s, array, vector, true);
+    }
+    
+    void a(final String s, final String[] array, final Vector n, final boolean b) {
+        final List i = new List(s, 3);
+        this.i = (Screen)i;
+        this.f = 1;
+        for (int length = array.length, j = 0; j < length; ++j) {
+            i.append(array[j], (Image)null);
+        }
+        this.n = n;
+        this.w = 0;
+        this.v = 0;
+        this.k = 0;
+        this.t = (Displayable)h.K[h.x];
+        this.a(h.u);
+        if (b) {
+            this.a(h.P);
+        }
+        this.a((CommandListener)this.L);
+    }
+    
+    void n() {
+        String string = "";
+        for (int i = 0; i < h.y.length; ++i) {
+            string += h.y[i];
+        }
+        this.a("Exiting", string);
+        this.b(h.I);
+        this.a(h.a);
+    }
+    
+    void a(final String s, final String s2) {
+        this.a(s, s2, false);
+    }
+    
+    void a(final String s, final String s2, final boolean b) {
+        final Form i = new Form(s);
+        this.i = (Screen)i;
+        this.f = 2;
+        i.append((Item)new StringItem((String)null, s2));
+        this.g = 10;
+        this.F = 10;
+        this.w = 0;
+        this.v = 0;
+        this.k = 0;
+        this.t = (Displayable)h.K[h.x];
+        this.a(h.I);
+        this.a((CommandListener)this.L);
+    }
+    
+    void a(final String s, final String s2, final String[] array, final Vector vector) {
+        this.a(s, s2, array, vector, false);
+    }
+    
+    void a(final String s, final String original, final String[] array, final Vector n, final boolean b) {
+        final Form i = new Form(s);
+        this.i = (Screen)i;
+        this.f = 2;
+        i.append((Item)new StringItem((String)null, original));
+        this.g = 15;
+        this.F = 15;
+        final ChoiceGroup choiceGroup = new ChoiceGroup((String)null, 1);
+        for (int length = array.length, j = 0; j < length; ++j) {
+            choiceGroup.append(array[j], (Image)null);
+        }
+        this.h = 1;
+        i.append((Item)choiceGroup);
+        this.n = n;
+        this.w = 0;
+        this.v = 0;
+        this.k = 0;
+        this.t = (Displayable)h.K[h.x];
+        this.a(h.u);
+        this.a(h.P);
+        this.a((CommandListener)this.L);
+        if (original != null && original.indexOf("<TAG>") >= 0) {
+            this.M = new String(original);
+        }
+    }
+    
+    void a(final String s, final String s2, final String s3, final String[] array, final Vector n) {
+        final Form i = new Form(s);
+        this.i = (Screen)i;
+        this.f = 2;
+        i.append((Item)new StringItem((String)null, s2));
+        i.append((Item)new StringItem((String)null, s3));
+        this.g = 15;
+        this.F = 15;
+        final ChoiceGroup choiceGroup = new ChoiceGroup((String)null, 1);
+        for (int length = array.length, j = 0; j < length; ++j) {
+            choiceGroup.append(array[j], (Image)null);
+        }
+        this.h = 2;
+        i.append((Item)choiceGroup);
+        this.n = n;
+        this.t = (Displayable)h.K[h.x];
+        this.a(h.u);
+        this.a(h.P);
+        this.a((CommandListener)this.L);
+    }
+    
+    public void e(final Graphics graphics) {
+        final Graphics graphics2 = h.r.getGraphics();
+        switch (this.Q) {
+            case 1: {
+                System.out.println("        IN CANVAS DOWNLOAD PAINT!");
+                break;
+            }
+            case 2: {
+                this.f(graphics2);
+                break;
+            }
+            case 3: {
+                this.c(graphics2);
+                break;
+            }
+            case 5: {
+                this.a(graphics2, 1);
+                break;
+            }
+            case 6: {
+                this.a(graphics2, 2);
+                break;
+            }
+            case 4: {
+                this.d(graphics2);
+                break;
+            }
+            case 8:
+            case 9:
+            case 10:
+            case 11: {
+                this.b(graphics2);
+                break;
+            }
+        }
+        this.a(graphics2);
+        graphics.drawImage(h.r, 0, 0, 20);
+    }
+    
+    private void f(final Graphics graphics) {
+        graphics.setColor(0);
+        graphics.fillRect(0, 0, this.b(), 20 + this.k());
+        if (ESGame.aG) {
+            graphics.setColor(16777215);
+            graphics.fillRect(0, 0, this.b(), 20 + this.k());
+            graphics.drawImage(ESGame.aA, this.b() / 2, 10, 17);
+            int n = 10 + ESGame.aA.getHeight() + 3;
+            graphics.setColor(0);
+            for (int i = 0; i < h.y.length; ++i) {
+                graphics.drawString(h.y[i], this.b() / 2, n, 17);
+                n += 14;
+            }
+            graphics.drawString("Distributed by:", this.b() / 2, 143, 17);
+            graphics.drawImage(ESGame.aa, this.b() / 2, 158, 17);
+        }
+        else if (this.L.ac) {
+            graphics.setColor(0);
+            graphics.fillRect(0, 0, this.b(), 20 + this.k());
+            graphics.drawImage(ESGame.O, this.b() / 2, 20, 17);
+            graphics.drawImage(ESGame.aU, this.b() / 2, 100, 17);
+        }
+        else {
+            graphics.setColor(0);
+            graphics.fillRect(0, 0, this.b(), 20 + this.k());
+            graphics.drawImage(ESGame.O, this.b() / 2, 20, 17);
+            graphics.drawImage(ESGame.aU, this.b() / 2, 100, 17);
+            graphics.setColor(16777215);
+            graphics.fillRect(12, 165, 152, 22);
+            graphics.setColor(10485760);
+            graphics.fillRect(13, 166, 3 * this.m / 2, 20);
+        }
+    }
+    
+    private void b(final Graphics graphics) {
+        graphics.setColor(11429934);
+        graphics.fillRect(0, 0, this.b(), 20 + this.k());
+        graphics.setFont(h.l);
+        graphics.setColor(16777215);
+        final int n = this.b() / 2;
+        if (this.Q == 8) {
+            graphics.drawString("Creating New Game", n, 30, 17);
+        }
+        else if (this.Q == 9) {
+            graphics.drawString("Loading Game", n, 30, 17);
+        }
+        else if (this.Q == 10) {
+            graphics.drawString("Saving Game", n, 30, 17);
+        }
+        else if (this.Q == 11) {
+            graphics.drawString("Loading Dungeon", n, 30, 17);
+        }
+        graphics.drawString("Please Wait", n, 45, 17);
+        graphics.setColor(16777215);
+        graphics.fillRect((this.b() - 90) / 2, 60, 90, 20);
+        final int n2 = this.m * 88 / 100;
+        graphics.setColor(255);
+        graphics.fillRect((this.b() - 88) / 2, 61, n2, 18);
+    }
+    
+    private void a(final Graphics graphics, final String s) {
+        final Font font = graphics.getFont();
+        graphics.setFont(h.H);
+        final int color = graphics.getColor();
+        graphics.setColor(0);
+        graphics.fillRect(0, 0, this.b(), 14);
+        graphics.setColor(16777215);
+        graphics.drawString(s, this.b() / 2, 0, 17);
+        graphics.setColor(color);
+        graphics.setFont(font);
+    }
+    
+    private void c(final Graphics graphics) {
+        graphics.setColor(11429934);
+        graphics.fillRect(0, 0, this.b(), 20 + this.k());
+        this.a(graphics, this.i.getTitle());
+        graphics.setFont(this.b = h.d);
+        this.o = this.b.getHeight();
+        this.e = 20;
+        this.G = 15;
+        final String[] r = this.r();
+        final int length = r.length;
+        this.v = this.w + Math.min(length, 10) - 1;
+        for (int i = this.w; i <= this.v; ++i) {
+            this.a(graphics, r[i], i == this.a());
+        }
+        if (this.w > 0) {
+            this.a(graphics, 155, 180, 1);
+        }
+        if (this.v + 1 < length) {
+            this.a(graphics, 165, 180, 2);
+        }
+    }
+    
+    private void a(final Graphics graphics, final int n) {
+        final Form form = (Form)this.i;
+        graphics.setColor(11429934);
+        graphics.fillRect(0, 0, this.b(), 20 + this.k());
+        this.a(graphics, ((Screen)form).getTitle());
+        graphics.setFont(this.b = h.d);
+        this.o = this.b.getHeight();
+        this.e = 20;
+        this.G = 15;
+        for (int i = 0; i < n; ++i) {
+            final String text = ((StringItem)form.get(i)).getText();
+            if (this.A) {
+                final String[] c = this.c(text);
+                for (int j = 0; j < c.length; ++j) {
+                    graphics.setColor(16776960);
+                    graphics.drawString(c[j], this.G, this.e, 20);
+                    this.e += this.o;
+                }
+            }
+            else {
+                if (i == 0) {
+                    graphics.setColor(16776960);
+                }
+                else {
+                    graphics.setColor(16777215);
+                }
+                graphics.drawString(text, this.G, this.e, 20);
+                this.e += this.o;
+            }
+        }
+        this.e += 5;
+        final String[] r = this.r();
+        final int length = r.length;
+        this.v = this.w + Math.min(length, 9) - 1;
+        for (int k = this.w; k <= this.v; ++k) {
+            this.a(graphics, r[k], k == this.a());
+        }
+        if (this.w > 0) {
+            this.a(graphics, 155, 180, 1);
+        }
+        if (this.v + 1 < length) {
+            this.a(graphics, 165, 180, 2);
+        }
+    }
+    
+    private void a(final Graphics graphics, final String s, final boolean b) {
+        if (b) {
+            graphics.setColor(6710886);
+            graphics.fillRect(this.G - 10, this.e - 1, this.b() - 2 * (this.G - 10), this.o + 2);
+        }
+        graphics.setColor(16776960);
+        graphics.drawString(s, this.G, this.e, 20);
+        this.e += this.o;
+        ++this.e;
+    }
+    
+    private void d(final Graphics graphics) {
+        final Form form = (Form)this.i;
+        graphics.setColor(11429934);
+        graphics.fillRect(0, 0, this.b(), 20 + this.k());
+        this.a(graphics, ((Screen)form).getTitle());
+        graphics.setFont(this.b = h.d);
+        this.o = this.b.getHeight();
+        this.e = 20;
+        this.G = 5;
+        final String[] c = this.c(((StringItem)form.get(0)).getText());
+        this.k = c.length;
+        this.v = this.w + Math.min(this.k, 11) - 1;
+        graphics.setColor(16776960);
+        for (int i = this.w; i <= this.v; ++i) {
+            graphics.drawString(c[i], this.G, this.e, 20);
+            this.e += this.o;
+        }
+        if (this.w > 0) {
+            this.a(graphics, 155, 180, 1);
+        }
+        if (this.v + 1 < this.k) {
+            this.a(graphics, 165, 180, 2);
+        }
+    }
+    
+    private void a(final Graphics graphics, final int n, final int n2, final int n3) {
+        graphics.getColor();
+        graphics.setColor(0);
+        final int n4 = 5;
+        if (n3 == 1) {
+            for (int i = 0; i < n4; ++i) {
+                graphics.drawLine(n - i, n2 + i, n + i, n2 + i);
+            }
+        }
+        else {
+            for (int j = 0; j < n4; ++j) {
+                graphics.drawLine(n - (n4 - j), n2 + j, n + (n4 - j), n2 + j);
+            }
+        }
+    }
+    
+    String[] c(final String s) {
+        final Vector vector = new Vector();
+        final String[] b = this.b(s);
+        for (int length = b.length, i = 0; i < length; ++i) {
+            this.a(vector, b[i]);
+        }
+        return a(vector);
+    }
+    
+    private String[] b(final String s) {
+        final Vector<String> vector = new Vector<String>();
+        int i = 0;
+        do {
+            final int index = s.indexOf(10, i);
+            if (index < 0) {
+                vector.addElement(s.substring(i, s.length()));
+                break;
+            }
+            vector.addElement(s.substring(i, index));
+            i = index + 1;
+        } while (i < s.length());
+        return a(vector);
+    }
+    
+    private void a(final Vector vector, final String s) {
+        final int n = this.b() - this.g - this.F;
+        final String[] c = f.c(s);
+        final int length = c.length;
+        String s2 = "";
+        for (int i = 0; i < length; ++i) {
+            final String str = c[i];
+            String string = s2 + str;
+            if (this.b.stringWidth(string) > n) {
+                if (this.b.stringWidth(str) > n) {
+                    if (s2.length() > 0) {
+                        vector.addElement(new String(s2));
+                    }
+                    final String[] d = this.d(str);
+                    for (int j = 0; j < d.length - 1; ++j) {
+                        vector.addElement(new String(d[j]));
+                    }
+                    string = d[d.length - 1];
+                }
+                else {
+                    vector.addElement(new String(s2));
+                    string = str;
+                }
+            }
+            s2 = string;
+            if (i < length - 1) {
+                final String string2 = s2 + " ";
+                if (this.b.stringWidth(string2) > n) {
+                    vector.addElement(new String(s2));
+                    s2 = "";
+                }
+                else {
+                    s2 = string2;
+                }
+            }
+        }
+        vector.addElement(new String(s2));
+    }
+    
+    private String[] d(final String s) {
+        final int n = this.b() - this.g - this.F;
+        final Vector<String> vector = new Vector<String>();
+        final int length = s.length();
+        String string = "";
+        for (int i = 0; i < length; ++i) {
+            final char char1 = s.charAt(i);
+            final String string2 = string + char1;
+            if (this.b.stringWidth(string2) > n) {
+                vector.addElement(new String(string));
+                string = char1 + "";
+            }
+            else {
+                string = string2;
+            }
+        }
+        vector.addElement(new String(string));
+        return a(vector);
+    }
+    
+    private static String[] a(final Vector vector) {
+        final int size = vector.size();
+        final String[] array = new String[size];
+        for (int i = 0; i < size; ++i) {
+            array[i] = vector.elementAt(i);
+        }
+        return array;
+    }
+    
+    protected void b(final int n) {
+        if (n == -6) {
+            final Command s = this.s();
+            if (s != null) {
+                this.J.commandAction(s, this.t);
+                return;
+            }
+        }
+        else if (n == -7) {
+            final Command l = this.l();
+            if (l != null) {
+                this.J.commandAction(l, this.t);
+                return;
+            }
+        }
+        switch (this.c(n)) {
+            case 6: {
+                if (this.Q == 3 || this.Q == 5 || this.Q == 6) {
+                    int a = this.a();
+                    if (a < this.d() - 1) {
+                        this.a(++a);
+                        if (this.v < a) {
+                            ++this.w;
+                            ++this.v;
+                        }
+                        this.c();
+                        this.f();
+                        break;
+                    }
+                    break;
+                }
+                else {
+                    if (this.Q == 4 && this.v < this.k - 1) {
+                        ++this.w;
+                        ++this.v;
+                        this.c();
+                        this.f();
+                        break;
+                    }
+                    break;
+                }
+                break;
+            }
+            case 1: {
+                if (this.Q == 3 || this.Q == 5 || this.Q == 6) {
+                    int a2 = this.a();
+                    if (a2 > 0) {
+                        this.a(--a2);
+                        if (this.w > a2) {
+                            --this.w;
+                            --this.v;
+                        }
+                        this.c();
+                        this.f();
+                        break;
+                    }
+                    break;
+                }
+                else {
+                    if (this.Q != 4) {
+                        break;
+                    }
+                    this.a();
+                    if (this.w > 0) {
+                        --this.w;
+                        --this.v;
+                        this.c();
+                        this.f();
+                        break;
+                    }
+                    break;
+                }
+                break;
+            }
+        }
+    }
+    
+    String[] r() {
+        switch (this.Q) {
+            case 3: {
+                final List list = (List)this.i;
+                final int size = list.size();
+                final String[] array = new String[size];
+                for (int i = 0; i < size; ++i) {
+                    array[i] = list.getString(i);
+                }
+                return array;
+            }
+            case 5:
+            case 6: {
+                final ChoiceGroup choiceGroup = (ChoiceGroup)((Form)this.i).get(this.h);
+                final int size2 = choiceGroup.size();
+                final String[] array2 = new String[size2];
+                for (int j = 0; j < size2; ++j) {
+                    array2[j] = choiceGroup.getString(j);
+                }
+                return array2;
+            }
+            default: {
+                return null;
+            }
+        }
+    }
+    
+    String p() {
+        return this.r()[this.a()];
+    }
+    
+    int a() {
+        final int n = -1;
+        switch (this.Q) {
+            case 3: {
+                return ((List)this.i).getSelectedIndex();
+            }
+            case 5:
+            case 6: {
+                return ((ChoiceGroup)((Form)this.i).get(this.h)).getSelectedIndex();
+            }
+            default: {
+                return n;
+            }
+        }
+    }
+    
+    void a(final int n) {
+        switch (this.Q) {
+            case 3: {
+                ((List)this.i).setSelectedIndex(n, true);
+                break;
+            }
+            case 5:
+            case 6: {
+                ((ChoiceGroup)((Form)this.i).get(this.h)).setSelectedIndex(n, true);
+                break;
+            }
+        }
+    }
+    
+    protected void h() {
+        switch (this.Q) {
+            case 2: {
+                this.g();
+                break;
+            }
+        }
+    }
+    
+    protected void q() {
+        switch (this.Q) {
+            case 1:
+            case 2: {
+                this.i();
+                break;
+            }
+        }
+    }
+    
+    private void g() {
+        System.out.println("IN START HELPER THREAD IN UICANVAS");
+        this.D = new Thread(this);
+        System.out.println("Helper thread in UICanvas: " + this.D);
+        System.out.println("num active threads = " + Thread.activeCount());
+        this.j = true;
+        this.D.start();
+    }
+    
+    private void i() {
+        this.j = false;
+    }
+    
+    public void run() {
+        if (this.Q == 2) {
+            this.m();
+        }
+        else if (this.Q == 1) {
+            System.out.println("Running a download helper thread to repaint");
+        }
+    }
+    
+    private void m() {
+        try {
+            this.C = 0L;
+            System.out.println("Just before helper thread loop in UICanvas");
+            while (this.j && (this.m < 100 || this.C < 4000L)) {
+                final long currentTimeMillis = System.currentTimeMillis();
+                this.c();
+                this.f();
+                final long n = System.currentTimeMillis() - currentTimeMillis;
+                try {
+                    if (n < 500L) {
+                        Thread.sleep(500L - n);
+                    }
+                }
+                catch (Exception ex) {}
+                this.C += System.currentTimeMillis() - currentTimeMillis;
+                System.out.println("Progress pct is " + this.m);
+            }
+            ESGame.aG = true;
+            this.L.ac = false;
+            this.a(2000L);
+            this.L.ac = true;
+            ESGame.aG = false;
+            this.a(1000L);
+            this.L.ac = false;
+            ESGame.aa = null;
+            ESGame.aA = null;
+            ESGame.O = null;
+            ESGame.aU = null;
+            this.D = null;
+            ESGame.c("After nuking splash");
+            System.out.println("End of splash, changing to next");
+            this.L.a(this.c);
+        }
+        catch (Throwable t) {
+            t.printStackTrace();
+            this.L.a(this.L.w);
+        }
+    }
+    
+    private void a(final long n) {
+        long n2 = 0L;
+        do {
+            this.c();
+            this.f();
+            try {
+                Thread.sleep(500L);
+            }
+            catch (Exception ex) {}
+            n2 += 500L;
+        } while (n2 <= n);
+    }
+    
+    int d() {
+        if (this.Q == 3) {
+            return ((List)this.i).size();
+        }
+        if (this.Q == 5 || this.Q == 6) {
+            return ((ChoiceGroup)((Form)this.i).get(this.h)).size();
+        }
+        return 0;
+    }
+    
+    void a(final int n, final String text) {
+        final Form form = (Form)this.i;
+        if (this.Q == 6) {
+            System.out.println("type is form2, size is " + form.size());
+        }
+        if (this.Q == 5 || this.Q == 6 || this.Q == 4) {
+            ((StringItem)form.get(n)).setText(text);
+        }
+    }
+    
+    void a(final String title) {
+        if (this.i != null) {
+            this.i.setTitle(title);
+        }
+    }
+    
+    void e(final String text) {
+        final Form form = (Form)this.i;
+        try {
+            if (form != null) {
+                ((StringItem)form.get(0)).setText(text);
+            }
+        }
+        catch (Throwable t) {}
+    }
+    
+    String t() {
+        final Form form = (Form)this.i;
+        try {
+            if (form != null) {
+                return ((StringItem)form.get(0)).getText();
+            }
+        }
+        catch (Throwable t) {}
+        return null;
+    }
+    
+    public void a(final Command obj) {
+        this.q.addElement(obj);
+    }
+    
+    public void b(final Command obj) {
+        this.q.removeElement(obj);
+    }
+    
+    public void a(final CommandListener j) {
+        this.J = j;
+    }
+    
+    private void a(final Graphics graphics) {
+        if (this.q.size() == 0) {
+            return;
+        }
+        graphics.setColor(16777215);
+        graphics.fillRect(0, 190, this.b(), 20);
+        this.q.size();
+        graphics.setColor(0);
+        graphics.setFont(h.O);
+        final Command s = this.s();
+        if (s != null) {
+            graphics.drawString(s.getLabel(), 10, 192, 20);
+        }
+        final Command l = this.l();
+        if (l != null) {
+            graphics.drawString(l.getLabel(), this.b() - 10, 195, 24);
+        }
+    }
+    
+    private Command l() {
+        final int size = this.q.size();
+        Command command = null;
+        if (size == 1) {
+            command = this.q.elementAt(0);
+        }
+        else if (size == 2) {
+            for (int i = 0; i < 2; ++i) {
+                final Command command2 = this.q.elementAt(i);
+                if (command2 == h.I || command2 == h.u) {
+                    command = command2;
+                    break;
+                }
+            }
+        }
+        return command;
+    }
+    
+    private Command s() {
+        final int size = this.q.size();
+        Command command = null;
+        if (size == 2) {
+            for (int i = 0; i < 2; ++i) {
+                final Command command2 = this.q.elementAt(i);
+                if (command2 == h.z || command2 == h.P) {
+                    command = command2;
+                    break;
+                }
+            }
+        }
+        return command;
+    }
+    
+    static c j() {
+        return h.K[h.x];
+    }
+    
+    public void c() {
+        if (ESGame.ax != null && this.B != ESGame.ax.B) {
+            return;
+        }
+        ((Canvas)h.K[h.x]).repaint();
+    }
+    
+    public void f() {
+        ((Canvas)h.K[h.x]).serviceRepaints();
+    }
+    
+    public int b() {
+        return ((Canvas)h.K[h.x]).getWidth();
+    }
+    
+    public int k() {
+        return ((Canvas)h.K[h.x]).getHeight();
+    }
+    
+    public int c(final int n) {
+        return ((Canvas)h.K[h.x]).getGameAction(n);
+    }
+    
+    static {
+        (h.K = new c[2])[0] = new c();
+        h.K[1] = new c();
+        h.x = 0;
+        try {
+            h.r = Image.createImage(((Canvas)h.K[0]).getWidth(), ((Canvas)h.K[0]).getHeight());
+        }
+        catch (Throwable t) {
+            System.out.println("Error allocating bufferImage");
+        }
+        O = Font.getFont(0, 1, 8);
+        H = Font.getFont(0, 1, 0);
+        p = Font.getFont(64, 0, 8);
+        d = Font.getFont(0, 1, 8);
+        l = Font.getFont(0, 1, 0);
+        I = new Command("Ok", 3, 0);
+        u = new Command("Select", 3, 0);
+        P = new Command("Cancel", 4, 0);
+        z = new Command("Back", 4, 0);
+        a = new Command("Exit", 7, 0);
+        y = new String[] { "(c) 2003 Vir2L Studios, ", "a ZeniMax Media company. ", "The Elder Scrolls and Vir2L ", "are registered trademarks ", "of ZeniMax Media Inc. ", "All rights reserved." };
+    }
+}

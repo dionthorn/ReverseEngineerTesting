@@ -1,0 +1,96 @@
+import java.io.InputStream;
+
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
+public class g
+{
+    int e;
+    int a;
+    int h;
+    boolean c;
+    short d;
+    short f;
+    short[] g;
+    static short[] b;
+    
+    private g() {
+        final int n = 0;
+        this.a = n;
+        this.e = n;
+        this.g = null;
+        this.f = -1;
+    }
+    
+    static g b(final String s) throws Exception {
+        final InputStream resourceAsStream = new Object().getClass().getResourceAsStream(a(s));
+        if (resourceAsStream == null) {
+            throw new Exception("Image " + s + " is null!");
+        }
+        final g g = new g();
+        g.e = b(resourceAsStream);
+        g.a = b(resourceAsStream);
+        g.h = g.e;
+        if ((resourceAsStream.read() & 0xFF) != 0x0) {
+            g.c = true;
+        }
+        else {
+            g.c = false;
+        }
+        g.d = a(resourceAsStream);
+        final int n = resourceAsStream.read() & 0xFF;
+        if (n > 255) {
+            throw new Exception("Too many colors in image " + s);
+        }
+        for (int i = 0; i < n; ++i) {
+            final short a = a(resourceAsStream);
+            g.b[i] = a;
+            if (g.c && g.f < 0 && g.d == a) {
+                g.f = (short)i;
+            }
+        }
+        final int n2 = g.e * g.a;
+        g.g = new short[n2];
+        for (int j = 0; j < n2; ++j) {
+            final int n3 = resourceAsStream.read() & 0xFF;
+            final short n4 = g.b[n3];
+            short n5;
+            if (g.c && n3 == g.f) {
+                n5 = (short)(n4 & 0xFFFF0FFF);
+            }
+            else {
+                n5 = (short)(n4 | 0xF000);
+            }
+            g.g[j] = n5;
+        }
+        return g;
+    }
+    
+    int a() {
+        return this.e;
+    }
+    
+    int b() {
+        return this.a;
+    }
+    
+    private static String a(final String str) {
+        if (str.startsWith("/")) {
+            return str;
+        }
+        return "/" + str;
+    }
+    
+    private static int b(final InputStream inputStream) throws Exception {
+        return 0x0 | inputStream.read() << 24 | inputStream.read() << 16 | inputStream.read() << 8 | inputStream.read();
+    }
+    
+    private static short a(final InputStream inputStream) throws Exception {
+        return (short)((0x0 | inputStream.read() << 8 | inputStream.read()) & 0xFFFF);
+    }
+    
+    static {
+        g.b = new short[256];
+    }
+}

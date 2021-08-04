@@ -1,0 +1,79 @@
+import java.io.DataInputStream;
+
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
+public class b
+{
+    String c;
+    byte h;
+    byte e;
+    byte f;
+    byte d;
+    byte j;
+    byte g;
+    String a;
+    static int i;
+    static b[] b;
+    
+    b() {
+    }
+    
+    static int d(final int n) {
+        return n - 1;
+    }
+    
+    static b c(final int n) {
+        return b.b[d(n)];
+    }
+    
+    static boolean a(final int n) {
+        return n >= 1 && n <= b.i;
+    }
+    
+    static boolean b(final int n) {
+        return b.b[d(n)].d == 2;
+    }
+    
+    static void a() {
+        try {
+            final DataInputStream a = f.a("/spellsin.dat");
+            b.i = a.readShort();
+            b.b = new b[b.i];
+            for (int i = 0; i < b.i; ++i) {
+                b.b[i] = new b();
+            }
+            System.out.println("Number of spells is " + b.i);
+            for (int j = 0; j < b.i; ++j) {
+                b.b[j].c = a.readUTF();
+            }
+            for (int k = 0; k < b.i; ++k) {
+                b.b[k].h = a.readByte();
+            }
+            for (int l = 0; l < b.i; ++l) {
+                b.b[l].e = a.readByte();
+            }
+            for (int n = 0; n < b.i; ++n) {
+                b.b[n].f = a.readByte();
+            }
+            for (int n2 = 0; n2 < b.i; ++n2) {
+                b.b[n2].d = a.readByte();
+            }
+            for (int n3 = 0; n3 < b.i; ++n3) {
+                b.b[n3].j = a.readByte();
+            }
+            for (int n4 = 0; n4 < b.i; ++n4) {
+                b.b[n4].g = a.readByte();
+            }
+            for (int n5 = 0; n5 < b.i; ++n5) {
+                b.b[n5].a = a.readUTF();
+            }
+            a.close();
+        }
+        catch (Exception x) {
+            System.out.println("ERROR: cannot load spells!");
+            System.out.println(x);
+        }
+    }
+}

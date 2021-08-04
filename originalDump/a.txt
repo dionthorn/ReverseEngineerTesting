@@ -1,0 +1,226 @@
+import java.util.Random;
+import java.io.DataInputStream;
+
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
+public class a
+{
+    static int n;
+    static String[] g;
+    static int k;
+    static String[] b;
+    static byte[] j;
+    static byte[] c;
+    static byte[] m;
+    static short[] f;
+    static short[] a;
+    static byte[] e;
+    static String[][] l;
+    static byte[][] h;
+    static byte d;
+    static short i;
+    
+    a() {
+    }
+    
+    static short a() {
+        return (short)(++a.i);
+    }
+    
+    static int e(final int n) {
+        return n - 1;
+    }
+    
+    static boolean c(final int n) {
+        return a.e[e(n)] != -1;
+    }
+    
+    static boolean b(final int n) {
+        switch (a.j[e(n)]) {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10: {
+                return true;
+            }
+            default: {
+                return false;
+            }
+        }
+    }
+    
+    static int a(final int n) {
+        return a.e[e(n)];
+    }
+    
+    static String d(final int n) {
+        return a.b[e(n)];
+    }
+    
+    static int a(final int n, final int n2) {
+        final int e = e(n2);
+        int n3 = 0;
+        switch (n) {
+            case 1: {
+                n3 = a.j[e];
+                break;
+            }
+            case 2: {
+                n3 = a.c[e];
+                break;
+            }
+            case 3: {
+                n3 = a.m[e];
+                break;
+            }
+            case 4: {
+                n3 = a.f[e];
+                break;
+            }
+            case 5: {
+                n3 = a.a[e];
+                break;
+            }
+            case 6: {
+                n3 = a.e[e];
+                break;
+            }
+            default: {
+                n3 = -1;
+                break;
+            }
+        }
+        return n3;
+    }
+    
+    static void e() throws Exception {
+        a.i = 0;
+        c();
+        d();
+    }
+    
+    static void c() throws Exception {
+        final DataInputStream a = f.a("/itemsin.dat");
+        a.n = a.readShort();
+        a.g = new String[a.n];
+        for (int i = 0; i < a.n; ++i) {
+            a.g[i] = a.readUTF();
+        }
+        a.k = a.readShort();
+        a.b = new String[a.k];
+        a.j = new byte[a.k];
+        a.c = new byte[a.k];
+        a.m = new byte[a.k];
+        a.f = new short[a.k];
+        a.a = new short[a.k];
+        a.e = new byte[a.k];
+        for (int j = 0; j < a.k; ++j) {
+            a.b[j] = a.readUTF();
+        }
+        for (int k = 0; k < a.k; ++k) {
+            a.j[k] = a.readByte();
+        }
+        for (int l = 0; l < a.k; ++l) {
+            a.c[l] = a.readByte();
+        }
+        for (int n = 0; n < a.k; ++n) {
+            a.m[n] = a.readByte();
+        }
+        for (int n2 = 0; n2 < a.k; ++n2) {
+            a.f[n2] = a.readShort();
+        }
+        for (int n3 = 0; n3 < a.k; ++n3) {
+            a.a[n3] = a.readShort();
+        }
+        for (int n4 = 0; n4 < a.k; ++n4) {
+            a.e[n4] = a.readByte();
+        }
+        a.close();
+    }
+    
+    static void d() throws Exception {
+        final DataInputStream a = f.a("/droppeditemsin.dat");
+        final short short1 = a.readShort();
+        a.d = (byte)short1;
+        System.out.println("numTableRows=" + a.d);
+        final short short2 = a.readShort();
+        a.h = new byte[short1][short2];
+        for (short n = 0; n < short1; ++n) {
+            for (short n2 = 0; n2 < short2; ++n2) {
+                a.h[n][n2] = a.readByte();
+            }
+        }
+        a.close();
+    }
+    
+    static int a(final Random random, final int n) {
+        int n2 = -1;
+        int n3 = -1;
+        for (int i = 0; i < a.k; ++i) {
+            if (a.j[i] == 11 && a.c[i] == (byte)n) {
+                if (n2 == -1) {
+                    n2 = i;
+                }
+                n3 = i;
+            }
+        }
+        return 1 + (n2 + Math.abs(random.nextInt() % (n3 - n2 + 1)));
+    }
+    
+    static int a(final Random random, final int n, final int n2) {
+        int a = f.a(random, 100);
+        for (int i = 1; i < n2; ++i) {
+            final int a2 = f.a(random, 100);
+            if (a2 > a) {
+                a = a2;
+            }
+        }
+        final int n3 = a;
+        int n4;
+        if (n3 <= 64) {
+            n4 = 0;
+        }
+        else if (n3 <= 75) {
+            n4 = 1;
+        }
+        else if (n3 <= 90) {
+            n4 = 3;
+        }
+        else {
+            n4 = 4;
+        }
+        int n5 = f.a(random, 10) + (n - 2);
+        if (n5 > a.d - 1) {
+            n5 = a.d - 1;
+        }
+        if (n5 < 0) {
+            n5 = 0;
+        }
+        int j = a.h[n5][n4];
+        if (n4 == 1) {
+            j |= a.h[n5][2] << 8;
+        }
+        System.out.println("in getRandomItem, res = " + j);
+        return j;
+    }
+    
+    static String[] b() {
+        final String[] array = new String[13];
+        for (int i = 0; i < 13; ++i) {
+            array[i] = a.b[86 + i];
+        }
+        return array;
+    }
+    
+    static {
+        a.l = new String[][] { { "Warp to camp", "" }, { "Cures ailment", "" }, { "Restores Health", "" }, { "Restores Magicka", "" }, { "", "" }, { "Grants level", "experience" }, { "Health & Magicka", "" }, { "Increase harm", "" }, { "Increase armor", "" }, { "Safe camping", "" }, { "Kill monster", "" }, { "Kill monster", "" }, { "Kill monster", "" } };
+    }
+}

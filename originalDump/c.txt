@@ -1,0 +1,47 @@
+import javax.microedition.lcdui.CommandListener;
+import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.Graphics;
+import com.nokia.mid.ui.FullCanvas;
+
+// 
+// Decompiled by Procyon v0.5.36
+// 
+
+public class c extends FullCanvas
+{
+    h a;
+    
+    public c() {
+        this.a = null;
+    }
+    
+    public void paint(final Graphics graphics) {
+        if (this.a != null) {
+            this.a.e(graphics);
+        }
+    }
+    
+    public void addCommand(final Command command) {
+        if (this.a != null) {
+            this.a.a(command);
+        }
+    }
+    
+    public void removeCommand(final Command command) {
+        if (this.a != null) {
+            this.a.b(command);
+        }
+    }
+    
+    public void setCommandListener(final CommandListener commandListener) {
+        if (this.a != null) {
+            this.a.a(commandListener);
+        }
+    }
+    
+    protected void keyPressed(final int n) {
+        if (this.a != null) {
+            this.a.b(n);
+        }
+    }
+}

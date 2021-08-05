@@ -23,8 +23,19 @@ public class ProgSeven
         this.shortB = -1;
     }
 
+    /*
+    This appears the likely candidate for pulling data from .cus files
+    example input:
+
+    /wardenbody2f2half.cus
+    /wardenheads4bit.cus
+    /wardenarmsf2.cus
+    /wardenmid.cus
+
+    etc
+     */
     static ProgSeven getProgSevenFromString(final String s) throws Exception {
-        final InputStream resourceAsStream = Object.class.getResourceAsStream(getFormalizedString(s));
+        final InputStream resourceAsStream = ProgSeven.class.getResourceAsStream(getFormalizedString(s));
         if (resourceAsStream == null) {
             throw new Exception("Image " + s + " is null!");
         }

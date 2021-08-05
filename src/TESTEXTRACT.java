@@ -17,7 +17,7 @@ public class TESTEXTRACT {
         BufferedImage testImage = null;
         ProgSeven test = null;
         try {
-            test = ProgSeven.getProgSevenFromString("/trainer_male_mid.cus");
+            test = ProgSeven.getProgSevenFromString("/wardenmid.cus");
             // System.out.println(test.getIntA() + " " + test.getIntB());
             testImage = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
@@ -26,18 +26,10 @@ public class TESTEXTRACT {
         }
 
         if(test != null && testImage != null) {
-            int x = 0;
-            int y = 0;
-            for(short testShort: test.shortArray) {
-                // System.out.print(x + ", " + y + " " + testShort + " ");
-                testImage.setRGB(x, y, _getPixel(test.shortArray[x + y * test.intC], 4444));
-                // System.out.print(testImage.getRGB(x, y) + " | ");
-                if(x == test.intC) {
-                    x = 0;
-                    System.out.println();
-                    y++;
+            for(int x=0; x<test.intA; x++) {
+                for(int y=0; y<test.intB; y++) {
+                    testImage.setRGB(x, y, _getPixel(test.shortArray[x + y * test.intC], 4444));
                 }
-                x++;
             }
         }
 

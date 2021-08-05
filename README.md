@@ -1,5 +1,5 @@
 # ReverseEngineerTesting
- FOR EDUCATIONAL PURPOSES ONLY
+ FOR EDUCATIONAL PURPOSES ONLY - PEOPLE BELOW OWN THE RIGHTS ASSETS NOT INCLUDED
  
  sb.append("Game Design: Anthony Gill and Greg Gorden");
  

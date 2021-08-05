@@ -1,15 +1,25 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBuffer;
+import javax.imageio.ImageTypeSpecifier;
+
 public class TESTEXTRACT {
 
+    public static int SCREEN_WIDTH = 480;
+    public static int SCREEN_HEIGHT = 480;
+
     public static void main(String[] args) {
+        // mask 0xf 0xf0 0xf00 0xf000
+        ImageTypeSpecifier pixelType = ImageTypeSpecifier.createPacked(ColorSpace.getInstance(ColorSpace.CS_LINEAR_RGB), 0xf0, 0xf00, 0xf00, 0xf, DataBuffer.TYPE_USHORT, false);
         BufferedImage testImage = null;
         ProgSeven test = null;
         try {
             test = ProgSeven.getProgSevenFromString("/trainer_male_mid.cus");
             // System.out.println(test.getIntA() + " " + test.getIntB());
-            testImage = new BufferedImage(240,240, BufferedImage.TYPE_4BYTE_ABGR);
+            testImage = pixelType.createBufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -30,7 +40,7 @@ public class TESTEXTRACT {
         }
 
         JFrame jFrame = new JFrame("TESTEXTRACT");
-        jFrame.setPreferredSize(new Dimension(240,240));
+        jFrame.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLayout(new BorderLayout());
 
@@ -39,10 +49,12 @@ public class TESTEXTRACT {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(finalTestImage, 0, 0, null);
+                g.setColor(Color.black);
+                g.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+                g.drawImage(finalTestImage, SCREEN_WIDTH/3, SCREEN_HEIGHT/3, null);
             }
         };
-        pane.setPreferredSize(new Dimension(240, 240));
+        pane.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         jFrame.add(pane);
         jFrame.pack();
         jFrame.setVisible(true);

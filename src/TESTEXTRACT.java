@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBuffer;
-import javax.imageio.ImageTypeSpecifier;
 
 public class TESTEXTRACT {
 
@@ -11,24 +8,29 @@ public class TESTEXTRACT {
     public static int SCREEN_HEIGHT = 480;
 
     public static void main(String[] args) {
-        // mask 0xf 0xf0 0xf00 0xf000
-        ImageTypeSpecifier pixelType = ImageTypeSpecifier.createPacked(ColorSpace.getInstance(ColorSpace.CS_LINEAR_RGB), 0xf0, 0xf00, 0xf00, 0xf, DataBuffer.TYPE_USHORT, false);
+        // 0xARGB
+        // mask 0xf  0xf0   0xf00    0xf000
+        // mask 0xf000
+        //      0x0f00
+        //      0x00f0
+        //      0x000f
         BufferedImage testImage = null;
         ProgSeven test = null;
         try {
             test = ProgSeven.getProgSevenFromString("/trainer_male_mid.cus");
             // System.out.println(test.getIntA() + " " + test.getIntB());
-            testImage = pixelType.createBufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT);
+            testImage = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_ARGB);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         if(test != null && testImage != null) {
             int x = 0;
             int y = 0;
             for(short testShort: test.shortArray) {
                 // System.out.print(x + ", " + y + " " + testShort + " ");
-                testImage.setRGB(x, y, testShort);
+                testImage.setRGB(x, y, _getPixel(test.shortArray[x + y * test.intC], 4444));
                 // System.out.print(testImage.getRGB(x, y) + " | ");
                 if(x == test.intC) {
                     x = 0;
@@ -58,6 +60,27 @@ public class TESTEXTRACT {
         jFrame.add(pane);
         jFrame.pack();
         jFrame.setVisible(true);
+    }
+
+    private static int _getPixel(short pixel, int format) {
+        return ((pixel & 0xf000) << 16) |
+                ((pixel & 0xf00) << 12) |
+                ((pixel & 0xf0) << 8) |
+                ((pixel & 0xf) << 4);
+    }
+
+    public static void drawPixels(BufferedImage testImage, short[] pixels, boolean transparency, int offset, int scanlength, int x, int y, int width, int height, int manipulation, int format) {
+        //System.err.println("com.nokia.mid.ui._DirectGraphics.drawPixels() not implemented.");
+        System.out.println(width + " " + height);
+        testImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        //P(x1, y1) = pixels[offset + (x1 - x) + (y1 - y) * scanlength],
+        //for each P(x1, y1), where (x <= x1 < x + width) and (y <= y1 < y +
+        //height).
+        for (int ix = 0; ix < width; ++ix) {
+            for (int iy = 0; iy < height; ++iy) {
+                testImage.setRGB(ix, iy, _getPixel(pixels[offset + ix + iy * scanlength], format));
+            }
+        }
     }
 
 }

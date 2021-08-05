@@ -11,15 +11,15 @@ import java.awt.*;
 
 public class ProgThree //extends FullCanvas
 {
-    ProgEight a;
+    ProgEight progEightRef;
 
     public ProgThree() {
-        this.a = null;
+        this.progEightRef = null;
     }
 
     public void paint(final Graphics graphics) {
-        if (this.a != null) {
-            this.a.e(graphics);
+        if (this.progEightRef != null) {
+            this.progEightRef.e(graphics);
         }
     }
     /*
@@ -42,8 +42,8 @@ public class ProgThree //extends FullCanvas
     }
     */
     protected void keyPressed(final int n) {
-        if (this.a != null) {
-            this.a.b(n);
+        if (this.progEightRef != null) {
+            this.progEightRef.b(n);
         }
     }
 }

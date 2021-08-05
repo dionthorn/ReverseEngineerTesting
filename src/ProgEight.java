@@ -20,72 +20,72 @@ import java.util.Vector;
 
 public class ProgEight implements Runnable
 {
-    static ProgThree[] K;
-    static int x;
-    static Image r;
-    Vector q;
-    CommandListener J;
-    static final Font O;
-    private static final Font H;
-    private static final Font p;
-    static final Font d;
-    static final Font l;
-    static final Command I;
-    static final Command u;
-    static final Command P;
-    static final Command z;
-    static final Command a;
-    static final String[] y;
-    int Q;
-    int B;
-    int N;
-    private ESGame L;
-    Screen i;
-    int f;
-    private int h;
-    Vector n;
-    String M;
-    String[] E;
-    volatile int m;
-    private boolean j;
-    private Thread D;
-    long C;
-    Displayable t;
-    Object s;
-    Object c;
-    int o;
-    int e;
-    int G;
+    static ProgThree[] progThreeArray;
+    static int staticInt;
+    static Image staticImage;
+    Vector vectorA;
+    CommandListener commandListener;
+    static final Font fontA;
+    private static final Font fontB;
+    private static final Font fontC;
+    static final Font fontD;
+    static final Font fontE;
+    static final Command commandA;
+    static final Command commandB;
+    static final Command commandC;
+    static final Command commandD;
+    static final Command commandE;
+    static final String[] staticStringArray;
+    int intA;
+    int intB;
+    int intC;
+    private ESGame esGame;
+    Screen screen;
+    int intD;
+    private int intE;
+    Vector vectorB;
+    String stringA;
+    String[] stringArray;
+    volatile int volatileInt;
+    private boolean booleanA;
+    private Thread thread;
+    long longA;
+    Displayable displayable;
+    Object objectA;
+    Object objectB;
+    int intF;
+    int intG;
+    int intH;
     Font b;
-    int g;
-    int F;
-    int w;
-    int v;
-    int k;
-    boolean A;
+    int intI;
+    int intJ;
+    int intK;
+    int intL;
+    int intM;
+    boolean booleanB;
 
     public ProgEight(final ESGame l, final int q, final int b) {
-        this.A = false;
-        this.L = l;
-        this.Q = q;
-        this.B = b;
-        this.N = 0;
-        this.i = null;
-        this.f = 0;
-        this.s = null;
-        this.c = null;
-        this.M = null;
-        this.E = null;
-        this.D = null;
-        this.q = new Vector(5);
+        this.booleanB = false;
+        this.esGame = l;
+        this.intA = q;
+        this.intB = b;
+        this.intC = 0;
+        this.screen = null;
+        this.intD = 0;
+        this.objectA = null;
+        this.objectB = null;
+        this.stringA = null;
+        this.stringArray = null;
+        this.thread = null;
+        this.vectorA = new Vector(5);
     }
 
     void e() {
-        this.t = (Displayable)ProgEight.K[ProgEight.x];
+        this.displayable = (Displayable)ProgEight.progThreeArray[ProgEight.staticInt];
     }
 
     void o() {
-        this.t = (Displayable)ProgEight.K[ProgEight.x];
+        this.displayable = (Displayable)ProgEight.progThreeArray[ProgEight.staticInt];
     }
 
     void a(final String s, final String[] array, final Vector vector) {
@@ -94,31 +94,31 @@ public class ProgEight implements Runnable
 
     void a(final String s, final String[] array, final Vector n, final boolean b) {
         final List i = new List(s, 3);
-        this.i = (Screen)i;
-        this.f = 1;
+        this.screen = (Screen)i;
+        this.intD = 1;
         for (int length = array.length, j = 0; j < length; ++j) {
             i.append(array[j], (Image)null);
         }
-        this.n = n;
-        this.w = 0;
-        this.v = 0;
-        this.k = 0;
-        this.t = (Displayable)ProgEight.K[ProgEight.x];
-        this.a(ProgEight.u);
+        this.vectorB = n;
+        this.intK = 0;
+        this.intL = 0;
+        this.intM = 0;
+        this.displayable = (Displayable)ProgEight.progThreeArray[ProgEight.staticInt];
+        this.a(ProgEight.commandB);
         if (b) {
-            this.a(ProgEight.P);
+            this.a(ProgEight.commandC);
         }
-        this.a((CommandListener)this.L);
+        this.a((CommandListener)this.esGame);
     }
 
     void n() {
         String string = "";
-        for (int i = 0; i < ProgEight.y.length; ++i) {
-            string += ProgEight.y[i];
+        for (int i = 0; i < ProgEight.staticStringArray.length; ++i) {
+            string += ProgEight.staticStringArray[i];
         }
         this.a("Exiting", string);
-        this.b(ProgEight.I);
-        this.a(ProgEight.a);
+        this.b(ProgEight.commandA);
+        this.a(ProgEight.commandE);
     }
 
     void a(final String s, final String s2) {
@@ -127,17 +127,17 @@ public class ProgEight implements Runnable
 
     void a(final String s, final String s2, final boolean b) {
         final Form i = new Form(s);
-        this.i = (Screen)i;
-        this.f = 2;
+        this.screen = (Screen)i;
+        this.intD = 2;
         i.append((Item)new StringItem((String)null, s2));
-        this.g = 10;
-        this.F = 10;
-        this.w = 0;
-        this.v = 0;
-        this.k = 0;
-        this.t = (Displayable)ProgEight.K[ProgEight.x];
-        this.a(ProgEight.I);
-        this.a((CommandListener)this.L);
+        this.intI = 10;
+        this.intJ = 10;
+        this.intK = 0;
+        this.intL = 0;
+        this.intM = 0;
+        this.displayable = (Displayable)ProgEight.progThreeArray[ProgEight.staticInt];
+        this.a(ProgEight.commandA);
+        this.a((CommandListener)this.esGame);
     }
 
     void a(final String s, final String s2, final String[] array, final Vector vector) {
@@ -146,88 +146,78 @@ public class ProgEight implements Runnable
 
     void a(final String s, final String original, final String[] array, final Vector n, final boolean b) {
         final Form i = new Form(s);
-        this.i = (Screen)i;
-        this.f = 2;
+        this.screen = (Screen)i;
+        this.intD = 2;
         i.append((Item)new StringItem((String)null, original));
-        this.g = 15;
-        this.F = 15;
+        this.intI = 15;
+        this.intJ = 15;
         final ChoiceGroup choiceGroup = new ChoiceGroup((String)null, 1);
         for (int length = array.length, j = 0; j < length; ++j) {
             choiceGroup.append(array[j], (Image)null);
         }
-        this.h = 1;
+        this.intE = 1;
         i.append((Item)choiceGroup);
-        this.n = n;
-        this.w = 0;
-        this.v = 0;
-        this.k = 0;
-        this.t = (Displayable)ProgEight.K[ProgEight.x];
-        this.a(ProgEight.u);
-        this.a(ProgEight.P);
-        this.a((CommandListener)this.L);
+        this.vectorB = n;
+        this.intK = 0;
+        this.intL = 0;
+        this.intM = 0;
+        this.displayable = (Displayable)ProgEight.progThreeArray[ProgEight.staticInt];
+        this.a(ProgEight.commandB);
+        this.a(ProgEight.commandC);
+        this.a((CommandListener)this.esGame);
         if (original != null && original.indexOf("<TAG>") >= 0) {
-            this.M = new String(original);
+            this.stringA = new String(original);
         }
     }
 
     void a(final String s, final String s2, final String s3, final String[] array, final Vector n) {
         final Form i = new Form(s);
-        this.i = (Screen)i;
-        this.f = 2;
+        this.screen = (Screen)i;
+        this.intD = 2;
         i.append((Item)new StringItem((String)null, s2));
         i.append((Item)new StringItem((String)null, s3));
-        this.g = 15;
-        this.F = 15;
+        this.intI = 15;
+        this.intJ = 15;
         final ChoiceGroup choiceGroup = new ChoiceGroup((String)null, 1);
         for (int length = array.length, j = 0; j < length; ++j) {
             choiceGroup.append(array[j], (Image)null);
         }
-        this.h = 2;
+        this.intE = 2;
         i.append((Item)choiceGroup);
-        this.n = n;
-        this.t = (Displayable)ProgEight.K[ProgEight.x];
-        this.a(ProgEight.u);
-        this.a(ProgEight.P);
-        this.a((CommandListener)this.L);
+        this.vectorB = n;
+        this.displayable = (Displayable)ProgEight.progThreeArray[ProgEight.staticInt];
+        this.a(ProgEight.commandB);
+        this.a(ProgEight.commandC);
+        this.a((CommandListener)this.esGame);
     }
 
     public void e(final Graphics graphics) {
-        final Graphics graphics2 = ProgEight.r.getGraphics();
-        switch (this.Q) {
-            case 1: {
+        final Graphics graphics2 = ProgEight.staticImage.getGraphics();
+        switch (this.intA) {
+            case 1 -> {
                 System.out.println("        IN CANVAS DOWNLOAD PAINT!");
-                break;
             }
-            case 2: {
+            case 2 -> {
                 this.f(graphics2);
-                break;
             }
-            case 3: {
+            case 3 -> {
                 this.c(graphics2);
-                break;
             }
-            case 5: {
+            case 5 -> {
                 this.a(graphics2, 1);
-                break;
             }
-            case 6: {
+            case 6 -> {
                 this.a(graphics2, 2);
-                break;
             }
-            case 4: {
+            case 4 -> {
                 this.d(graphics2);
-                break;
             }
-            case 8:
-            case 9:
-            case 10:
-            case 11: {
+            case 8, 9, 10, 11 -> {
                 this.b(graphics2);
-                break;
             }
         }
         this.a(graphics2);
-        graphics.drawImage(ProgEight.r, 0, 0, 20);
+        graphics.drawImage(ProgEight.staticImage, 0, 0, 20);
     }
 
     private void f(final Graphics graphics) {
@@ -239,14 +229,14 @@ public class ProgEight implements Runnable
             graphics.drawImage(ESGame.aA, this.b() / 2, 10, 17);
             int n = 10 + ESGame.aA.getHeight() + 3;
             graphics.setColor(0);
-            for (int i = 0; i < ProgEight.y.length; ++i) {
-                graphics.drawString(ProgEight.y[i], this.b() / 2, n, 17);
+            for (int i = 0; i < ProgEight.staticStringArray.length; ++i) {
+                graphics.drawString(ProgEight.staticStringArray[i], this.b() / 2, n, 17);
                 n += 14;
             }
             graphics.drawString("Distributed by:", this.b() / 2, 143, 17);
             graphics.drawImage(ESGame.aa, this.b() / 2, 158, 17);
         }
-        else if (this.L.ac) {
+        else if (this.esGame.ac) {
             graphics.setColor(0);
             graphics.fillRect(0, 0, this.b(), 20 + this.k());
             graphics.drawImage(ESGame.O, this.b() / 2, 20, 17);
@@ -260,39 +250,39 @@ public class ProgEight implements Runnable
             graphics.setColor(16777215);
             graphics.fillRect(12, 165, 152, 22);
             graphics.setColor(10485760);
-            graphics.fillRect(13, 166, 3 * this.m / 2, 20);
+            graphics.fillRect(13, 166, 3 * this.volatileInt / 2, 20);
         }
     }
 
     private void b(final Graphics graphics) {
         graphics.setColor(11429934);
         graphics.fillRect(0, 0, this.b(), 20 + this.k());
-        graphics.setFont(ProgEight.l);
+        graphics.setFont(ProgEight.fontE);
         graphics.setColor(16777215);
         final int n = this.b() / 2;
-        if (this.Q == 8) {
+        if (this.intA == 8) {
             graphics.drawString("Creating New Game", n, 30, 17);
         }
-        else if (this.Q == 9) {
+        else if (this.intA == 9) {
             graphics.drawString("Loading Game", n, 30, 17);
         }
-        else if (this.Q == 10) {
+        else if (this.intA == 10) {
             graphics.drawString("Saving Game", n, 30, 17);
         }
-        else if (this.Q == 11) {
+        else if (this.intA == 11) {
             graphics.drawString("Loading Dungeon", n, 30, 17);
         }
         graphics.drawString("Please Wait", n, 45, 17);
         graphics.setColor(16777215);
         graphics.fillRect((this.b() - 90) / 2, 60, 90, 20);
-        final int n2 = this.m * 88 / 100;
+        final int n2 = this.volatileInt * 88 / 100;
         graphics.setColor(255);
         graphics.fillRect((this.b() - 88) / 2, 61, n2, 18);
     }
 
     private void a(final Graphics graphics, final String s) {
         final Font font = graphics.getFont();
-        graphics.setFont(ProgEight.H);
+        graphics.setFont(ProgEight.fontB);
         final int color = graphics.getColor();
         graphics.setColor(0);
         graphics.fillRect(0, 0, this.b(), 14);
@@ -305,42 +295,42 @@ public class ProgEight implements Runnable
     private void c(final Graphics graphics) {
         graphics.setColor(11429934);
         graphics.fillRect(0, 0, this.b(), 20 + this.k());
-        this.a(graphics, this.i.getTitle());
-        graphics.setFont(this.b = ProgEight.d);
-        this.o = this.b.getHeight();
-        this.e = 20;
-        this.G = 15;
+        this.a(graphics, this.screen.getTitle());
+        graphics.setFont(this.b = ProgEight.fontD);
+        this.intF = this.b.getHeight();
+        this.intG = 20;
+        this.intH = 15;
         final String[] r = this.r();
         final int length = r.length;
-        this.v = this.w + Math.min(length, 10) - 1;
-        for (int i = this.w; i <= this.v; ++i) {
+        this.intL = this.intK + Math.min(length, 10) - 1;
+        for (int i = this.intK; i <= this.intL; ++i) {
             this.a(graphics, r[i], i == this.a());
         }
-        if (this.w > 0) {
+        if (this.intK > 0) {
             this.a(graphics, 155, 180, 1);
         }
-        if (this.v + 1 < length) {
+        if (this.intL + 1 < length) {
             this.a(graphics, 165, 180, 2);
         }
     }
 
     private void a(final Graphics graphics, final int n) {
-        final Form form = (Form)this.i;
+        final Form form = (Form)this.screen;
         graphics.setColor(11429934);
         graphics.fillRect(0, 0, this.b(), 20 + this.k());
         this.a(graphics, ((Screen)form).getTitle());
-        graphics.setFont(this.b = ProgEight.d);
-        this.o = this.b.getHeight();
-        this.e = 20;
-        this.G = 15;
+        graphics.setFont(this.b = ProgEight.fontD);
+        this.intF = this.b.getHeight();
+        this.intG = 20;
+        this.intH = 15;
         for (int i = 0; i < n; ++i) {
             final String text = ((StringItem)form.get(i)).getText();
-            if (this.A) {
+            if (this.booleanB) {
                 final String[] c = this.c(text);
                 for (int j = 0; j < c.length; ++j) {
                     graphics.setColor(16776960);
-                    graphics.drawString(c[j], this.G, this.e, 20);
-                    this.e += this.o;
+                    graphics.drawString(c[j], this.intH, this.intG, 20);
+                    this.intG += this.intF;
                 }
             }
             else {
@@ -350,21 +340,21 @@ public class ProgEight implements Runnable
                 else {
                     graphics.setColor(16777215);
                 }
-                graphics.drawString(text, this.G, this.e, 20);
-                this.e += this.o;
+                graphics.drawString(text, this.intH, this.intG, 20);
+                this.intG += this.intF;
             }
         }
-        this.e += 5;
+        this.intG += 5;
         final String[] r = this.r();
         final int length = r.length;
-        this.v = this.w + Math.min(length, 9) - 1;
-        for (int k = this.w; k <= this.v; ++k) {
+        this.intL = this.intK + Math.min(length, 9) - 1;
+        for (int k = this.intK; k <= this.intL; ++k) {
             this.a(graphics, r[k], k == this.a());
         }
-        if (this.w > 0) {
+        if (this.intK > 0) {
             this.a(graphics, 155, 180, 1);
         }
-        if (this.v + 1 < length) {
+        if (this.intL + 1 < length) {
             this.a(graphics, 165, 180, 2);
         }
     }
@@ -372,35 +362,35 @@ public class ProgEight implements Runnable
     private void a(final Graphics graphics, final String s, final boolean b) {
         if (b) {
             graphics.setColor(6710886);
-            graphics.fillRect(this.G - 10, this.e - 1, this.b() - 2 * (this.G - 10), this.o + 2);
+            graphics.fillRect(this.intH - 10, this.intG - 1, this.b() - 2 * (this.intH - 10), this.intF + 2);
         }
         graphics.setColor(16776960);
-        graphics.drawString(s, this.G, this.e, 20);
-        this.e += this.o;
-        ++this.e;
+        graphics.drawString(s, this.intH, this.intG, 20);
+        this.intG += this.intF;
+        ++this.intG;
     }
 
     private void d(final Graphics graphics) {
-        final Form form = (Form)this.i;
+        final Form form = (Form)this.screen;
         graphics.setColor(11429934);
         graphics.fillRect(0, 0, this.b(), 20 + this.k());
         this.a(graphics, ((Screen)form).getTitle());
-        graphics.setFont(this.b = ProgEight.d);
-        this.o = this.b.getHeight();
-        this.e = 20;
-        this.G = 5;
+        graphics.setFont(this.b = ProgEight.fontD);
+        this.intF = this.b.getHeight();
+        this.intG = 20;
+        this.intH = 5;
         final String[] c = this.c(((StringItem)form.get(0)).getText());
-        this.k = c.length;
-        this.v = this.w + Math.min(this.k, 11) - 1;
+        this.intM = c.length;
+        this.intL = this.intK + Math.min(this.intM, 11) - 1;
         graphics.setColor(16776960);
-        for (int i = this.w; i <= this.v; ++i) {
-            graphics.drawString(c[i], this.G, this.e, 20);
-            this.e += this.o;
+        for (int i = this.intK; i <= this.intL; ++i) {
+            graphics.drawString(c[i], this.intH, this.intG, 20);
+            this.intG += this.intF;
         }
-        if (this.w > 0) {
+        if (this.intK > 0) {
             this.a(graphics, 155, 180, 1);
         }
-        if (this.v + 1 < this.k) {
+        if (this.intL + 1 < this.intM) {
             this.a(graphics, 165, 180, 2);
         }
     }
@@ -446,8 +436,8 @@ public class ProgEight implements Runnable
     }
 
     private void a(final Vector vector, final String s) {
-        final int n = this.b() - this.g - this.F;
-        final String[] c = ProgSix.c(s);
+        final int n = this.b() - this.intI - this.intJ;
+        final String[] c = ProgSix.getStringArrayTrim(s);
         final int length = c.length;
         String s2 = "";
         for (int i = 0; i < length; ++i) {
@@ -485,7 +475,7 @@ public class ProgEight implements Runnable
     }
 
     private String[] d(final String s) {
-        final int n = this.b() - this.g - this.F;
+        final int n = this.b() - this.intI - this.intJ;
         final Vector<String> vector = new Vector<String>();
         final int length = s.length();
         String string = "";
@@ -517,26 +507,26 @@ public class ProgEight implements Runnable
         if (n == -6) {
             final Command s = this.s();
             if (s != null) {
-                this.J.commandAction(s, this.t);
+                this.commandListener.commandAction(s, this.displayable);
                 return;
             }
         }
         else if (n == -7) {
             final Command l = this.l();
             if (l != null) {
-                this.J.commandAction(l, this.t);
+                this.commandListener.commandAction(l, this.displayable);
                 return;
             }
         }
         switch (this.c(n)) {
             case 6: {
-                if (this.Q == 3 || this.Q == 5 || this.Q == 6) {
+                if (this.intA == 3 || this.intA == 5 || this.intA == 6) {
                     int a = this.a();
                     if (a < this.d() - 1) {
                         this.a(++a);
-                        if (this.v < a) {
-                            ++this.w;
-                            ++this.v;
+                        if (this.intL < a) {
+                            ++this.intK;
+                            ++this.intL;
                         }
                         this.c();
                         this.f();
@@ -545,9 +535,9 @@ public class ProgEight implements Runnable
                     break;
                 }
                 else {
-                    if (this.Q == 4 && this.v < this.k - 1) {
-                        ++this.w;
-                        ++this.v;
+                    if (this.intA == 4 && this.intL < this.intM - 1) {
+                        ++this.intK;
+                        ++this.intL;
                         this.c();
                         this.f();
                         break;
@@ -557,13 +547,13 @@ public class ProgEight implements Runnable
                 break;
             }
             case 1: {
-                if (this.Q == 3 || this.Q == 5 || this.Q == 6) {
+                if (this.intA == 3 || this.intA == 5 || this.intA == 6) {
                     int a2 = this.a();
                     if (a2 > 0) {
                         this.a(--a2);
-                        if (this.w > a2) {
-                            --this.w;
-                            --this.v;
+                        if (this.intK > a2) {
+                            --this.intK;
+                            --this.intL;
                         }
                         this.c();
                         this.f();
@@ -572,13 +562,13 @@ public class ProgEight implements Runnable
                     break;
                 }
                 else {
-                    if (this.Q != 4) {
+                    if (this.intA != 4) {
                         break;
                     }
                     this.a();
-                    if (this.w > 0) {
-                        --this.w;
-                        --this.v;
+                    if (this.intK > 0) {
+                        --this.intK;
+                        --this.intL;
                         this.c();
                         this.f();
                         break;
@@ -591,9 +581,9 @@ public class ProgEight implements Runnable
     }
 
     String[] r() {
-        switch (this.Q) {
+        switch (this.intA) {
             case 3: {
-                final List list = (List)this.i;
+                final List list = (List)this.screen;
                 final int size = list.size();
                 final String[] array = new String[size];
                 for (int i = 0; i < size; ++i) {
@@ -603,7 +593,7 @@ public class ProgEight implements Runnable
             }
             case 5:
             case 6: {
-                final ChoiceGroup choiceGroup = (ChoiceGroup)((Form)this.i).get(this.h);
+                final ChoiceGroup choiceGroup = (ChoiceGroup)((Form)this.screen).get(this.intE);
                 final int size2 = choiceGroup.size();
                 final String[] array2 = new String[size2];
                 for (int j = 0; j < size2; ++j) {
@@ -623,13 +613,13 @@ public class ProgEight implements Runnable
 
     int a() {
         final int n = -1;
-        switch (this.Q) {
+        switch (this.intA) {
             case 3: {
-                return ((List)this.i).getSelectedIndex();
+                return ((List)this.screen).getSelectedIndex();
             }
             case 5:
             case 6: {
-                return ((ChoiceGroup)((Form)this.i).get(this.h)).getSelectedIndex();
+                return ((ChoiceGroup)((Form)this.screen).get(this.intE)).getSelectedIndex();
             }
             default: {
                 return n;
@@ -638,21 +628,21 @@ public class ProgEight implements Runnable
     }
 
     void a(final int n) {
-        switch (this.Q) {
+        switch (this.intA) {
             case 3: {
-                ((List)this.i).setSelectedIndex(n, true);
+                ((List)this.screen).setSelectedIndex(n, true);
                 break;
             }
             case 5:
             case 6: {
-                ((ChoiceGroup)((Form)this.i).get(this.h)).setSelectedIndex(n, true);
+                ((ChoiceGroup)((Form)this.screen).get(this.intE)).setSelectedIndex(n, true);
                 break;
             }
         }
     }
 
     protected void h() {
-        switch (this.Q) {
+        switch (this.intA) {
             case 2: {
                 this.g();
                 break;
@@ -661,7 +651,7 @@ public class ProgEight implements Runnable
     }
 
     protected void q() {
-        switch (this.Q) {
+        switch (this.intA) {
             case 1:
             case 2: {
                 this.i();
@@ -672,31 +662,31 @@ public class ProgEight implements Runnable
 
     private void g() {
         System.out.println("IN START HELPER THREAD IN UICANVAS");
-        this.D = new Thread(this);
-        System.out.println("Helper thread in UICanvas: " + this.D);
+        this.thread = new Thread(this);
+        System.out.println("Helper thread in UICanvas: " + this.thread);
         System.out.println("num active threads = " + Thread.activeCount());
-        this.j = true;
-        this.D.start();
+        this.booleanA = true;
+        this.thread.start();
     }
 
     private void i() {
-        this.j = false;
+        this.booleanA = false;
     }
 
     public void run() {
-        if (this.Q == 2) {
+        if (this.intA == 2) {
             this.m();
         }
-        else if (this.Q == 1) {
-            System.out.println("Running a download helper thread to repaint");
+        else if (this.intA == 1) {
+            System.out.println("Running incrementShortZ download helper thread to repaint");
         }
     }
 
     private void m() {
         try {
-            this.C = 0L;
+            this.longA = 0L;
             System.out.println("Just before helper thread loop in UICanvas");
-            while (this.j && (this.m < 100 || this.C < 4000L)) {
+            while (this.booleanA && (this.volatileInt < 100 || this.longA < 4000L)) {
                 final long currentTimeMillis = System.currentTimeMillis();
                 this.c();
                 this.f();
@@ -707,28 +697,28 @@ public class ProgEight implements Runnable
                     }
                 }
                 catch (Exception ex) {}
-                this.C += System.currentTimeMillis() - currentTimeMillis;
-                System.out.println("Progress pct is " + this.m);
+                this.longA += System.currentTimeMillis() - currentTimeMillis;
+                System.out.println("Progress pct is " + this.volatileInt);
             }
             ESGame.aG = true;
-            this.L.ac = false;
+            this.esGame.ac = false;
             this.a(2000L);
-            this.L.ac = true;
+            this.esGame.ac = true;
             ESGame.aG = false;
             this.a(1000L);
-            this.L.ac = false;
+            this.esGame.ac = false;
             ESGame.aa = null;
             ESGame.aA = null;
             ESGame.O = null;
             ESGame.aU = null;
-            this.D = null;
+            this.thread = null;
             ESGame.c("After nuking splash");
             System.out.println("End of splash, changing to next");
-            this.L.a(this.c);
+            this.esGame.a(this.objectB);
         }
         catch (Throwable t) {
             t.printStackTrace();
-            this.L.a(this.L.w);
+            this.esGame.a(this.esGame.w);
         }
     }
 
@@ -745,34 +735,34 @@ public class ProgEight implements Runnable
         } while (n2 <= n);
     }
 
-    int d() {
-        if (this.Q == 3) {
-            return ((List)this.i).size();
+    int dPE() {
+        if (this.intA == 3) {
+            return ((List)this.screen).size();
         }
-        if (this.Q == 5 || this.Q == 6) {
-            return ((ChoiceGroup)((Form)this.i).get(this.h)).size();
+        if (this.intA == 5 || this.intA == 6) {
+            return ((ChoiceGroup)((Form)this.screen).get(this.intE)).size();
         }
         return 0;
     }
 
     void a(final int n, final String text) {
-        final Form form = (Form)this.i;
-        if (this.Q == 6) {
+        final Form form = (Form)this.screen;
+        if (this.intA == 6) {
             System.out.println("type is form2, size is " + form.size());
         }
-        if (this.Q == 5 || this.Q == 6 || this.Q == 4) {
+        if (this.intA == 5 || this.intA == 6 || this.intA == 4) {
             ((StringItem)form.get(n)).setText(text);
         }
     }
 
     void a(final String title) {
-        if (this.i != null) {
-            this.i.setTitle(title);
+        if (this.screen != null) {
+            this.screen.setTitle(title);
         }
     }
 
     void e(final String text) {
-        final Form form = (Form)this.i;
+        final Form form = (Form)this.screen;
         try {
             if (form != null) {
                 ((StringItem)form.get(0)).setText(text);
@@ -782,7 +772,7 @@ public class ProgEight implements Runnable
     }
 
     String t() {
-        final Form form = (Form)this.i;
+        final Form form = (Form)this.screen;
         try {
             if (form != null) {
                 return ((StringItem)form.get(0)).getText();
@@ -793,26 +783,26 @@ public class ProgEight implements Runnable
     }
 
     public void a(final Command obj) {
-        this.q.addElement(obj);
+        this.vectorA.addElement(obj);
     }
 
     public void b(final Command obj) {
-        this.q.removeElement(obj);
+        this.vectorA.removeElement(obj);
     }
 
     public void a(final CommandListener j) {
-        this.J = j;
+        this.commandListener = j;
     }
 
     private void a(final Graphics graphics) {
-        if (this.q.size() == 0) {
+        if (this.vectorA.size() == 0) {
             return;
         }
         graphics.setColor(16777215);
         graphics.fillRect(0, 190, this.b(), 20);
-        this.q.size();
+        this.vectorA.size();
         graphics.setColor(0);
-        graphics.setFont(ProgEight.O);
+        graphics.setFont(ProgEight.fontA);
         final Command s = this.s();
         if (s != null) {
             graphics.drawString(s.getLabel(), 10, 192, 20);
@@ -824,15 +814,15 @@ public class ProgEight implements Runnable
     }
 
     private Command l() {
-        final int size = this.q.size();
+        final int size = this.vectorA.size();
         Command command = null;
         if (size == 1) {
-            command = this.q.elementAt(0);
+            command = this.vectorA.elementAt(0);
         }
         else if (size == 2) {
             for (int i = 0; i < 2; ++i) {
-                final Command command2 = this.q.elementAt(i);
-                if (command2 == ProgEight.I || command2 == ProgEight.u) {
+                final Command command2 = this.vectorA.elementAt(i);
+                if (command2 == ProgEight.commandA || command2 == ProgEight.commandB) {
                     command = command2;
                     break;
                 }
@@ -842,12 +832,12 @@ public class ProgEight implements Runnable
     }
 
     private Command s() {
-        final int size = this.q.size();
+        final int size = this.vectorA.size();
         Command command = null;
         if (size == 2) {
             for (int i = 0; i < 2; ++i) {
-                final Command command2 = this.q.elementAt(i);
-                if (command2 == ProgEight.z || command2 == ProgEight.P) {
+                final Command command2 = this.vectorA.elementAt(i);
+                if (command2 == ProgEight.commandD || command2 == ProgEight.commandC) {
                     command = command2;
                     break;
                 }
@@ -857,52 +847,52 @@ public class ProgEight implements Runnable
     }
 
     static ProgThree j() {
-        return ProgEight.K[ProgEight.x];
+        return ProgEight.progThreeArray[ProgEight.staticInt];
     }
 
     public void c() {
-        if (ESGame.ax != null && this.B != ESGame.ax.B) {
+        if (ESGame.ax != null && this.intB != ESGame.ax.intB) {
             return;
         }
-        ((Canvas)ProgEight.K[ProgEight.x]).repaint();
+        ((Canvas)ProgEight.progThreeArray[ProgEight.staticInt]).repaint();
     }
 
     public void f() {
-        ((Canvas)ProgEight.K[ProgEight.x]).serviceRepaints();
+        ((Canvas)ProgEight.progThreeArray[ProgEight.staticInt]).serviceRepaints();
     }
 
     public int b() {
-        return ((Canvas)ProgEight.K[ProgEight.x]).getWidth();
+        return ((Canvas)ProgEight.progThreeArray[ProgEight.staticInt]).getWidth();
     }
 
     public int k() {
-        return ((Canvas)ProgEight.K[ProgEight.x]).getHeight();
+        return ((Canvas)ProgEight.progThreeArray[ProgEight.staticInt]).getHeight();
     }
 
     public int c(final int n) {
-        return ((Canvas)ProgEight.K[ProgEight.x]).getGameAction(n);
+        return ((Canvas)ProgEight.progThreeArray[ProgEight.staticInt]).getGameAction(n);
     }
 
     static {
-        (ProgEight.K = new ProgThree[2])[0] = new ProgThree();
-        ProgEight.K[1] = new ProgThree();
-        ProgEight.x = 0;
+        (ProgEight.progThreeArray = new ProgThree[2])[0] = new ProgThree();
+        ProgEight.progThreeArray[1] = new ProgThree();
+        ProgEight.staticInt = 0;
         try {
-            ProgEight.r = Image.createImage(((Canvas)ProgEight.K[0]).getWidth(), ((Canvas)ProgEight.K[0]).getHeight());
+            ProgEight.staticImage = Image.createImage(((Canvas)ProgEight.progThreeArray[0]).getWidth(), ((Canvas)ProgEight.progThreeArray[0]).getHeight());
         }
         catch (Throwable t) {
             System.out.println("Error allocating bufferImage");
         }
-        O = Font.getFont(0, 1, 8);
-        H = Font.getFont(0, 1, 0);
-        p = Font.getFont(64, 0, 8);
-        d = Font.getFont(0, 1, 8);
-        l = Font.getFont(0, 1, 0);
-        I = new Command("Ok", 3, 0);
-        u = new Command("Select", 3, 0);
-        P = new Command("Cancel", 4, 0);
-        z = new Command("Back", 4, 0);
-        a = new Command("Exit", 7, 0);
-        y = new String[] { "(ProgThree) 2003 Vir2L Studios, ", "ProgOne ZeniMax Media company. ", "The Elder Scrolls and Vir2L ", "are registered trademarks ", "of ZeniMax Media Inc. ", "All rights reserved." };
+        fontA = Font.getFont(0, 1, 8);
+        fontB = Font.getFont(0, 1, 0);
+        fontC = Font.getFont(64, 0, 8);
+        fontD = Font.getFont(0, 1, 8);
+        fontE = Font.getFont(0, 1, 0);
+        commandA = new Command("Ok", 3, 0);
+        commandB = new Command("Select", 3, 0);
+        commandC = new Command("Cancel", 4, 0);
+        commandD = new Command("Back", 4, 0);
+        commandE = new Command("Exit", 7, 0);
+        staticStringArray = new String[] { "(ProgThree) 2003 Vir2L Studios, ", "ProgOne ZeniMax Media company. ", "The Elder Scrolls and Vir2L ", "are registered trademarks ", "of ZeniMax Media Inc. ", "All rights reserved." };
     }
 }

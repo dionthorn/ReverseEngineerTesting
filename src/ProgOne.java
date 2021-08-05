@@ -7,165 +7,135 @@ import java.io.DataInputStream;
 
 public class ProgOne
 {
-    static int n;
-    static String[] g;
-    static int k;
-    static String[] b;
-    static byte[] j;
-    static byte[] c;
-    static byte[] m;
-    static short[] f;
-    static short[] a;
-    static byte[] e;
-    static String[][] l;
-    static byte[][] h;
-    static byte d;
-    static short i;
+    static int x;
+    static String[] linesA;
+    static int y;
+    static String[] linesB;
+    static byte[] bytesA;
+    static byte[] bytesB;
+    static byte[] bytesC;
+    static short[] shortsA;
+    static short[] shortsB;
+    static byte[] bytesD;
+    static String[][] stringMatrix;
+    static byte[][] byteMatrix;
+    static byte byteZ;
+    static short shortZ;
 
     ProgOne() {
     }
 
-    static short a() {
-        return (short)(++ProgOne.i);
+    static short incrementShortZ() {
+        return (++ProgOne.shortZ);
     }
 
-    static int e(final int n) {
+    static int nMinus(final int n) {
         return n - 1;
     }
 
-    static boolean c(final int n) {
-        return ProgOne.e[e(n)] != -1;
+    static boolean bytesDCheck(final int n) {
+        return ProgOne.bytesD[nMinus(n)] != -1;
     }
 
-    static boolean b(final int n) {
-        switch (ProgOne.j[e(n)]) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10: {
+    static boolean bytesACheck(final int n) {
+        switch (ProgOne.bytesA[nMinus(n)]) {
+            case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 -> {
                 return true;
             }
-            default: {
+            default -> {
                 return false;
             }
         }
     }
 
-    static int a(final int n) {
-        return ProgOne.e[e(n)];
+    static int getBytesDint(final int n) {
+        return ProgOne.bytesD[nMinus(n)];
     }
 
-    static String d(final int n) {
-        return ProgOne.b[e(n)];
+    static String getLinesBString(final int n) {
+        return ProgOne.linesB[nMinus(n)];
     }
 
-    static int a(final int n, final int n2) {
-        final int e = e(n2);
-        int n3 = 0;
+    static int getIntFromBytesAndShorts(final int n, final int n2) {
+        final int e = nMinus(n2);
+        int n3;
         switch (n) {
-            case 1: {
-                n3 = ProgOne.j[e];
-                break;
-            }
-            case 2: {
-                n3 = ProgOne.c[e];
-                break;
-            }
-            case 3: {
-                n3 = ProgOne.m[e];
-                break;
-            }
-            case 4: {
-                n3 = ProgOne.f[e];
-                break;
-            }
-            case 5: {
-                n3 = ProgOne.a[e];
-                break;
-            }
-            case 6: {
-                n3 = ProgOne.e[e];
-                break;
-            }
-            default: {
-                n3 = -1;
-                break;
-            }
+            case 1 -> n3 = ProgOne.bytesA[e];
+            case 2 -> n3 = ProgOne.bytesB[e];
+            case 3 -> n3 = ProgOne.bytesC[e];
+            case 4 -> n3 = ProgOne.shortsA[e];
+            case 5 -> n3 = ProgOne.shortsB[e];
+            case 6 -> n3 = ProgOne.bytesD[e];
+            default -> n3 = -1;
         }
         return n3;
     }
 
-    static void e() throws Exception {
-        ProgOne.i = 0;
-        c();
-        d();
+    static void loadItems() throws Exception {
+        ProgOne.shortZ = 0;
+        loadItemsIn();
+        loadDroppedItems();
     }
 
-    static void c() throws Exception {
-        final DataInputStream a = ProgSix.a("/itemsin.dat");
-        ProgOne.n = a.readShort();
-        ProgOne.g = new String[ProgOne.n];
-        for (int i = 0; i < ProgOne.n; ++i) {
-            ProgOne.g[i] = a.readUTF();
+    static void loadItemsIn() throws Exception {
+        final DataInputStream a = ProgSix.getDISFromName("/itemsin.dat");
+        ProgOne.x = a.readShort();
+        ProgOne.linesA = new String[ProgOne.x];
+        for (int i = 0; i < ProgOne.x; ++i) {
+            ProgOne.linesA[i] = a.readUTF();
         }
-        ProgOne.k = a.readShort();
-        ProgOne.b = new String[ProgOne.k];
-        ProgOne.j = new byte[ProgOne.k];
-        ProgOne.c = new byte[ProgOne.k];
-        ProgOne.m = new byte[ProgOne.k];
-        ProgOne.f = new short[ProgOne.k];
-        ProgOne.a = new short[ProgOne.k];
-        ProgOne.e = new byte[ProgOne.k];
-        for (int j = 0; j < ProgOne.k; ++j) {
-            ProgOne.b[j] = a.readUTF();
+        ProgOne.y = a.readShort();
+        ProgOne.linesB = new String[ProgOne.y];
+        ProgOne.bytesA = new byte[ProgOne.y];
+        ProgOne.bytesB = new byte[ProgOne.y];
+        ProgOne.bytesC = new byte[ProgOne.y];
+        ProgOne.shortsA = new short[ProgOne.y];
+        ProgOne.shortsB = new short[ProgOne.y];
+        ProgOne.bytesD = new byte[ProgOne.y];
+        for (int j = 0; j < ProgOne.y; ++j) {
+            ProgOne.linesB[j] = a.readUTF();
         }
-        for (int k = 0; k < ProgOne.k; ++k) {
-            ProgOne.j[k] = a.readByte();
+        for (int k = 0; k < ProgOne.y; ++k) {
+            ProgOne.bytesA[k] = a.readByte();
         }
-        for (int l = 0; l < ProgOne.k; ++l) {
-            ProgOne.c[l] = a.readByte();
+        for (int l = 0; l < ProgOne.y; ++l) {
+            ProgOne.bytesB[l] = a.readByte();
         }
-        for (int n = 0; n < ProgOne.k; ++n) {
-            ProgOne.m[n] = a.readByte();
+        for (int n = 0; n < ProgOne.y; ++n) {
+            ProgOne.bytesC[n] = a.readByte();
         }
-        for (int n2 = 0; n2 < ProgOne.k; ++n2) {
-            ProgOne.f[n2] = a.readShort();
+        for (int n2 = 0; n2 < ProgOne.y; ++n2) {
+            ProgOne.shortsA[n2] = a.readShort();
         }
-        for (int n3 = 0; n3 < ProgOne.k; ++n3) {
-            ProgOne.a[n3] = a.readShort();
+        for (int n3 = 0; n3 < ProgOne.y; ++n3) {
+            ProgOne.shortsB[n3] = a.readShort();
         }
-        for (int n4 = 0; n4 < ProgOne.k; ++n4) {
-            ProgOne.e[n4] = a.readByte();
+        for (int n4 = 0; n4 < ProgOne.y; ++n4) {
+            ProgOne.bytesD[n4] = a.readByte();
         }
         a.close();
     }
 
-    static void d() throws Exception {
-        final DataInputStream a = ProgSix.a("/droppeditemsin.dat");
+    static void loadDroppedItems() throws Exception {
+        final DataInputStream a = ProgSix.getDISFromName("/droppeditemsin.dat");
         final short short1 = a.readShort();
-        ProgOne.d = (byte)short1;
-        System.out.println("numTableRows=" + ProgOne.d);
+        ProgOne.byteZ = (byte)short1;
+        System.out.println("numTableRows=" + ProgOne.byteZ);
         final short short2 = a.readShort();
-        ProgOne.h = new byte[short1][short2];
+        ProgOne.byteMatrix = new byte[short1][short2];
         for (short n = 0; n < short1; ++n) {
             for (short n2 = 0; n2 < short2; ++n2) {
-                ProgOne.h[n][n2] = a.readByte();
+                ProgOne.byteMatrix[n][n2] = a.readByte();
             }
         }
         a.close();
     }
 
-    static int a(final Random random, final int n) {
+    static int getRandomFromBytesAB(final Random random, final int n) {
         int n2 = -1;
         int n3 = -1;
-        for (int i = 0; i < ProgOne.k; ++i) {
-            if (ProgOne.j[i] == 11 && ProgOne.c[i] == (byte)n) {
+        for (int i = 0; i < ProgOne.y; ++i) {
+            if (ProgOne.bytesA[i] == 11 && ProgOne.bytesB[i] == (byte)n) {
                 if (n2 == -1) {
                     n2 = i;
                 }
@@ -175,10 +145,10 @@ public class ProgOne
         return 1 + (n2 + Math.abs(random.nextInt() % (n3 - n2 + 1)));
     }
 
-    static int a(final Random random, final int n, final int n2) {
-        int a = ProgSix.a(random, 100);
+    static int getRandomFromByteZAndMatrix(final Random random, final int n, final int n2) {
+        int a = ProgSix.getRandomFromESG(random, 100);
         for (int i = 1; i < n2; ++i) {
-            final int a2 = ProgSix.a(random, 100);
+            final int a2 = ProgSix.getRandomFromESG(random, 100);
             if (a2 > a) {
                 a = a2;
             }
@@ -197,30 +167,30 @@ public class ProgOne
         else {
             n4 = 4;
         }
-        int n5 = ProgSix.a(random, 10) + (n - 2);
-        if (n5 > ProgOne.d - 1) {
-            n5 = ProgOne.d - 1;
+        int n5 = ProgSix.getRandomFromESG(random, 10) + (n - 2);
+        if (n5 > ProgOne.byteZ - 1) {
+            n5 = ProgOne.byteZ - 1;
         }
         if (n5 < 0) {
             n5 = 0;
         }
-        int j = ProgOne.h[n5][n4];
+        int j = ProgOne.byteMatrix[n5][n4];
         if (n4 == 1) {
-            j |= ProgOne.h[n5][2] << 8;
+            j |= ProgOne.byteMatrix[n5][2] << 8;
         }
         System.out.println("in getRandomItem, res = " + j);
         return j;
     }
 
-    static String[] b() {
+    static String[] getLines() {
         final String[] array = new String[13];
         for (int i = 0; i < 13; ++i) {
-            array[i] = ProgOne.b[86 + i];
+            array[i] = ProgOne.linesB[86 + i];
         }
         return array;
     }
 
     static {
-        ProgOne.l = new String[][] { { "Warp to camp", "" }, { "Cures ailment", "" }, { "Restores Health", "" }, { "Restores Magicka", "" }, { "", "" }, { "Grants level", "experience" }, { "Health & Magicka", "" }, { "Increase harm", "" }, { "Increase armor", "" }, { "Safe camping", "" }, { "Kill monster", "" }, { "Kill monster", "" }, { "Kill monster", "" } };
+        ProgOne.stringMatrix = new String[][] { { "Warp to camp", "" }, { "Cures ailment", "" }, { "Restores Health", "" }, { "Restores Magicka", "" }, { "", "" }, { "Grants level", "experience" }, { "Health & Magicka", "" }, { "Increase harm", "" }, { "Increase armor", "" }, { "Safe camping", "" }, { "Kill monster", "" }, { "Kill monster", "" }, { "Kill monster", "" } };
     }
 }

@@ -6,91 +6,86 @@ import java.io.InputStream;
 
 public class ProgSeven
 {
-    int e;
-    int a;
-    int h;
-    boolean c;
-    short d;
-    short f;
-    short[] g;
-    static short[] b;
+    int intA;
+    int intB;
+    int intC;
+    boolean booleanA;
+    short shortA;
+    short shortB;
+    short[] shortArray;
+    static short[] staticShortArray;
 
     private ProgSeven() {
         final int n = 0;
-        this.a = n;
-        this.e = n;
-        this.g = null;
-        this.f = -1;
+        this.intB = n;
+        this.intA = n;
+        this.shortArray = null;
+        this.shortB = -1;
     }
 
-    static ProgSeven b(final String s) throws Exception {
-        final InputStream resourceAsStream = Object.class.getResourceAsStream(a(s));
+    static ProgSeven getProgSevenFromString(final String s) throws Exception {
+        final InputStream resourceAsStream = Object.class.getResourceAsStream(getFormalizedString(s));
         if (resourceAsStream == null) {
             throw new Exception("Image " + s + " is null!");
         }
         final ProgSeven ProgSeven = new ProgSeven();
-        ProgSeven.e = b(resourceAsStream);
-        ProgSeven.a = b(resourceAsStream);
-        ProgSeven.h = ProgSeven.e;
-        if ((resourceAsStream.read() & 0xFF) != 0x0) {
-            ProgSeven.c = true;
-        }
-        else {
-            ProgSeven.c = false;
-        }
-        ProgSeven.d = a(resourceAsStream);
+        ProgSeven.intA = getBigINS(resourceAsStream);
+        ProgSeven.intB = getBigINS(resourceAsStream);
+        ProgSeven.intC = ProgSeven.intA;
+        ProgSeven.booleanA = (resourceAsStream.read() & 0xFF) != 0x0;
+        ProgSeven.shortA = getSmallINS(resourceAsStream);
         final int n = resourceAsStream.read() & 0xFF;
         if (n > 255) {
             throw new Exception("Too many colors in image " + s);
         }
         for (int i = 0; i < n; ++i) {
-            final short a = a(resourceAsStream);
-            ProgSeven.b[i] = a;
-            if (ProgSeven.c && ProgSeven.f < 0 && ProgSeven.d == a) {
-                ProgSeven.f = (short)i;
+            final short a = getSmallINS(resourceAsStream);
+            staticShortArray[i] = a;
+            if (ProgSeven.booleanA && ProgSeven.shortB < 0 && ProgSeven.shortA == a) {
+                ProgSeven.shortB = (short)i;
             }
         }
-        final int n2 = ProgSeven.e * ProgSeven.a;
-        ProgSeven.g = new short[n2];
+        final int n2 = ProgSeven.intA * ProgSeven.intB;
+        ProgSeven.shortArray = new short[n2];
         for (int j = 0; j < n2; ++j) {
             final int n3 = resourceAsStream.read() & 0xFF;
-            final short n4 = ProgSeven.b[n3];
+            final short n4 = staticShortArray[n3];
             short n5;
-            if (ProgSeven.c && n3 == ProgSeven.f) {
+            if (ProgSeven.booleanA && n3 == ProgSeven.shortB) {
                 n5 = (short)(n4 & 0xFFFF0FFF);
             }
             else {
                 n5 = (short)(n4 | 0xF000);
             }
-            ProgSeven.g[j] = n5;
+            ProgSeven.shortArray[j] = n5;
         }
         return ProgSeven;
     }
 
-    int a() {
-        return this.e;
+    int getIntA() {
+        return this.intA;
     }
 
-    int b() {
-        return this.a;
+    int getIntB() {
+        return this.intB;
     }
 
-    private static String a(final String str) {
+    private static String getFormalizedString(final String str) {
         if (str.startsWith("/")) {
             return str;
         }
         return "/" + str;
     }
 
-    private static int b(final InputStream inputStream) throws Exception {
+    private static int getBigINS(final InputStream inputStream) throws Exception {
         return 0x0 | inputStream.read() << 24 | inputStream.read() << 16 | inputStream.read() << 8 | inputStream.read();
     }
 
-    private static short a(final InputStream inputStream) throws Exception {
+    private static short getSmallINS(final InputStream inputStream) throws Exception {
         return (short)((0x0 | inputStream.read() << 8 | inputStream.read()) & 0xFFFF);
     }
 
     static {
-        ProgSeven.b = new short[256];
+        ProgSeven.staticShortArray = new short[256];
     }
 }

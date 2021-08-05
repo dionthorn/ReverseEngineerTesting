@@ -32,7 +32,7 @@ public class ProgEleven
 
     static void a(final String s) {
         try {
-            final DataInputStream a = ProgSix.a(s);
+            final DataInputStream a = ProgSix.getDISFromName(s);
             final int n = 8;
             ProgEleven.k = new String[n][];
             for (int i = 0; i < n; ++i) {
@@ -66,7 +66,7 @@ public class ProgEleven
         final byte b = ProgEleven.j[6];
         final byte b2 = ProgEleven.i[6];
         ProgEleven.d = false;
-        ESGame.u[0].w[b][b2] = ProgSix.c((byte)32, ESGame.u[1].w[b][b2]);
+        ESGame.u[0].w[b][b2] = ProgSix.getAndByte((byte)32, ESGame.u[1].w[b][b2]);
     }
 
     static void a(final int n, final int n2, final DataInputStream dataInputStream) throws Exception {
@@ -126,7 +126,7 @@ public class ProgEleven
     }
 
     static int d(final int n, final int n2) {
-        final int a = ProgOne.a(3, n2);
+        final int a = ProgOne.getIntFromBytesAndShorts(3, n2);
         if (n == 0) {
             return a >>> 6 & 0x3;
         }
@@ -146,10 +146,10 @@ public class ProgEleven
         final short i = ProgTen.R[n][0];
         if (i == 0) {
             ProgTen.R[n][0] = 1;
-            return ProgSix.a(ProgEleven.k[7][1], "<TAG>", ProgTen.E[n]);
+            return ProgSix.getStringWithThreeStrings(ProgEleven.k[7][1], "<TAG>", ProgTen.E[n]);
         }
         ProgTen.R[n][0] = (short)(i + 1);
-        return ProgSix.a(ProgEleven.k[7][2], "<TAG>", new String[] { ProgTen.E[n], String.valueOf(i), String.valueOf(i + 1) });
+        return ProgSix.getStringWithArray(ProgEleven.k[7][2], "<TAG>", new String[] { ProgTen.E[n], String.valueOf(i), String.valueOf(i + 1) });
     }
 
     static String a(final ProgTen ProgTen, final int n, final int n2, final int n3) {
@@ -244,15 +244,15 @@ public class ProgEleven
                         return ProgEleven.k[n][13];
                     }
                     final int abs = Math.abs(ProgTen.H[n3]);
-                    if (ProgOne.a(1, abs) == 15) {
+                    if (ProgOne.getIntFromBytesAndShorts(1, abs) == 15) {
                         ProgTen.y(n3);
-                        final int a = ProgOne.a(3, abs);
+                        final int a = ProgOne.getIntFromBytesAndShorts(3, abs);
                         final short[] h = ProgEleven.h;
                         h[n] -= (short)a;
                         ProgEleven.h[n] = (short)Math.max(ProgEleven.h[n], 0);
                         return ProgEleven.k[n][17];
                     }
-                    if (ProgOne.a(1, abs) == 11) {
+                    if (ProgOne.getIntFromBytesAndShorts(1, abs) == 11) {
                         final int d = d(n, abs);
                         if (d > 0) {
                             ProgTen.y(n3);
@@ -283,7 +283,7 @@ public class ProgEleven
                     if (n2 == 6) {
                         ProgEleven.b[n] = false;
                         final ProgNine ProgNine = ESGame.u[0];
-                        ProgNine.w[ProgEleven.j[n]][ProgEleven.i[n]] = ProgSix.c((byte)32, ProgNine.w[ProgEleven.j[n]][ProgEleven.i[n]]);
+                        ProgNine.w[ProgEleven.j[n]][ProgEleven.i[n]] = ProgSix.getAndByte((byte)32, ProgNine.w[ProgEleven.j[n]][ProgEleven.i[n]]);
                         return ProgEleven.k[n][19];
                     }
                     return null;
@@ -299,7 +299,7 @@ public class ProgEleven
                     return null;
                 }
                 else if (n2 == 4) {
-                    final int a2 = ProgOne.a(1, Math.abs(ProgTen.H[n3]));
+                    final int a2 = ProgOne.getIntFromBytesAndShorts(1, Math.abs(ProgTen.H[n3]));
                     if (a2 == 13 || a2 == 15 || a2 == 17) {
                         return ProgEleven.k[n][1];
                     }
@@ -314,7 +314,7 @@ public class ProgEleven
                     if (ProgEleven.a / 3 <= 0) {
                         return ProgEleven.k[n][4];
                     }
-                    if (!ProgTen.b(n3, ProgOne.a(), 0)) {
+                    if (!ProgTen.b(n3, ProgOne.incrementShortZ(), 0)) {
                         return ProgEleven.k[7][0];
                     }
                     ProgEleven.a -= 3;
@@ -338,7 +338,7 @@ public class ProgEleven
                         }
                         return ProgEleven.k[n][0] + "\n" + ProgEleven.k[n][2];
                     }
-                    else if (ESGame.d(ProgTen.W) > ProgTen.Y) {
+                    else if (ESGame.getLinesBString(ProgTen.W) > ProgTen.Y) {
                         ++ProgTen.Y;
                         if (ProgEleven.l) {
                             ProgEleven.l = false;
@@ -359,7 +359,7 @@ public class ProgEleven
                         return ProgEleven.k[n][2 + ProgTen.Y];
                     }
                     if (n2 == 4) {
-                        if (ProgOne.a(1, Math.abs(ProgTen.H[n3])) == 13) {
+                        if (ProgOne.getIntFromBytesAndShorts(1, Math.abs(ProgTen.H[n3])) == 13) {
                             if (ProgTen.D(n3) > 3) {
                                 ProgEleven.g += 5;
                             }
@@ -375,7 +375,7 @@ public class ProgEleven
                         if (ProgEleven.g < 7) {
                             return ProgEleven.k[n][1];
                         }
-                        if (!ProgOne.b(Math.abs(ProgTen.H[n3])) || ProgTen.j(n3)) {
+                        if (!ProgOne.bytesACheck(Math.abs(ProgTen.H[n3])) || ProgTen.j(n3)) {
                             return ProgEleven.k[n][14];
                         }
                         ProgEleven.g -= 7;

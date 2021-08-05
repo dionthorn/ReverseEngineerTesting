@@ -127,17 +127,17 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
 
     public void paint(final Graphics graphics) {
         if (this.aD == 3) {
-            this.f(graphics);
+            this.drawYourDead(graphics);
         }
         else if (this.c == 1 || this.c == 2) {
-            this.c(graphics);
+            this.drawCamping(graphics);
         }
         else {
-            this.m(graphics);
+            this.drawMonstersMaybe(graphics);
         }
     }
 
-    private void f(final Graphics graphics) {
+    private void drawYourDead(final Graphics graphics) {
         graphics.setColor(Color.black);//0
         graphics.fillRect(0, 0, ((Canvas)this).getWidth(), ((Canvas)this).getHeight());
         graphics.setColor(new Color(16, 77, 215));//1677215
@@ -145,7 +145,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         graphics.drawString("You're Dead!", ((Canvas)this).getWidth() / 2, ((Canvas)this).getHeight() / 2);// ,33
     }
 
-    private void c(final Graphics graphics) {
+    private void drawCamping(final Graphics graphics) {
         graphics.setColor(Color.black); // 0
         graphics.fillRect(0, 0, ((Canvas)this).getWidth(), ((Canvas)this).getHeight());
         graphics.setColor(new Color(16, 77, 215));//1677215
@@ -153,7 +153,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         graphics.drawString("CAMPING", ((Canvas)this).getWidth() / 2, ((Canvas)this).getHeight() / 2);// ,33
     }
 
-    private void m(final Graphics graphics) {
+    private void drawMonstersMaybe(final Graphics graphics) {
         graphics.setColor(Color.black); //0
         graphics.fillRect(0, 0, ((Canvas)this).getWidth(), ((Canvas)this).getHeight());
         this.j(graphics);
@@ -170,9 +170,9 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         this.a(graphics);
         this.d(graphics);
         this.l(graphics);
-        this.e(graphics);
+        this.drawProgFiveImages(graphics);
         if (ProgFive.az) {
-            this.i(graphics);
+            this.drawProgFiveString(graphics);
         }
         if (ProgFive.f == 1 && !this.ax.k(3)) {
             this.k(graphics);
@@ -182,22 +182,22 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         }
     }
 
-    private void i(final Graphics graphics) {
+    private void drawProgFiveString(final Graphics graphics) {
         graphics.setColor(new Color(16, 77, 215));//1677215
         graphics.drawString(ProgFive.G, 60, 10);// ,17
     }
 
-    private void e(final Graphics graphics) {
+    private void drawProgFiveImages(final Graphics graphics) {
         if (ProgFive.S) {
-            graphics.drawImage(ProgFive.aE[0], 40 + ProgSix.a(30), 50 + ProgSix.a(20), 20);
+            graphics.drawImage(ProgFive.aE[0], 40 + ProgSix.getIntFromESG(30), 50 + ProgSix.getIntFromESG(20), 20);
             ProgFive.S = false;
         }
         if (ProgFive.ao) {
-            graphics.drawImage(ProgFive.aE[1], 40 + ProgSix.a(30), 50 + ProgSix.a(22), 20);
+            graphics.drawImage(ProgFive.aE[1], 40 + ProgSix.getIntFromESG(30), 50 + ProgSix.getIntFromESG(22), 20);
             ProgFive.ao = false;
         }
         if (ProgFive.am) {
-            graphics.drawImage(ProgFive.aE[2], 50 + ProgSix.a(2), 80 + ProgSix.a(2), 20);
+            graphics.drawImage(ProgFive.aE[2], 50 + ProgSix.getIntFromESG(2), 80 + ProgSix.getIntFromESG(2), 20);
             ProgFive.am = false;
         }
     }
@@ -212,7 +212,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             }
             else {
                 for (int i = 0; i < 5; ++i) {
-                    // graphics.drawImage(ProgFive.h, ProgNine * 36, 0, 20); // ,20
+                    // graphics.drawImage(ProgFive.byteMatrix, ProgNine * 36, 0, 20); // ,20
                 }
             }
         }
@@ -221,7 +221,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             for (int k = 0; k < 6; ++k) {
                 final int n2 = ProgFive.n[j][k][0];
                 final int n3 = ProgFive.n[j][k][1];
-                if (ProgSix.a((byte)1, b.a(ProgFive.n[j][k][2], ProgFive.n[j][k][3], ae))) {
+                if (ProgSix.isAndNotZero((byte)1, b.a(ProgFive.n[j][k][2], ProgFive.n[j][k][3], ae))) {
                     this.a(graphics, this.a(n2, n3, -1), n);
                     break;
                 }
@@ -232,7 +232,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             for (int n5 = 0; n5 < 6; ++n5) {
                 final int n6 = ProgFive.n[9 - l][n5][0];
                 final int n7 = ProgFive.n[9 - l][n5][1];
-                if (ProgSix.a((byte)1, b.a(-ProgFive.n[9 - l][n5][2], ProgFive.n[9 - l][n5][3], ae))) {
+                if (ProgSix.isAndNotZero((byte)1, b.a(-ProgFive.n[9 - l][n5][2], ProgFive.n[9 - l][n5][3], ae))) {
                     this.a(graphics, this.a(n6, n7, 1), n4);
                     break;
                 }
@@ -271,7 +271,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     private void a(final Graphics graphics, final int n, final int n2) {
         graphics.setClip(n2, 0, 18, ((Canvas)this).getHeight());
         if (n > 7) {
-            //DirectUtils.getDirectGraphics(graphics).drawImage(e.Y, n2 - (n - 8) * 18, 0, 20, 8192);
+            //DirectUtils.getDirectGraphics(graphics).drawImage(nMinus2.Y, n2 - (staticInt - 8) * 18, 0, 20, 8192);
         }
         else {
             graphics.drawImage(ProgFive.Y, n2 - n * 18, 0, 20);
@@ -294,7 +294,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     }
 
     private void c() {
-        if (ProgSix.a((byte)32, this.ax.b().a(0, 1, this.ax.ae))) {
+        if (ProgSix.isAndNotZero((byte)32, this.ax.b().a(0, 1, this.ax.ae))) {
             final int r = this.ax.r();
             ProgFive.W = true;
             if (this.a(ProgFive.i[r], 1)) {
@@ -304,8 +304,8 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         }
         else {
             ProgFive.W = false;
-            if (!this.d() && ProgEleven.d && this.ax.m == k.f) {
-                k.a();
+            if (!this.d() && ProgEleven.d && this.ax.m == k.byteG) {
+                k.getStringForByteA();
             }
         }
     }
@@ -347,7 +347,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
                 break;
             }
             case 6: {
-                this.a(graphics, Math.min(k.f, 3) - 1);
+                this.a(graphics, Math.min(k.byteG, 3) - 1);
                 break;
             }
         }
@@ -358,7 +358,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         final int n2 = 15;
         final int n3 = 32;
         this.a(graphics, ProgFive.q[28], ProgFive.o[n][0], 1, n2, n3);
-        this.a(graphics, ProgFive.q[28], ProgFive.o[n][0], 1, n2 + ProgFive.q[28].a(), n3, 8192);
+        this.a(graphics, ProgFive.q[28], ProgFive.o[n][0], 1, n2 + ProgFive.q[28].getIntA(), n3, 8192);
         this.a(graphics, ProgFive.q[29], ProgFive.o[n][1], 3, n2 + 45, n3 - 22);
     }
 
@@ -739,7 +739,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
                 break;
             }
         }
-        //DirectUtils.getDirectGraphics(graphics).drawPixels(ProgFive.q[n].ProgSeven, true, 0, ProgFive.q[n].h, n3, n4, ProgFive.q[n].e, ProgFive.q[n].a, 0, 4444);
+        //DirectUtils.getDirectGraphics(graphics).drawPixels(ProgFive.vectorA[staticInt].ProgSeven, true, 0, ProgFive.vectorA[staticInt].byteMatrix, n3, n4, ProgFive.vectorA[staticInt].nMinus2, ProgFive.vectorA[staticInt].incrementShortZ, 0, 4444);
     }
 
     private void a(final Graphics graphics) {
@@ -787,30 +787,30 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             graphics.drawImage(ProgFive.y[2], 62, 174, 20);
             graphics.drawImage(ProgFive.y[3], 104, 174, 20);
             graphics.drawImage(ProgFive.y[5], 144, 174, 20);
-            //graphics.drawChar(ProgFive.e[1], 5, 180, 20);
-            //graphics.drawChar(ProgFive.e[2], 53, 180, 20);
-            //graphics.drawChar(ProgFive.e[3], 96, 180, 20);
-            //graphics.drawChar(ProgFive.e[5], 135, 180, 20);
+            //graphics.drawChar(ProgFive.nMinus2[1], 5, 180, 20);
+            //graphics.drawChar(ProgFive.nMinus2[2], 53, 180, 20);
+            //graphics.drawChar(ProgFive.nMinus2[3], 96, 180, 20);
+            //graphics.drawChar(ProgFive.nMinus2[5], 135, 180, 20);
         }
         else if (n == 1) {
             graphics.drawImage(ProgFive.y[0], 14, 174, 20);
             graphics.drawImage(ProgFive.y[1], 62, 174, 20);
             graphics.drawImage(ProgFive.y[2], 104, 174, 20);
             graphics.drawImage(ProgFive.y[3], 144, 174, 20);
-            //graphics.drawChar(e.e[0], 5, 180, 20);
-            //graphics.drawChar(e.e[1], 53, 180, 20);
-            //graphics.drawChar(e.e[2], 96, 180, 20);
-            //graphics.drawChar(e.e[3], 135, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[0], 5, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[1], 53, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[2], 96, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[3], 135, 180, 20);
         }
         else if (n == 2) {
             graphics.drawImage(ProgFive.y[1], 14, 174, 20);
             graphics.drawImage(ProgFive.y[2], 62, 174, 20);
             graphics.drawImage(ProgFive.y[3], 104, 174, 20);
             graphics.drawImage(ProgFive.y[4], 144, 174, 20);
-            //graphics.drawChar(e.e[1], 5, 180, 20);
-            //graphics.drawChar(e.e[2], 53, 180, 20);
-            //graphics.drawChar(e.e[3], 96, 180, 20);
-            //graphics.drawChar(e.e[4], 135, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[1], 5, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[2], 53, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[3], 96, 180, 20);
+            //graphics.drawChar(nMinus2.nMinus2[4], 135, 180, 20);
         }
     }
 
@@ -832,15 +832,15 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     }
 
     private void a(final Graphics graphics, final ProgSeven ProgSeven, final int n, final int n2, final int n3, final int n4, final int n5) {
-        final int n6 = ProgSeven.a() / n2;
-        graphics.setClip(n3, n4, n6, ProgSeven.b());
-        //DirectUtils.getDirectGraphics(graphics).drawPixels(ProgSeven.ProgSeven, true, 0, ProgSeven.h, n3 - n * n6, n4, ProgSeven.e, ProgSeven.a, n5, 4444);
+        final int n6 = ProgSeven.getIntA() / n2;
+        graphics.setClip(n3, n4, n6, ProgSeven.getIntB());
+        //DirectUtils.getDirectGraphics(graphics).drawPixels(ProgSeven.ProgSeven, true, 0, ProgSeven.byteMatrix, n3 - staticInt * n6, n4, ProgSeven.nMinus2, ProgSeven.incrementShortZ, n5, 4444);
     }
 
     private void k(final Graphics graphics) {
         graphics.setFont(ProgFive.aj);
         graphics.setColor(new Color(167,72,15)); // 1677215
-        //graphics.drawChar(ProgFive.O[this.ax.ak], 16, 10, 20);
+        //graphics.drawChar(ProgFive.fontA[this.ax.ak], 16, 10, 20);
         graphics.setColor(Color.black); // 0
         graphics.fillRect(10, 20, 23, 23);
         this.a(graphics, 10, 20, 7, 3, 1, ProgFive.l);
@@ -849,7 +849,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     private void h(final Graphics graphics) {
         graphics.setFont(ProgFive.K);
         graphics.setColor(new Color(167,72,15)); // 16777215
-        //graphics.drawChar(ProgFive.O[this.ax.ak], 58, 10, 20);
+        //graphics.drawChar(ProgFive.fontA[this.ax.ak], 58, 10, 20);
         final int n = 89;
         graphics.fillRect(15, 25, n, n);
         this.a(graphics, 15, 25, 17, 5, 2, ProgFive.F);
@@ -956,21 +956,21 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         }
         this.aw = false;
         /*
-        switch (this.ac = ((Canvas)this).getGameAction(n)) {
+        switch (this.ac = ((Canvas)this).getGameAction(staticInt)) {
             case 1: {
-                this.p = 1;
+                this.pFourStaticRef = 1;
                 break;
             }
             case 6: {
-                this.p = 2;
+                this.pFourStaticRef = 2;
                 break;
             }
             case 2: {
-                this.p = 4;
+                this.pFourStaticRef = 4;
                 break;
             }
             case 5: {
-                this.p = 3;
+                this.pFourStaticRef = 3;
                 break;
             }
         }
@@ -979,7 +979,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
 
     public void keyReleased(final int n) {
         /*
-        ((Canvas)this).getGameAction(n);
+        ((Canvas)this).getGameAction(staticInt);
          */
         this.T = this.ac;
         this.ac = 0;
@@ -1092,7 +1092,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
                             this.ax.c((int)this.ax.ar, true);
                             this.s = 0L;
                             this.aD = 1;
-                            //ProgEleven.l = true;
+                            //ProgEleven.stringMatrix = true;
                             this.v = true;
                             ProgFive.E = true;
                             b2 = true;
@@ -1116,11 +1116,11 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
                         }
                     }
                     if (b2) {
-                        if (k.a((int)this.ax.W)) {
-                            k.c();
+                        if (k.byteCheckCD((int)this.ax.W)) {
+                            k.non();
                         }
-                        if (this.d() && k.f > this.ax.m) {
-                            //this.H.aV = this.H.e(ProgEleven.a(this.ax, 6, -1, -1));
+                        if (this.d() && k.byteG > this.ax.m) {
+                            //this.H.aV = this.H.nMinus2(ProgEleven.incrementShortZ(this.ax, 6, -1, -1));
                             b = true;
                         }
                         this.b(n);
@@ -1186,7 +1186,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
                 Thread.sleep(10000L);
             }
             catch (Throwable t2) {}
-            //((ngame.midlet.a)this.H).b();
+            //((ngame.midlet.incrementShortZ)this.H).getLines();
         }
     }
 
@@ -1205,27 +1205,27 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         }
         final Enumeration<byte[]> elements = hashtable.elements();
         while (elements.hasMoreElements()) {
-            final ProgFour a = ProgFour.a(elements.nextElement());
-            if (a.b(this.ax)) {
-                if (a.f == 0) {
-                    a.k = n;
-                    a.f = 1;
+            final ProgFour a = ProgFour.makeStaticProgFourFromByteArray(elements.nextElement());
+            if (a.isProgTenOneThenByteGZero(this.ax)) {
+                if (a.byteG == 0) {
+                    a.longA = n;
+                    a.byteG = 1;
                 }
-                else if (a.f == 1 && n - a.k > 800L) {
-                    a.a(this.ax, n);
+                else if (a.byteG == 1 && n - a.longA > 800L) {
+                    a.updateProgTen(this.ax, n);
                     if (this.a(ProgFive.ah, 2)) {
                         ProgFive.as = n;
                         ProgFive.ad = true;
                     }
                 }
-                else if (n - a.k > 800L) {
-                    a.a(this.ax, n);
+                else if (n - a.longA > 800L) {
+                    a.updateProgTen(this.ax, n);
                 }
-                a.d();
+                a.updateHashTable();
             }
             else {
-                a.a(this.ax);
-                a.d();
+                a.updateProgTenWithByteF(this.ax);
+                a.updateHashTable();
             }
         }
     }
@@ -1271,7 +1271,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         if (b - this.B >= 500L && ProgFive.j != null) {
             ProgFive.at = true;
             this.ax.a(ProgFive.j);
-            System.out.println("monster health is " + ProgFive.j.g);
+            System.out.println("monster health is " + ProgFive.j.byteB);
             this.B = b;
             ProgFive.S = true;
         }
@@ -1279,14 +1279,14 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     }
 
     private void m() {
-        if (ProgFive.j != null && ProgFive.j.g <= 0) {
-            if (ProgFive.j.l == 41) {
-                ProgFive.j.a(true);
+        if (ProgFive.j != null && ProgFive.j.byteB <= 0) {
+            if (ProgFive.j.byteA == 41) {
+                ProgFive.j.updateProgNine(true);
             }
             else {
-                ProgFive.j.a(false);
+                ProgFive.j.updateProgNine(false);
             }
-            ESGame.a((int)this.ax.j, (int)ProgFive.j.a);
+            ESGame.a((int)this.ax.j, (int)ProgFive.j.shortA);
             if (this.ax.k(4)) {
                 final short[] u = this.ax.U;
                 final int n = 2;
@@ -1306,13 +1306,13 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         ProgFive.j = this.ax.n();
         if (ProgFive.j != null) {
             ProgFive.aa = true;
-            ProgFive.j = ProgFour.a(ProgFive.k, ProgFive.j.f());
+            ProgFive.j = ProgFour.makeProgFourFromProgFourAndByteArray(ProgFive.k, ProgFive.j.getByteArray());
         }
         else {
             ProgFive.aa = false;
         }
         if (ProgFive.aa) {
-            final String a = ProgFive.j.a();
+            final String a = ProgFive.j.getStringForByteA();
             final String[] array = new String[2];
             final int index = a.indexOf(32);
             if (index < 0) {
@@ -1396,20 +1396,20 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     private void h(final long v) {
         if (ProgFive.ap) {
             final byte b = this.ax.b;
-            if (!ProgTwo.a(b)) {
+            if (!ProgTwo.isNbiggerThan1LessThani(b)) {
                 System.out.println("Invalid spell id,= " + b);
                 ProgFive.ap = false;
                 return;
             }
-            if (ProgTwo.c(b).e > this.ax.n(4)) {
+            if (ProgTwo.getProgTwoFromArray(b).byteB > this.ax.n(4)) {
                 if (this.a(ProgFive.t, 3)) {
                     ProgFive.as = v;
                     ProgFive.ad = true;
                 }
             }
-            else if (v - this.V >= 500L && ProgTwo.a(b)) {
+            else if (v - this.V >= 500L && ProgTwo.isNbiggerThan1LessThani(b)) {
                 ProgFive.at = true;
-                if (ProgTwo.b(b)) {
+                if (ProgTwo.progTwoFromArrayByteDCheck(b)) {
                     if (!ProgFive.aa) {
                         if (this.a(ProgFive.g, 1)) {
                             ProgFive.as = v;
@@ -1418,7 +1418,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
                     }
                     else {
                         this.ax.b((int)b, ProgFive.j);
-                        System.out.println("monster health is " + ProgFive.j.g);
+                        System.out.println("monster health is " + ProgFive.j.byteB);
                         ProgFive.ao = true;
                     }
                 }
@@ -1443,8 +1443,8 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             }
             else {
                 this.ax.b = (byte)l;
-                final String c = ProgTwo.c(l).c;
-                final String[] c2 = ProgSix.c(c);
+                final String c = ProgTwo.getProgTwoFromArray(l).stringA;
+                final String[] c2 = ProgSix.getStringArrayTrim(c);
                 String[] array;
                 if (c2.length == 1) {
                     array = new String[] { c, "" };
@@ -1494,7 +1494,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     }
 
     private String[] k() {
-        final String[] c = ProgSix.c(ProgOne.d(Math.abs(this.ax.H[this.ax.p - 1])));
+        final String[] c = ProgSix.getStringArrayTrim(ProgOne.getLinesBString(Math.abs(this.ax.H[this.ax.p - 1])));
         final String[] array = { "", "" };
         if (c.length >= 3) {
             array[0] = c[0] + " " + c[1];
@@ -1532,10 +1532,10 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         if (a != null) {
             this.H.aq.a(ProgEleven.s[n]);
             this.H.aq.e(a);
-            this.H.aq.c = this.H.R[n];
-            this.H.aq.N = n;
-            final ProgEight ProgEight = (ProgEight)this.H.aq.c;
-            final String m = ProgEight.M;
+            this.H.aq.objectB = this.H.R[n];
+            this.H.aq.intC = n;
+            final ProgEight ProgEight = (ProgEight)this.H.aq.objectB;
+            final String m = ProgEight.stringA;
             ProgEight.t();
             int n2 = 0;
             if (ProgEleven.b(n)) {
@@ -1547,25 +1547,25 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             else if (n == 5) {
                 n2 = ProgEleven.g;
             }
-            ProgEight.e(ProgSix.a(m, "<TAG>", n2));
+            ProgEight.e(ProgSix.getStringWithInt(m, "<TAG>", n2));
             this.H.a((Object)this.H.aq);
             ProgFive.al = false;
         }
         else if (n == 4) {
             System.out.println("BENECA has nothing more to say!");
             final ProgEight progEight2 = this.H.R[4];
-            final String i = progEight2.M;
+            final String i = progEight2.stringA;
             progEight2.t();
-            progEight2.e(ProgSix.a(i, "<TAG>", (int)ProgEleven.a));
+            progEight2.e(ProgSix.getStringWithInt(i, "<TAG>", (int)ProgEleven.a));
             this.H.a((Object) progEight2);
             ProgFive.al = false;
         }
         else if (n == 5) {
             System.out.println("HELGA has nothing more to say!");
             final ProgEight progEight3 = this.H.R[5];
-            final String j = progEight3.M;
+            final String j = progEight3.stringA;
             progEight3.t();
-            progEight3.e(ProgSix.a(j, "<TAG>", (int)k.g));
+            progEight3.e(ProgSix.getStringWithInt(j, "<TAG>", (int)k.byteB));
             this.H.a((Object) progEight3);
             ProgFive.al = false;
         }
@@ -1620,7 +1620,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
     }
 
     private boolean o() {
-        return ProgSix.a(10) == 1;
+        return ProgSix.getIntFromESG(10) == 1;
     }
 
     private void c(final long n) {
@@ -1629,7 +1629,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             ax.ah -= (short)n;
             if (this.ax.ah < 0) {
                 this.ax.ah = 0;
-                this.ax.A = (byte)ProgSix.c(3, (int)this.ax.A);
+                this.ax.A = (byte)ProgSix.getAndEqualBitShift(3, (int)this.ax.A);
             }
         }
         if (this.ax.k(5)) {
@@ -1637,7 +1637,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             ax2.F -= (short)n;
             if (this.ax.F < 0) {
                 this.ax.F = 0;
-                this.ax.A = (byte)ProgSix.c(4, (int)this.ax.A);
+                this.ax.A = (byte)ProgSix.getAndEqualBitShift(4, (int)this.ax.A);
             }
         }
         if (this.ax.k(7) && ProgFive.A) {
@@ -1645,7 +1645,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
             ax3.ap -= (short)n;
             if (this.ax.ap < 0) {
                 this.ax.ap = 0;
-                this.ax.A = (byte)ProgSix.c(6, (int)this.ax.A);
+                this.ax.A = (byte)ProgSix.getAndEqualBitShift(6, (int)this.ax.A);
             }
         }
     }
@@ -1692,27 +1692,27 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         }
         final Enumeration<byte[]> elements = hashtable.elements();
         while (elements.hasMoreElements()) {
-            final ProgFour a = ProgFour.a(elements.nextElement());
-            if (a.c[6] != 0) {
-                final byte[] c = a.c;
+            final ProgFour a = ProgFour.makeStaticProgFourFromByteArray(elements.nextElement());
+            if (a.byteArray[6] != 0) {
+                final byte[] c = a.byteArray;
                 final int n7 = 7;
                 --c[n7];
-                if (a.c[7] >= 0) {
+                if (a.byteArray[7] >= 0) {
                     continue;
                 }
-                a.c[7] = 0;
-                a.c[6] = 0;
+                a.byteArray[7] = 0;
+                a.byteArray[6] = 0;
             }
         }
     }
 
     private boolean d() {
-        //return ProgEleven.a(this.ax) || (ProgFive.ProgTen != null && (this.ax.ProgTen == 37 && ProgFive.ProgTen.l == 41) && Math.abs(this.ax.l - ProgFive.ProgTen.o) + Math.abs(this.ax.ProgEleven - ProgFive.ProgTen.m) == 1);
+        //return ProgEleven.incrementShortZ(this.ax) || (ProgFive.ProgTen != null && (this.ax.ProgTen == 37 && ProgFive.ProgTen.stringMatrix == 41) && Math.abs(this.ax.stringMatrix - ProgFive.ProgTen.byteC) + Math.abs(this.ax.ProgEleven - ProgFive.ProgTen.bytesC) == 1);
         return true;
     }
 
     private void a(final Graphics graphics, final ProgSeven ProgSeven, final int n, final int n2) {
-        //DirectUtils.getDirectGraphics(graphics).drawPixels(ProgSeven.ProgSeven, true, 0, ProgSeven.h, n, n2, ProgSeven.e, ProgSeven.a, 0, 4444);
+        //DirectUtils.getDirectGraphics(graphics).drawPixels(ProgSeven.ProgSeven, true, 0, ProgSeven.byteMatrix, staticInt, n2, ProgSeven.nMinus2, ProgSeven.incrementShortZ, 0, 4444);
     }
 
     static {
@@ -1747,7 +1747,7 @@ public class ProgFive extends Canvas implements Runnable // extends FullCanvas
         ProgFive.at = false;
         ProgFive.E = false;
         ProgFive.A = false;
-        r = new String[] { "Warden's", "Camp" };
+        r = new String[] { "Warden'objectA", "Camp" };
         ag = new String[] { "Outer", "Camp" };
         C = new String[] { "Cannot", "Camp!" };
         Q = new String[] { "No spells!", "" };

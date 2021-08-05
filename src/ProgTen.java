@@ -673,10 +673,10 @@ public class ProgTen
         if (this.ab == 37 && this.j != 37) {
             final Enumeration<byte[]> elements = (Enumeration<byte[]>)ESGame.G[this.ab - 1].elements();
             while (elements.hasMoreElements()) {
-                final ProgFour a = ProgFour.a(elements.nextElement());
-                if (a.l == 41) {
-                    a.g = (byte)a.c(14);
-                    a.d();
+                final ProgFour a = ProgFour.makeStaticProgFourFromByteArray(elements.nextElement());
+                if (a.byteA == 41) {
+                    a.byteB = (byte)a.getIntFromMatrixForByteA(14);
+                    a.updateHashTable();
                 }
             }
         }
@@ -724,9 +724,9 @@ public class ProgTen
                         System.out.println("Dropped item not possessed before");
                         final int j = e[2] - 1;
                         System.out.println("item index=" + j);
-                        if (ProgOne.j[j] == 11) {
-                            this.W += ProgOne.c[j];
-                            this.ai.n(ESGame.d(this.W));
+                        if (ProgOne.bytesA[j] == 11) {
+                            this.W += ProgOne.bytesB[j];
+                            this.ai.n(ESGame.getLinesBString(this.W));
                         }
                     }
                 }
@@ -750,11 +750,11 @@ public class ProgTen
                     }
                     final int k = array[2] - 1;
                     System.out.println("item index=" + k);
-                    if (ProgOne.j[k] != 11) {
+                    if (ProgOne.bytesA[k] != 11) {
                         continue;
                     }
-                    this.W += ProgOne.c[k];
-                    this.ai.n(ESGame.d(this.W));
+                    this.W += ProgOne.bytesB[k];
+                    this.ai.n(ESGame.getLinesBString(this.W));
                 }
             }
         }
@@ -770,29 +770,29 @@ public class ProgTen
     }
 
     void a(final ProgFour ProgFour) {
-        this.t = ProgFour.a;
-        final byte l = ProgFour.l;
-        int min = Math.min(this.h(true) - ProgFour.c(7), ProgFour.c(2));
+        this.t = ProgFour.shortA;
+        final byte l = ProgFour.byteA;
+        int min = Math.min(this.h(true) - ProgFour.getIntFromMatrixForByteA(7), ProgFour.getIntFromMatrixForByteA(2));
         if (this.t(10)) {
-            if (ProgFour.c[8] == 0) {
+            if (ProgFour.byteArray[8] == 0) {
                 this.x(10);
             }
             else {
-                min += ProgFour.c[8];
+                min += ProgFour.byteArray[8];
             }
         }
-        final int d2 = d(Math.min(Math.max(this.s() + min * 5, 10), 95), Math.min(Math.max(ProgFour.c(6) - min * 5, 10), 95));
+        final int d2 = d(Math.min(Math.max(this.s() + min * 5, 10), 95), Math.min(Math.max(ProgFour.getIntFromMatrixForByteA(6) - min * 5, 10), 95));
         if (d2 == 0) {
             return;
         }
         int z = this.z();
-        int c = ProgFour.c(8);
+        int c = ProgFour.getIntFromMatrixForByteA(8);
         if (this.t(13)) {
-            if (ProgFour.c[5] == 0) {
+            if (ProgFour.byteArray[5] == 0) {
                 this.G[12] = 0;
             }
             else {
-                c -= ProgFour.c[5];
+                c -= ProgFour.byteArray[5];
             }
         }
         if (d2 == 1) {
@@ -801,14 +801,14 @@ public class ProgTen
         else if (d2 == 3) {
             z *= 2;
         }
-        ProgFour.b(Math.max(z - c, 4) * ProgFour.c(14) / 100);
-        ProgFour.d();
+        ProgFour.updateByteB(Math.max(z - c, 4) * ProgFour.getIntFromMatrixForByteA(14) / 100);
+        ProgFour.updateHashTable();
         if (this.t(7)) {
-            if (ProgFour.c[1] == 0) {
+            if (ProgFour.byteArray[1] == 0) {
                 this.x(7);
             }
             else {
-                ProgFour.b(Math.max(ProgFour.c[1], 4) * ProgFour.c(14) / 100);
+                ProgFour.updateByteB(Math.max(ProgFour.byteArray[1], 4) * ProgFour.getIntFromMatrixForByteA(14) / 100);
             }
         }
         if (d2 >= 2) {
@@ -836,9 +836,9 @@ public class ProgTen
         byte o2;
         byte m;
         if (array.length == 28) {
-            final ProgFour a = ProgFour.a(array);
-            o2 = a.o;
-            m = a.m;
+            final ProgFour a = ProgFour.makeStaticProgFourFromByteArray(array);
+            o2 = a.byteC;
+            m = a.byteD;
         }
         else {
             o2 = array[0];
@@ -868,10 +868,10 @@ public class ProgTen
             case 1: {
                 final byte[] array = (byte[])o;
                 array[6] = 1;
-                final ProgFour a = ProgFour.a(array);
-                String.valueOf(a.a);
-                a.i = true;
-                a.d();
+                final ProgFour a = ProgFour.makeStaticProgFourFromByteArray(array);
+                String.valueOf(a.shortA);
+                a.pFourBoolean = true;
+                a.updateHashTable();
                 break;
             }
             case 2: {
@@ -929,43 +929,43 @@ public class ProgTen
         for (int i = 0; i < 13; ++i) {
             ProgTen.ad.setElementAt(ProgTen.aj, i);
         }
-        if (ProgSix.a((byte)1, b.a(-1, 1, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(-1, 1, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 0);
         }
-        if (ProgSix.a((byte)1, b.a(0, 1, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(0, 1, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 1);
         }
-        if (ProgSix.a((byte)1, b.a(1, 1, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(1, 1, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 2);
         }
-        if (ProgSix.a((byte)1, b.a(-2, 2, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(-2, 2, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 3);
         }
-        if (ProgSix.a((byte)1, b.a(-1, 2, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(-1, 2, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 4);
         }
-        if (ProgSix.a((byte)1, b.a(0, 2, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(0, 2, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 5);
         }
-        if (ProgSix.a((byte)1, b.a(1, 2, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(1, 2, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 6);
         }
-        if (ProgSix.a((byte)1, b.a(2, 2, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(2, 2, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 7);
         }
-        if (ProgSix.a((byte)1, b.a(-2, 3, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(-2, 3, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 8);
         }
-        if (ProgSix.a((byte)1, b.a(-1, 3, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(-1, 3, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 9);
         }
-        if (ProgSix.a((byte)1, b.a(0, 3, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(0, 3, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 10);
         }
-        if (ProgSix.a((byte)1, b.a(1, 3, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(1, 3, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 11);
         }
-        if (ProgSix.a((byte)1, b.a(2, 3, this.ae))) {
+        if (ProgSix.isAndNotZero((byte)1, b.a(2, 3, this.ae))) {
             ProgTen.ad.setElementAt(ProgTen.am, 12);
         }
         if (a(ProgTen.ad.elementAt(0))) {
@@ -1132,8 +1132,8 @@ public class ProgTen
     }
 
     static int d(final int n, final int n2) {
-        final int a = ProgSix.a(100);
-        final int a2 = ProgSix.a(100);
+        final int a = ProgSix.getIntFromESG(100);
+        final int a2 = ProgSix.getIntFromESG(100);
         final boolean b = a <= n2;
         ProgTen.D = (a2 <= n);
         int n3;
@@ -1184,7 +1184,7 @@ public class ProgTen
         if (this.T[1] == 0) {
             return 0;
         }
-        if (Math.abs(ProgOne.a(1, this.T[1])) == 5) {
+        if (Math.abs(ProgOne.getIntFromBytesAndShorts(1, this.T[1])) == 5) {
             return this.b(5, b);
         }
         return this.b(7, b);
@@ -1194,7 +1194,7 @@ public class ProgTen
         if (this.T[1] == 0) {
             return 20;
         }
-        if (Math.abs(ProgOne.a(1, this.T[1])) == 5) {
+        if (Math.abs(ProgOne.getIntFromBytesAndShorts(1, this.T[1])) == 5) {
             return this.z(5);
         }
         return this.z(7);
@@ -1226,7 +1226,7 @@ public class ProgTen
         if (this.T[0] == 0) {
             return -1;
         }
-        final int abs = Math.abs(ProgOne.a(1, this.T[0]));
+        final int abs = Math.abs(ProgOne.getIntFromBytesAndShorts(1, this.T[0]));
         if (abs == 1) {
             return 0;
         }
@@ -1248,7 +1248,7 @@ public class ProgTen
         }
         int n;
         if (this.T[0] != 0) {
-            final int abs = Math.abs(ProgOne.a(1, this.T[0]));
+            final int abs = Math.abs(ProgOne.getIntFromBytesAndShorts(1, this.T[0]));
             if (abs == 1) {
                 n = this.b(0, b);
             }
@@ -1278,7 +1278,7 @@ public class ProgTen
         if (this.T[0] == 0) {
             return 20;
         }
-        final int abs = Math.abs(ProgOne.a(1, this.T[0]));
+        final int abs = Math.abs(ProgOne.getIntFromBytesAndShorts(1, this.T[0]));
         if (abs == 1) {
             return this.z(0);
         }
@@ -1300,7 +1300,7 @@ public class ProgTen
             a = 20 + this.b(3, false);
         }
         else if (this.T[0] != 0) {
-            a = ProgOne.a(3, this.T[0]);
+            a = ProgOne.getIntFromBytesAndShorts(3, this.T[0]);
         }
         else {
             a = 0;
@@ -1318,7 +1318,7 @@ public class ProgTen
         if (this.T[1] == 0) {
             return -1;
         }
-        if (Math.abs(ProgOne.a(1, this.T[1])) == 5) {
+        if (Math.abs(ProgOne.getIntFromBytesAndShorts(1, this.T[1])) == 5) {
             return 5;
         }
         return 7;
@@ -1327,19 +1327,19 @@ public class ProgTen
     int v() {
         int n = 0;
         if (this.T[1] != 0) {
-            n += 4 * ProgOne.a(3, this.T[1]);
+            n += 4 * ProgOne.getIntFromBytesAndShorts(3, this.T[1]);
         }
         if (this.T[2] != 0) {
-            n += 2 * ProgOne.a(3, this.T[2]);
+            n += 2 * ProgOne.getIntFromBytesAndShorts(3, this.T[2]);
         }
         if (this.T[3] != 0) {
-            n += 2 * ProgOne.a(3, this.T[3]);
+            n += 2 * ProgOne.getIntFromBytesAndShorts(3, this.T[3]);
         }
         if (this.T[4] != 0) {
-            n += ProgOne.a(3, this.T[4]);
+            n += ProgOne.getIntFromBytesAndShorts(3, this.T[4]);
         }
         if (this.T[5] != 0) {
-            n += ProgOne.a(3, this.T[5]);
+            n += ProgOne.getIntFromBytesAndShorts(3, this.T[5]);
         }
         int n2 = n / 10;
         if (this.t(2)) {
@@ -1363,9 +1363,9 @@ public class ProgTen
             System.out.println("Chest item not possessed before");
             final int i = b - 1;
             System.out.println("item index=" + i);
-            if (ProgOne.j[i] == 11) {
-                this.W += ProgOne.c[i];
-                this.ai.n(ESGame.d(this.W));
+            if (ProgOne.bytesA[i] == 11) {
+                this.W += ProgOne.bytesB[i];
+                this.ai.n(ESGame.getLinesBString(this.W));
             }
             return 1;
         }
@@ -1395,7 +1395,7 @@ public class ProgTen
         }
         final ProgFour c = ESGame.u[this.ab - 1].c(this.z, this.w);
         if (c != null) {
-            c.c();
+            c.non();
         }
         return c;
     }
@@ -1409,7 +1409,7 @@ public class ProgTen
         if (hashtable == null) {
             return null;
         }
-        final byte[] value = hashtable.get(ProgSix.b(this.z, (int)this.w));
+        final byte[] value = hashtable.get(ProgSix.getStringFromTwoIntAddAComma(this.z, (int)this.w));
         if (value == null) {
             return null;
         }
@@ -1448,10 +1448,10 @@ public class ProgTen
         final int u = this.u(n);
         final int b = this.b(u, true);
         final int z = this.z(u);
-        final byte g = ProgTwo.c(n).g;
-        final byte j = ProgTwo.c(n).j;
-        final byte e = ProgTwo.c(n).e;
-        final byte f = ProgTwo.c(n).f;
+        final byte g = ProgTwo.getProgTwoFromArray(n).byteF;
+        final byte j = ProgTwo.getProgTwoFromArray(n).byteE;
+        final byte e = ProgTwo.getProgTwoFromArray(n).byteB;
+        final byte f = ProgTwo.getProgTwoFromArray(n).byteC;
         final int n2 = b - g;
         final int d = d(Math.min(Math.max(z + n2 * 5, 10), 95), Math.min(Math.max(j - n2 * 5, 10), 95));
         byte b2 = 1;
@@ -1537,11 +1537,11 @@ public class ProgTen
         final int u = this.u(n);
         final int b = this.b(u, true);
         final int z = this.z(u);
-        final int c = ProgFour.c(10);
-        final int c2 = ProgFour.c(9);
-        final byte e = ProgTwo.c(n).e;
-        final byte f = ProgTwo.c(n).f;
-        final int min = Math.min(b - c, ProgFour.c(2));
+        final int c = ProgFour.getIntFromMatrixForByteA(10);
+        final int c2 = ProgFour.getIntFromMatrixForByteA(9);
+        final byte e = ProgTwo.getProgTwoFromArray(n).byteB;
+        final byte f = ProgTwo.getProgTwoFromArray(n).byteC;
+        final int min = Math.min(b - c, ProgFour.getIntFromMatrixForByteA(2));
         final int d2 = d(Math.min(Math.max(z + min * 5, 10), 95), Math.min(Math.max(c2 - min * 5, 10), 95));
         int n2 = 1;
         if (d2 == 0) {
@@ -1571,17 +1571,17 @@ public class ProgTen
         }
         switch (n) {
             case 4: {
-                ProgFour.c[9] = -2;
-                ProgFour.d();
+                ProgFour.byteArray[9] = -2;
+                ProgFour.updateHashTable();
                 break;
             }
             case 7: {
-                ProgFour.c[1] = (byte)(10 + this.b(3, false));
+                ProgFour.byteArray[1] = (byte)(10 + this.b(3, false));
                 break;
             }
             case 8: {
                 final int b2 = this.b(3, false);
-                ProgFour.b(12 + 2 * b2);
+                ProgFour.updateByteB(12 + 2 * b2);
                 final short[] u6 = this.U;
                 final int n7 = 6;
                 u6[n7] += (short)b2;
@@ -1597,32 +1597,32 @@ public class ProgTen
                 break;
             }
             case 9: {
-                if (ProgFour.e()) {
-                    ProgFour.b(Math.max(60 * n2 - ProgFour.c(8), 4) * ProgFour.c(14) / 100);
+                if (ProgFour.isByteAMoreThan6LessThan8()) {
+                    ProgFour.updateByteB(Math.max(60 * n2 - ProgFour.getIntFromMatrixForByteA(8), 4) * ProgFour.getIntFromMatrixForByteA(14) / 100);
                     break;
                 }
                 break;
             }
             case 10: {
                 this.G[n - 1] = -2;
-                ProgFour.c[8] = (byte)(2 * n2);
+                ProgFour.byteArray[8] = (byte)(2 * n2);
                 break;
             }
             case 11: {
-                ProgFour.b(Math.max((25 + this.b(4, false)) * n2 - ProgFour.c(8), 4) * ProgFour.c(14) / 100);
-                ProgFour.d();
+                ProgFour.updateByteB(Math.max((25 + this.b(4, false)) * n2 - ProgFour.getIntFromMatrixForByteA(8), 4) * ProgFour.getIntFromMatrixForByteA(14) / 100);
+                ProgFour.updateHashTable();
                 break;
             }
             case 12: {
                 this.G[n - 1] = -2;
-                ProgFour.c[4] = (byte)Math.min(n2 * (10 + this.b(4, false)), 255);
-                ProgFour.d();
+                ProgFour.byteArray[4] = (byte)Math.min(n2 * (10 + this.b(4, false)), 255);
+                ProgFour.updateHashTable();
                 break;
             }
             case 13: {
                 this.G[n - 1] = -2;
-                ProgFour.c[5] = (byte)Math.min(n2 * (10 + this.b(4, false)), 255);
-                ProgFour.d();
+                ProgFour.byteArray[5] = (byte)Math.min(n2 * (10 + this.b(4, false)), 255);
+                ProgFour.updateHashTable();
                 break;
             }
             case 14: {
@@ -1633,15 +1633,15 @@ public class ProgTen
             }
             case 15: {
                 this.G[n - 1] = -2;
-                ProgFour.c[2] = 1;
-                ProgFour.d();
+                ProgFour.byteArray[2] = 1;
+                ProgFour.updateHashTable();
                 break;
             }
             case 16: {
                 final int n10 = 10 - c;
                 if (n10 > 0) {
                     this.G[n - 1] = (byte)(n2 * n10);
-                    ProgFour.c[6] = 1;
+                    ProgFour.byteArray[6] = 1;
                     break;
                 }
                 break;
@@ -1653,16 +1653,16 @@ public class ProgTen
             }
             case 18: {
                 this.G[n - 1] = -2;
-                ProgFour.c[0] = (byte)(3 * n2);
+                ProgFour.byteArray[0] = (byte)(3 * n2);
                 break;
             }
             case 19: {
                 this.G[n - 1] = -2;
-                ProgFour.c[3] = (byte)Math.min(Math.max(n2 * (60 - 5 * c), 0), 100);
+                ProgFour.byteArray[3] = (byte)Math.min(Math.max(n2 * (60 - 5 * c), 0), 100);
                 break;
             }
             case 20: {
-                ProgFour.b(Math.max((80 - 5 * c) * n2 - ProgFour.c(8), 4) * ProgFour.c(14) / 100);
+                ProgFour.updateByteB(Math.max((80 - 5 * c) * n2 - ProgFour.getIntFromMatrixForByteA(8), 4) * ProgFour.getIntFromMatrixForByteA(14) / 100);
                 break;
             }
         }
@@ -1739,7 +1739,7 @@ public class ProgTen
 
     boolean C(final int n) {
         final byte a = this.H[n];
-        return ProgOne.c(Math.abs(a)) && a < 0;
+        return ProgOne.bytesDCheck(Math.abs(a)) && a < 0;
     }
 
     boolean d(final int n, final boolean b) {
@@ -1747,10 +1747,10 @@ public class ProgTen
         if (b2 < 0) {
             return false;
         }
-        if (!ProgOne.c(b2)) {
+        if (!ProgOne.bytesDCheck(b2)) {
             return false;
         }
-        final int a = ProgOne.a(b2);
+        final int a = ProgOne.getBytesDint(b2);
         if (this.T[a] != 0) {
             if (!b) {
                 return false;
@@ -1764,7 +1764,7 @@ public class ProgTen
 
     private void f(final int n) {
         for (byte b = 0; b < this.p; ++b) {
-            if (ProgOne.a((byte)Math.abs(this.H[b])) == n) {
+            if (ProgOne.getBytesDint((byte)Math.abs(this.H[b])) == n) {
                 this.A(b);
             }
         }
@@ -1792,7 +1792,7 @@ public class ProgTen
     }
 
     boolean h(final int n) {
-        if (ProgOne.b((byte)Math.abs(this.H[n]))) {
+        if (ProgOne.bytesACheck((byte)Math.abs(this.H[n]))) {
             final byte b = (byte)(this.P[n] & 0xFF);
             final int n2 = 3;
             final int[] p = this.P;
@@ -1810,7 +1810,7 @@ public class ProgTen
     }
 
     int D(final int n) {
-        return ProgOne.c[(byte)Math.abs(this.H[n]) - 1];
+        return ProgOne.bytesB[(byte)Math.abs(this.H[n]) - 1];
     }
 
     int o(final int a) {
@@ -1831,14 +1831,14 @@ public class ProgTen
 
     String b(final int n) {
         final int abs = Math.abs(this.H[n]);
-        final byte b = ProgOne.j[abs - 1];
+        final byte b = ProgOne.bytesA[abs - 1];
         String str = null;
         switch (b) {
             case 1:
             case 2:
             case 3:
             case 4: {
-                str = ProgOne.b[abs - 1] + '\n' + ProgOne.g[b - 1] + "\nWeapon value: " + (ProgOne.m[abs - 1] + (this.P[n] & 0xFF));
+                str = ProgOne.linesB[abs - 1] + '\n' + ProgOne.linesA[b - 1] + "\nWeapon value: " + (ProgOne.bytesC[abs - 1] + (this.P[n] & 0xFF));
                 break;
             }
             case 5:
@@ -1847,20 +1847,20 @@ public class ProgTen
             case 8:
             case 9:
             case 10: {
-                str = ProgOne.b[abs - 1] + '\n' + ProgOne.g[b - 1] + "\nArmor value: " + (ProgOne.m[abs - 1] + (this.P[n] & 0xFF));
+                str = ProgOne.linesB[abs - 1] + '\n' + ProgOne.linesA[b - 1] + "\nArmor value: " + (ProgOne.bytesC[abs - 1] + (this.P[n] & 0xFF));
                 break;
             }
             case 11: {
-                str = ProgOne.b[abs - 1] + '\n' + ProgOne.g[b - 1];
+                str = ProgOne.linesB[abs - 1] + '\n' + ProgOne.linesA[b - 1];
                 break;
             }
             case 12: {
-                str = ProgOne.b[abs - 1] + '\n' + "Spell: " + ProgTwo.b[(this.P[n] & 0xFF) - 1].c;
+                str = ProgOne.linesB[abs - 1] + '\n' + "Spell: " + ProgTwo.progTwoArray[(this.P[n] & 0xFF) - 1].stringA;
                 break;
             }
             case 13: {
-                final String[] array = ProgOne.l[abs - 87];
-                str = ProgOne.b[abs - 1] + '\n' + ProgOne.g[b - 1] + '\n' + array[0];
+                final String[] array = ProgOne.stringMatrix[abs - 87];
+                str = ProgOne.linesB[abs - 1] + '\n' + ProgOne.linesA[b - 1] + '\n' + array[0];
                 if (array[1].length() > 0) {
                     str = str + '\n' + array[1];
                     break;
@@ -1868,11 +1868,11 @@ public class ProgTen
                 break;
             }
             case 17: {
-                str = ProgOne.b[abs - 1] + '\n' + ProgOne.g[b - 1] + "\nWeapon value: " + (20 + this.b(3, false));
+                str = ProgOne.linesB[abs - 1] + '\n' + ProgOne.linesA[b - 1] + "\nWeapon value: " + (20 + this.b(3, false));
                 break;
             }
             default: {
-                str = ProgOne.b[abs - 1] + '\n' + ProgOne.g[b - 1];
+                str = ProgOne.linesB[abs - 1] + '\n' + ProgOne.linesA[b - 1];
                 break;
             }
         }
@@ -1880,8 +1880,8 @@ public class ProgTen
     }
 
     boolean r(final int n) {
-        final byte b = ProgOne.j[Math.abs(this.H[n]) - 1];
-        this.x = ProgSix.a((this.P[n] & 0xFF) - 1, this.x);
+        final byte b = ProgOne.bytesA[Math.abs(this.H[n]) - 1];
+        this.x = ProgSix.getOrEqualBitShift((this.P[n] & 0xFF) - 1, this.x);
         this.y(n);
         return true;
     }
@@ -1891,7 +1891,7 @@ public class ProgTen
     }
 
     boolean w(final int n) {
-        switch (ProgOne.j[Math.abs(this.H[n]) - 1]) {
+        switch (ProgOne.bytesA[Math.abs(this.H[n]) - 1]) {
             case 1:
             case 2:
             case 3:
@@ -1912,7 +1912,7 @@ public class ProgTen
     }
 
     boolean v(final int n) {
-        switch (ProgOne.j[Math.abs(this.H[n]) - 1]) {
+        switch (ProgOne.bytesA[Math.abs(this.H[n]) - 1]) {
             case 13:
             case 15: {
                 return true;
@@ -1924,9 +1924,9 @@ public class ProgTen
     }
 
     boolean e(final int n) {
-        switch (ProgOne.j[Math.abs(this.H[n]) - 1]) {
+        switch (ProgOne.bytesA[Math.abs(this.H[n]) - 1]) {
             case 12: {
-                return this.R[ProgTwo.b[(this.P[n] & 0xFF) - 1].h][0] > 0;
+                return this.R[ProgTwo.progTwoArray[(this.P[n] & 0xFF) - 1].byteA][0] > 0;
             }
             default: {
                 return false;
@@ -2005,12 +2005,12 @@ public class ProgTen
                 a = 1;
             }
             else {
-                a = ProgSix.a(e);
+                a = ProgSix.getIntFromESG(e);
             }
             int n = 0;
             for (int i = 0; i < 8; ++i) {
                 if ((this.A >> i & 0x1) == 0x1 && ++n == a) {
-                    this.A = (byte)ProgSix.c(i, this.A);
+                    this.A = (byte)ProgSix.getAndEqualBitShift(i, this.A);
                     break;
                 }
             }
@@ -2138,7 +2138,7 @@ public class ProgTen
         for (int i = 0; i < ProgTwo.i; ++i) {
             if ((this.x & 1 << i) != 0x0) {
                 final int n = i + 1;
-                String s = ProgTwo.b[i].c;
+                String s = ProgTwo.progTwoArray[i].stringA;
                 if (n == this.b) {
                     s = "R: " + s;
                 }
@@ -2162,7 +2162,7 @@ public class ProgTen
     }
 
     int l() {
-        if (ProgTwo.a(this.b)) {
+        if (ProgTwo.isNbiggerThan1LessThani(this.b)) {
             final int n = this.b - 1;
             int i = n + 1;
             if (i == ProgTwo.i) {
@@ -2187,7 +2187,7 @@ public class ProgTen
     }
 
     String s(final int n) {
-        return ProgTwo.b[n].c + '\n' + ProgTen.E[ProgTwo.b[n].h] + '\n' + "Cost: " + ProgTwo.b[n].e + '\n' + ProgTwo.b[n].a;
+        return ProgTwo.progTwoArray[n].stringA + '\n' + ProgTen.E[ProgTwo.progTwoArray[n].byteA] + '\n' + "Cost: " + ProgTwo.progTwoArray[n].byteB + '\n' + ProgTwo.progTwoArray[n].stringB;
     }
 
     void e(final boolean b) {
@@ -2216,7 +2216,7 @@ public class ProgTen
         this.s = false;
         this.L = false;
         this.I = false;
-        if (ProgSix.a(100) <= 10) {
+        if (ProgSix.getIntFromESG(100) <= 10) {
             for (byte b2 = 0; b2 < this.p; ++b2) {
                 if (Math.abs(this.H[b2]) == 96) {
                     this.y(b2);
@@ -2228,8 +2228,8 @@ public class ProgTen
             final int n7 = i + 1;
             if (n7 != 4) {
                 if (n7 != 5) {
-                    if (ProgSix.a(100) <= 25) {
-                        this.A = (byte)ProgSix.c(i, this.A);
+                    if (ProgSix.getIntFromESG(100) <= 25) {
+                        this.A = (byte)ProgSix.getAndEqualBitShift(i, this.A);
                     }
                 }
             }
@@ -2242,7 +2242,7 @@ public class ProgTen
 
     void a(final int n, final ProgFour ProgFour) {
         final int abs = Math.abs(this.H[n]);
-        final byte b = ProgOne.j[abs - 1];
+        final byte b = ProgOne.bytesA[abs - 1];
         if (b == 13 || b == 15) {
             boolean b2 = true;
             switch (abs) {
@@ -2300,11 +2300,11 @@ public class ProgTen
                     if (ProgFour == null) {
                         break;
                     }
-                    final int c = ProgFour.c(4);
-                    final int c2 = ProgFour.c(10);
+                    final int c = ProgFour.getIntFromMatrixForByteA(4);
+                    final int c2 = ProgFour.getIntFromMatrixForByteA(10);
                     if (c <= 13 && c2 <= 13) {
-                        ProgFour.g = 0;
-                        ProgFour.d();
+                        ProgFour.byteB = 0;
+                        ProgFour.updateHashTable();
                         break;
                     }
                     break;
@@ -2313,11 +2313,11 @@ public class ProgTen
                     if (ProgFour == null) {
                         break;
                     }
-                    final int c3 = ProgFour.c(4);
-                    final int c4 = ProgFour.c(10);
+                    final int c3 = ProgFour.getIntFromMatrixForByteA(4);
+                    final int c4 = ProgFour.getIntFromMatrixForByteA(10);
                     if (c3 <= 22 && c4 <= 22) {
-                        ProgFour.g = 0;
-                        ProgFour.d();
+                        ProgFour.byteB = 0;
+                        ProgFour.updateHashTable();
                         break;
                     }
                     break;
@@ -2326,11 +2326,11 @@ public class ProgTen
                     if (ProgFour == null) {
                         break;
                     }
-                    final int c5 = ProgFour.c(4);
-                    final int c6 = ProgFour.c(10);
+                    final int c5 = ProgFour.getIntFromMatrixForByteA(4);
+                    final int c6 = ProgFour.getIntFromMatrixForByteA(10);
                     if (c5 <= 29 && c6 <= 29) {
-                        ProgFour.g = 0;
-                        ProgFour.d();
+                        ProgFour.byteB = 0;
+                        ProgFour.updateHashTable();
                         break;
                     }
                     break;
@@ -2392,7 +2392,7 @@ public class ProgTen
     }
 
     private void C() {
-        final short a = ProgOne.a();
+        final short a = ProgOne.incrementShortZ();
         final int[] array = ProgTen.ac[this.ar];
         for (int i = 0; i < array.length; ++i) {
             this.c(array[i], a);
@@ -2462,7 +2462,7 @@ public class ProgTen
                 this.B();
                 this.g(1);
             }
-            System.out.println("here 2, i =" + i);
+            System.out.println("here 2, shortZ =" + i);
             if (i == 1) {
                 sb.append("FORWARD SQUARE: \n");
             }
@@ -2475,8 +2475,8 @@ public class ProgTen
             else if (i == 4) {
                 sb.append("LEFT SIDE SQUARE: \n");
             }
-            sb.append("x,y = " + this.z + ", " + this.w + "\n");
-            System.out.println("New a and y are " + this.z + ", " + this.w);
+            sb.append("staticInt,staticStringArray = " + this.z + ", " + this.w + "\n");
+            System.out.println("New incrementShortZ and staticStringArray are " + this.z + ", " + this.w);
             sb.append("map value = " + this.b().w[this.z][this.w] + "\n");
             System.out.println("New dungeon id is " + this.ab);
             final Hashtable hashtable = ESGame.G[this.ab - 1];
@@ -2484,14 +2484,14 @@ public class ProgTen
                 final Enumeration<byte[]> elements = hashtable.elements();
                 while (elements.hasMoreElements()) {
                     final byte[] array = elements.nextElement();
-                    System.out.println("Found a monster");
+                    System.out.println("Found incrementShortZ monster");
                     if (array[4] == this.z && array[5] == this.w) {
                         sb.append("Found monster in square \n");
                         sb.append("type=" + array[2] + ", health=" + array[3] + ", dungeon id = " + array[7] + "\n");
                     }
                 }
             }
-            System.out.println("here 3, i =" + i);
+            System.out.println("here 3, shortZ =" + i);
             final Hashtable hashtable2 = ESGame.S[this.ab - 1];
             if (hashtable2 != null) {
                 final Enumeration<byte[]> elements2 = hashtable2.elements();

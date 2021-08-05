@@ -8,113 +8,113 @@ import java.io.DataInputStream;
 
 public class ProgFour
 {
-    private static int d;
-    private static String[] h;
-    private static byte[][] e;
-    short a;
-    byte l;
-    byte g;
-    byte o;
-    byte m;
-    boolean i;
-    byte n;
-    byte[] c;
-    byte b;
-    byte f;
-    long k;
-    static ProgFour p;
-    static short j;
+    private static int pFourInt;
+    private static String[] pFourStringArray;
+    private static byte[][] byteMatrix;
+    short shortA;
+    byte byteA;
+    byte byteB;
+    byte byteC;
+    byte byteD;
+    boolean pFourBoolean;
+    byte byteE;
+    byte[] byteArray;
+    byte byteF;
+    byte byteG;
+    long longA;
+    static ProgFour pFourStaticRef;
+    static short shortStaticRef;
 
-    static short b() {
-        return (short)(++ProgFour.j);
+    static short incrementShortStaticRef() {
+        return (++ProgFour.shortStaticRef);
     }
 
-    byte[] f() {
-        final byte[] array = { (byte)(this.a >>> 8 & 0xFF), (byte)(this.a & 0xFF), this.l, this.g, this.o, this.m, (byte)(this.i ? 1 : 0), this.n, this.b, this.f, (byte)(this.k >>> 56 & 0xFFL), (byte)(this.k >>> 48 & 0xFFL), (byte)(this.k >>> 40 & 0xFFL), (byte)(this.k >>> 32 & 0xFFL), (byte)(this.k >>> 24 & 0xFFL), (byte)(this.k >>> 16 & 0xFFL), (byte)(this.k >>> 8 & 0xFFL), (byte)(this.k & 0xFFL), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    byte[] getByteArray() {
+        final byte[] array = { (byte)(this.shortA >>> 8 & 0xFF), (byte)(this.shortA & 0xFF), this.byteA, this.byteB, this.byteC, this.byteD, (byte)(this.pFourBoolean ? 1 : 0), this.byteE, this.byteF, this.byteG, (byte)(this.longA >>> 56 & 0xFFL), (byte)(this.longA >>> 48 & 0xFFL), (byte)(this.longA >>> 40 & 0xFFL), (byte)(this.longA >>> 32 & 0xFFL), (byte)(this.longA >>> 24 & 0xFFL), (byte)(this.longA >>> 16 & 0xFFL), (byte)(this.longA >>> 8 & 0xFFL), (byte)(this.longA & 0xFFL), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         for (int i = 0; i < 10; ++i) {
-            array[18 + i] = this.c[i];
+            array[18 + i] = this.byteArray[i];
         }
         return array;
     }
 
     public ProgFour() {
-        this.c = new byte[10];
-        this.i = false;
+        this.byteArray = new byte[10];
+        this.pFourBoolean = false;
     }
 
     public ProgFour(final int n, final int n2, final int n3) {
-        this.a = (short)n;
-        this.l = (byte)n2;
-        this.g = ProgFour.e[this.l - 1][14];
-        this.c = new byte[10];
-        this.i = false;
-        this.n = (byte)n3;
-        this.f = 0;
+        this.shortA = (short)n;
+        this.byteA = (byte)n2;
+        this.byteB = ProgFour.byteMatrix[this.byteA - 1][14];
+        this.byteArray = new byte[10];
+        this.pFourBoolean = false;
+        this.byteE = (byte)n3;
+        this.byteG = 0;
     }
 
-    static ProgFour a(final byte[] array) {
-        ProgFour.p.a = (short)((short)(array[0] & 0xFF) << 8 | (short)(array[1] & 0xFF));
-        ProgFour.p.l = array[2];
-        ProgFour.p.g = array[3];
-        ProgFour.p.o = array[4];
-        ProgFour.p.m = array[5];
-        ProgFour.p.i = (array[6] != 0);
-        ProgFour.p.n = array[7];
-        ProgFour.p.b = array[8];
-        ProgFour.p.f = array[9];
-        ProgFour.p.k = ProgSix.a(array, 10);
+    static ProgFour makeStaticProgFourFromByteArray(final byte[] array) {
+        ProgFour.pFourStaticRef.shortA = (short)((short)(array[0] & 0xFF) << 8 | (short)(array[1] & 0xFF));
+        ProgFour.pFourStaticRef.byteA = array[2];
+        ProgFour.pFourStaticRef.byteB = array[3];
+        ProgFour.pFourStaticRef.byteC = array[4];
+        ProgFour.pFourStaticRef.byteD = array[5];
+        ProgFour.pFourStaticRef.pFourBoolean = (array[6] != 0);
+        ProgFour.pFourStaticRef.byteE = array[7];
+        ProgFour.pFourStaticRef.byteF = array[8];
+        ProgFour.pFourStaticRef.byteG = array[9];
+        ProgFour.pFourStaticRef.longA = ProgSix.getLongFromByteArray(array, 10);
         for (int i = 0; i < 10; ++i) {
-            ProgFour.p.c[i] = array[18 + i];
+            ProgFour.pFourStaticRef.byteArray[i] = array[18 + i];
         }
-        return ProgFour.p;
+        return ProgFour.pFourStaticRef;
     }
 
-    static ProgFour a(final ProgFour ProgFour, final byte[] array) {
-        ProgFour.a = (short)((short)(array[0] & 0xFF) << 8 | (short)(array[1] & 0xFF));
-        ProgFour.l = array[2];
-        ProgFour.g = array[3];
-        ProgFour.o = array[4];
-        ProgFour.m = array[5];
-        ProgFour.i = (array[6] != 0);
-        ProgFour.n = array[7];
-        ProgFour.b = array[8];
-        ProgFour.f = array[9];
-        ProgFour.k = ProgSix.a(array, 10);
+    static ProgFour makeProgFourFromProgFourAndByteArray(final ProgFour ProgFour, final byte[] array) {
+        ProgFour.shortA = (short)((short)(array[0] & 0xFF) << 8 | (short)(array[1] & 0xFF));
+        ProgFour.byteA = array[2];
+        ProgFour.byteB = array[3];
+        ProgFour.byteC = array[4];
+        ProgFour.byteD = array[5];
+        ProgFour.pFourBoolean = (array[6] != 0);
+        ProgFour.byteE = array[7];
+        ProgFour.byteF = array[8];
+        ProgFour.byteG = array[9];
+        ProgFour.longA = ProgSix.getLongFromByteArray(array, 10);
         for (int i = 0; i < 10; ++i) {
-            ProgFour.c[i] = array[18 + i];
+            ProgFour.byteArray[i] = array[18 + i];
         }
         return ProgFour;
     }
 
-    void d() {
-        ESGame.G[this.n - 1].put(String.valueOf(this.a), this.f());
+    void updateHashTable() {
+        ESGame.G[this.byteE - 1].put(String.valueOf(this.shortA), this.getByteArray());
     }
 
-    String a() {
-        return ProgFour.h[this.l - 1];
+    String getStringForByteA() {
+        return ProgFour.pFourStringArray[this.byteA - 1];
     }
 
-    int c(final int n) {
-        return ProgFour.e[this.l - 1][n] & 0xFF;
+    int getIntFromMatrixForByteA(final int n) {
+        return ProgFour.byteMatrix[this.byteA - 1][n] & 0xFF;
     }
 
-    boolean e() {
-        return this.l >= 6 && this.l <= 8;
+    boolean isByteAMoreThan6LessThan8() {
+        return this.byteA >= 6 && this.byteA <= 8;
     }
 
-    void b(int n) {
-        final int n2 = this.g & 0xFF;
+    void updateByteB(int n) {
+        final int n2 = this.byteB & 0xFF;
         if (n > n2) {
             n = n2;
         }
-        this.g = (byte)(n2 - n);
+        this.byteB = (byte)(n2 - n);
     }
 
-    boolean a(final int n) {
+    boolean byteCheckCD(final int n) {
         byte b = 1;
-        final byte o = this.o;
-        final byte m = this.m;
-        final ProgNine ProgNine = ESGame.u[this.n - 1];
+        final byte o = this.byteC;
+        final byte m = this.byteD;
+        final ProgNine ProgNine = ESGame.u[this.byteE - 1];
         byte o2 = 0;
         byte j = 0;
         switch (n) {
@@ -122,16 +122,16 @@ public class ProgFour
                 b = -1;
             }
             case 3: {
-                o2 = this.o;
-                j = (byte)(this.m + b);
+                o2 = this.byteC;
+                j = (byte)(this.byteD + b);
                 break;
             }
             case 4: {
                 b = -1;
             }
             case 2: {
-                j = this.m;
-                o2 = (byte)(this.o + b);
+                j = this.byteD;
+                o2 = (byte)(this.byteC + b);
                 break;
             }
             default: {
@@ -144,52 +144,52 @@ public class ProgFour
         if (o2 >= ProgNine.g || j >= ProgNine.y) {
             return false;
         }
-        if (this.a(o2, j)) {
+        if (this.checkProgNineWithByteE(o2, j)) {
             return false;
         }
         if (!ProgNine.d((int)o2, (int)j)) {
             return false;
         }
-        ProgNine.w[this.o][this.m] = ProgSix.c((byte)2, ProgNine.w[this.o][this.m]);
-        ProgNine.w[o2][j] = ProgSix.b((byte)2, ProgNine.w[o2][j]);
-        this.o = o2;
-        this.m = j;
+        ProgNine.w[this.byteC][this.byteD] = ProgSix.getAndByte((byte)2, ProgNine.w[this.byteC][this.byteD]);
+        ProgNine.w[o2][j] = ProgSix.getPipeByte((byte)2, ProgNine.w[o2][j]);
+        this.byteC = o2;
+        this.byteD = j;
         return true;
     }
 
-    void a(final ProgTen ProgTen) {
-        if (this.d(ProgTen)) {
-            if (this.b == 0) {
-                this.e(ProgTen);
-                ++this.b;
+    void updateProgTenWithByteF(final ProgTen ProgTen) {
+        if (this.isProgTenLessThan4(ProgTen)) {
+            if (this.byteF == 0) {
+                this.updateProgTenWithByteCD(ProgTen);
+                ++this.byteF;
             }
-            else if (this.b >= 4) {
-                this.b = 0;
+            else if (this.byteF >= 4) {
+                this.byteF = 0;
             }
             else {
-                ++this.b;
+                ++this.byteF;
             }
         }
     }
 
-    private void e(final ProgTen ProgTen) {
-        final int abs = Math.abs(ProgTen.l - this.o);
-        final int abs2 = Math.abs(ProgTen.k - this.m);
+    private void updateProgTenWithByteCD(final ProgTen ProgTen) {
+        final int abs = Math.abs(ProgTen.l - this.byteC);
+        final int abs2 = Math.abs(ProgTen.k - this.byteD);
         int n;
-        if (this.o < ProgTen.l) {
+        if (this.byteC < ProgTen.l) {
             n = 2;
         }
-        else if (this.o > ProgTen.l) {
+        else if (this.byteC > ProgTen.l) {
             n = 4;
         }
         else {
             n = -1;
         }
         int n2;
-        if (this.m < ProgTen.k) {
+        if (this.byteD < ProgTen.k) {
             n2 = 3;
         }
-        else if (this.m > ProgTen.k) {
+        else if (this.byteD > ProgTen.k) {
             n2 = 1;
         }
         else {
@@ -213,16 +213,16 @@ public class ProgFour
             n3 = n2;
             n4 = n;
         }
-        if (this.a(n3)) {
+        if (this.byteCheckCD(n3)) {
             return;
         }
-        if (this.a(n4)) {
+        if (this.byteCheckCD(n4)) {
             return;
         }
     }
 
-    private boolean a(final int n, final int n2) {
-        final ProgNine ProgNine = ESGame.u[this.n - 1];
+    private boolean checkProgNineWithByteE(final int n, final int n2) {
+        final ProgNine ProgNine = ESGame.u[this.byteE - 1];
         if (ProgNine.s == 1 || ProgNine.v == 1) {
             if (n == 17 && n2 == 5) {
                 return true;
@@ -244,32 +244,32 @@ public class ProgFour
         return false;
     }
 
-    boolean d(final ProgTen ProgTen) {
-        return this.c(ProgTen) <= 3;
+    boolean isProgTenLessThan4(final ProgTen ProgTen) {
+        return this.getProgTenABSByteCD(ProgTen) <= 3;
     }
 
-    int c(final ProgTen ProgTen) {
-        return Math.abs(ProgTen.l - this.o) + Math.abs(ProgTen.k - this.m);
+    int getProgTenABSByteCD(final ProgTen ProgTen) {
+        return Math.abs(ProgTen.l - this.byteC) + Math.abs(ProgTen.k - this.byteD);
     }
 
-    boolean b(final ProgTen ProgTen) {
-        if (this.c(ProgTen) == 1) {
+    boolean isProgTenOneThenByteGZero(final ProgTen ProgTen) {
+        if (this.getProgTenABSByteCD(ProgTen) == 1) {
             return true;
         }
-        this.f = 0;
+        this.byteG = 0;
         return false;
     }
 
-    void a(final ProgTen ProgTen, final long k) {
-        this.f = 2;
-        this.k = k;
-        final int min = Math.min(ProgTen.f(true) - ProgFour.e[this.l - 1][4], ProgFour.e[this.l - 1][2]);
-        final int a = ProgFour.e[this.l - 1][3] - min * 5;
+    void updateProgTen(final ProgTen ProgTen, final long k) {
+        this.byteG = 2;
+        this.longA = k;
+        final int min = Math.min(ProgTen.f(true) - ProgFour.byteMatrix[this.byteA - 1][4], ProgFour.byteMatrix[this.byteA - 1][2]);
+        final int a = ProgFour.byteMatrix[this.byteA - 1][3] - min * 5;
         final int a2 = ProgTen.I() + min * 5;
         final int min2 = Math.min(Math.max(a, 10), 95);
         final int min3 = Math.min(Math.max(a2, 10), 95);
-        final int a3 = ProgSix.a(100);
-        final int a4 = ProgSix.a(100);
+        final int a3 = ProgSix.getIntFromESG(100);
+        final int a4 = ProgSix.getIntFromESG(100);
         final boolean b = a3 <= min2;
         final boolean b2 = a4 <= min3;
         int n;
@@ -296,10 +296,10 @@ public class ProgFour
             n = 0;
         }
         if (n == 0) {
-            this.f = 1;
+            this.byteG = 1;
             return;
         }
-        final byte b3 = ProgFour.e[this.l - 1][5];
+        final byte b3 = ProgFour.byteMatrix[this.byteA - 1][5];
         int v = ProgTen.v();
         if (n == 1) {
             v *= 2;
@@ -313,16 +313,16 @@ public class ProgFour
             ProgTen.a(ProgTen.y(), 1);
         }
         if (n < 3) {
-            this.f = 1;
+            this.byteG = 1;
             return;
         }
-        if (ProgSix.a(100) <= 30) {
-            final byte b4 = ProgFour.e[this.l - 1][11];
+        if (ProgSix.getIntFromESG(100) <= 30) {
+            final byte b4 = ProgFour.byteMatrix[this.byteA - 1][11];
             if (b4 > 0) {
                 ProgTen.A |= (byte)(1 << b4 - 1);
                 if (b4 != 1) {
                     if (b4 == 2) {
-                        ESGame.u[this.n - 1].c(3);
+                        ESGame.u[this.byteE - 1].c(3);
                     }
                     else if (b4 != 3) {
                         if (b4 == 4) {
@@ -340,78 +340,78 @@ public class ProgFour
                 }
             }
         }
-        this.f = 1;
+        this.byteG = 1;
     }
 
-    static void g() throws Exception {
-        final DataInputStream a = ProgSix.a("/monstersin.dat");
-        ProgFour.j = 0;
-        ProgFour.d = a.readInt();
-        ProgFour.h = new String[ProgFour.d];
-        ProgFour.e = new byte[ProgFour.d][17];
-        for (int i = 0; i < ProgFour.d; ++i) {
-            ProgFour.h[i] = a.readUTF();
+    static void loadMonsters() throws Exception {
+        final DataInputStream a = ProgSix.getDISFromName("/monstersin.dat");
+        ProgFour.shortStaticRef = 0;
+        ProgFour.pFourInt = a.readInt();
+        ProgFour.pFourStringArray = new String[ProgFour.pFourInt];
+        ProgFour.byteMatrix = new byte[ProgFour.pFourInt][17];
+        for (int i = 0; i < ProgFour.pFourInt; ++i) {
+            ProgFour.pFourStringArray[i] = a.readUTF();
         }
-        for (int j = 0; j < ProgFour.d; ++j) {
+        for (int j = 0; j < ProgFour.pFourInt; ++j) {
             for (int k = 0; k < 17; ++k) {
-                ProgFour.e[j][k] = a.readByte();
+                ProgFour.byteMatrix[j][k] = a.readByte();
             }
         }
     }
 
-    static ProgFour a(final DataInputStream dataInputStream) throws Exception {
+    static ProgFour getProgFourFromDIS(final DataInputStream dataInputStream) throws Exception {
         final ProgFour ProgFour = new ProgFour();
-        ProgFour.a = dataInputStream.readShort();
-        ProgFour.l = dataInputStream.readByte();
-        ProgFour.g = dataInputStream.readByte();
-        ProgFour.o = dataInputStream.readByte();
-        ProgFour.m = dataInputStream.readByte();
-        ProgFour.i = dataInputStream.readBoolean();
-        ProgFour.n = dataInputStream.readByte();
-        ProgFour.b = dataInputStream.readByte();
-        ProgFour.f = dataInputStream.readByte();
-        ProgFour.k = dataInputStream.readLong();
+        ProgFour.shortA = dataInputStream.readShort();
+        ProgFour.byteA = dataInputStream.readByte();
+        ProgFour.byteB = dataInputStream.readByte();
+        ProgFour.byteC = dataInputStream.readByte();
+        ProgFour.byteD = dataInputStream.readByte();
+        ProgFour.pFourBoolean = dataInputStream.readBoolean();
+        ProgFour.byteE = dataInputStream.readByte();
+        ProgFour.byteF = dataInputStream.readByte();
+        ProgFour.byteG = dataInputStream.readByte();
+        ProgFour.longA = dataInputStream.readLong();
         for (int i = 0; i < 10; ++i) {
-            ProgFour.c[i] = dataInputStream.readByte();
+            ProgFour.byteArray[i] = dataInputStream.readByte();
         }
         return ProgFour;
     }
 
-    void a(final DataOutputStream dataOutputStream) throws Exception {
-        dataOutputStream.writeShort(this.a);
-        dataOutputStream.writeByte(this.l);
-        dataOutputStream.writeByte(this.g);
-        dataOutputStream.writeByte(this.o);
-        dataOutputStream.writeByte(this.m);
-        dataOutputStream.writeBoolean(this.i);
-        dataOutputStream.writeByte(this.n);
-        dataOutputStream.writeByte(this.b);
-        dataOutputStream.writeByte(this.f);
-        dataOutputStream.writeLong(this.k);
+    void writeInfotoDOS(final DataOutputStream dataOutputStream) throws Exception {
+        dataOutputStream.writeShort(this.shortA);
+        dataOutputStream.writeByte(this.byteA);
+        dataOutputStream.writeByte(this.byteB);
+        dataOutputStream.writeByte(this.byteC);
+        dataOutputStream.writeByte(this.byteD);
+        dataOutputStream.writeBoolean(this.pFourBoolean);
+        dataOutputStream.writeByte(this.byteE);
+        dataOutputStream.writeByte(this.byteF);
+        dataOutputStream.writeByte(this.byteG);
+        dataOutputStream.writeLong(this.longA);
         for (int i = 0; i < 10; ++i) {
-            dataOutputStream.writeByte(this.c[i]);
+            dataOutputStream.writeByte(this.byteArray[i]);
         }
     }
 
-    void c() {
+    void non() {
     }
 
-    void a(final boolean b) {
-        int n = ProgFour.e[this.l - 1][15];
+    void updateProgNine(final boolean b) {
+        int n = ProgFour.byteMatrix[this.byteA - 1][15];
         if (b) {
             n = 100;
         }
-        final byte b2 = ProgFour.e[this.l - 1][16];
-        if (ProgSix.a(100) <= n || b) {
-            final ProgNine ProgNine = ESGame.u[this.n - 1];
-            final int a = ProgOne.a(ESGame.P, ProgNine.a, b2);
+        final byte b2 = ProgFour.byteMatrix[this.byteA - 1][16];
+        if (ProgSix.getIntFromESG(100) <= n || b) {
+            final ProgNine ProgNine = ESGame.u[this.byteE - 1];
+            final int a = ProgOne.getRandomFromByteZAndMatrix(ESGame.P, ProgNine.a, b2);
             final byte b3 = (byte)(a & 0xFF);
             byte b4 = 0;
             if (b3 == 86) {
                 b4 = (byte)(a >>> 8 & 0xFF);
             }
-            final byte[] array = { this.o, this.m, b3, 0, 0, b4, 0 };
-            final short a2 = ProgOne.a();
+            final byte[] array = { this.byteC, this.byteD, b3, 0, 0, b4, 0 };
+            final short a2 = ProgOne.incrementShortZ();
             final byte b5 = (byte)(a2 >>> 8 & 0xFF);
             final byte b6 = (byte)(a2 & 0xFF);
             array[3] = b5;
@@ -426,12 +426,12 @@ public class ProgFour
         }
     }
 
-    static ProgFour a(final ProgNine ProgNine) {
-        return a(ESGame.P, ProgNine, -1);
+    static ProgFour getProgFour(final ProgNine ProgNine) {
+        return getProgFourRandom(ESGame.P, ProgNine, -1);
     }
 
-    static ProgFour a(final Random random, final ProgNine ProgNine, final int n) {
-        final short b = b();
+    static ProgFour getProgFourRandom(final Random random, final ProgNine ProgNine, final int n) {
+        final short b = incrementShortStaticRef();
         int n2 = n;
         if (n2 < 0) {
             int n3 = ProgNine.a - 1;
@@ -461,6 +461,6 @@ public class ProgFour
     }
 
     static {
-        ProgFour.p = new ProgFour();
+        ProgFour.pFourStaticRef = new ProgFour();
     }
 }

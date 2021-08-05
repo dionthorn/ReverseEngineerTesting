@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.Enumeration;
-import java.io.OutputStream;
 import java.io.DataOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -22,7 +21,7 @@ import java.util.Hashtable;
 //import javax.microedition.lcdui.StringItem;
 //import javax.microedition.lcdui.Form;
 //import javax.microedition.lcdui.CommandListener;
-//import ngame.midlet.a;
+//import ngame.midlet.incrementShortZ;
 
 //
 // Decompiled by Procyon v0.5.36
@@ -144,8 +143,8 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         }
         //final String appProperty = ((MIDlet)this).getAppProperty("Mserver-User-Id");
         //if (appProperty != null) {
-        //    j.X = appProperty;
-        //    System.out.println("User ID is " + j.X);
+        //    bytesA.X = appProperty;
+        //    System.out.println("User ID is " + bytesA.X);
         //}
         //else {
         //    System.out.println("User ID is NULL!");
@@ -180,7 +179,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             ESGame.O = this.d("/splashtop.png");
             ESGame.aU = this.d("/splashbot.png");
             (this.ay = new ProgEight(this, 2, 1)).e();
-            this.ay.c = this.w;
+            this.ay.objectB = this.w;
             ESGame.J = 2;
             this.ac = true;
             ESGame.aG = false;
@@ -189,7 +188,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         }
         catch (Exception ex) {
             System.out.println("Barfed in initSplash");
-            //this.d.setCurrent((Displayable)this.w);
+            //this.loadDroppedItems.setCurrent((Displayable)this.intK);
         }
     }
 
@@ -219,7 +218,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                 ESGame.j = true;
                 ESGame.j = false;
                 this.ak = false;
-                ESGame.aQ.m = 100;
+                ESGame.aQ.volatileInt = 100;
                 ESGame.aQ.c();
                 ESGame.aQ.f();
                 this.k.w();
@@ -247,11 +246,11 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             }
             catch (Exception ex) {}
             this.ac = false;
-            this.ay.m = 0;
+            this.ay.volatileInt = 0;
             this.t();
             this.G();
             this.A();
-            this.ay.m = 100;
+            this.ay.volatileInt = 100;
         }
         catch (Throwable t) {
             System.out.println("ERROR: CANNOT LOAD APP!!");
@@ -274,14 +273,14 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         ProgTen.u();
         this.a("ESPersonality load", true);
         ProgEleven.e();
-        this.ay.m = 5;
+        this.ay.volatileInt = 5;
         this.a("Item load", true);
-        ProgOne.e();
+        ProgOne.loadItems();
         this.a("Spell load", true);
-        ProgTwo.a();
+        ProgTwo.loadSpells();
         this.a("Monster load", true);
-        ProgFour.g();
-        this.ay.m = 10;
+        ProgFour.loadMonsters();
+        this.ay.volatileInt = 10;
         this.a("End of allocESGame", true);
     }
 
@@ -292,7 +291,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         c("    Before dungeon vector");
         ESGame.u = new ProgNine[37];
         c("    After dungeon vector");
-        this.ay.m = 62;
+        this.ay.volatileInt = 62;
         ESGame.u[0] = new ProgNine((byte)1, ESGame.ai[0], ESGame.af, ESGame.aO, ESGame.i);
         c("    After camp dungeon before GC");
         System.gc();
@@ -305,7 +304,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             System.gc();
             c("    After dungeon " + i);
             final ProgEight ay = this.ay;
-            ++ay.m;
+            ++ay.volatileInt;
         }
         System.out.println(" After creating dungeons");
         c(" After creating dungeons, before GC");
@@ -315,15 +314,15 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
 
     private void o() {
         System.out.println("Start of createNewGame");
-        this.aZ.m = 0;
-        for (int d = d(0), i = 0; i <= d; ++i) {
+        this.aZ.volatileInt = 0;
+        for (int d = getLinesBString(0), i = 0; i <= d; ++i) {
             this.n(i);
         }
         this.a((Object)this.az);
     }
 
     private void J() {
-        i(d(this.k.W));
+        i(getLinesBString(this.k.W));
     }
 
     private void G() throws Exception {
@@ -332,7 +331,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         c("Start of allocateAllUIs");
         this.h();
-        this.ay.m = 20;
+        this.ay.volatileInt = 20;
         this.j();
         this.av = new ProgFive(this);
         c("Before floors and walls");
@@ -354,15 +353,15 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         this.a("After monster images", true);
         c("After monster images ");
         this.j();
-        (ProgFive.ar = new ProgSeven[3])[0] = ProgSeven.b("baglarge.cus");
-        ProgFive.ar[1] = ProgSeven.b("bagmid.cus");
-        ProgFive.ar[2] = ProgSeven.b("bagsmall.cus");
+        (ProgFive.ar = new ProgSeven[3])[0] = ProgSeven.getProgSevenFromString("baglarge.cus");
+        ProgFive.ar[1] = ProgSeven.getProgSevenFromString("bagmid.cus");
+        ProgFive.ar[2] = ProgSeven.getProgSevenFromString("bagsmall.cus");
         c("After bag images ");
         System.gc();
         this.a("After bag images ", true);
-        (ProgFive.u = new ProgSeven[3])[0] = ProgSeven.b("crystalnear.cus");
-        ProgFive.u[1] = ProgSeven.b("crystalmid.cus");
-        ProgFive.u[2] = ProgSeven.b("crystalfar.cus");
+        (ProgFive.u = new ProgSeven[3])[0] = ProgSeven.getProgSevenFromString("crystalnear.cus");
+        ProgFive.u[1] = ProgSeven.getProgSevenFromString("crystalmid.cus");
+        ProgFive.u[2] = ProgSeven.getProgSevenFromString("crystalfar.cus");
         c("After crystal images ");
         this.a("After crystal images ", true);
         this.j();
@@ -378,9 +377,9 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         c("After spell images ");
         this.a("After effects images ", true);
-        (ProgFive.ab = new ProgSeven[3])[0] = ProgSeven.b("chestnearclosed.cus");
-        ProgFive.ab[1] = ProgSeven.b("chestmidclosed.cus");
-        ProgFive.ab[2] = ProgSeven.b("chestfarclosed.cus");
+        (ProgFive.ab = new ProgSeven[3])[0] = ProgSeven.getProgSevenFromString("chestnearclosed.cus");
+        ProgFive.ab[1] = ProgSeven.getProgSevenFromString("chestmidclosed.cus");
+        ProgFive.ab[2] = ProgSeven.getProgSevenFromString("chestfarclosed.cus");
         this.a("After chest images ", true);
         this.j();
         (ProgFive.y = new Image[6])[0] = this.d("icon_attack.png");
@@ -399,15 +398,15 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         ESGame.n = this.q();
         this.a("After CREDITS", true);
         (this.U = new ProgEight(this, 3, 2)).a("Main Menu", new String[] { "New Game", "Continue Game", "Help", "Credits", "Exit" }, (Vector)null, false);
-        (this.az = new ProgEight(this, 5, 3)).a("New Game", "Select a Class:", ProgTen.K, (Vector)null);
-        this.ay.m = 35;
+        (this.az = new ProgEight(this, 5, 3)).a("New Game", "Select incrementShortZ Class:", ProgTen.K, (Vector)null);
+        this.ay.volatileInt = 35;
         this.a("After newGameUI", true);
         (this.y = new ProgEight(this, 6, 4)).a("Character", "You selected:", "", new String[] { "See Class Info", "Create Character" }, (Vector)null);
         (this.h = new ProgEight(this, 4, 5)).a("Info", "");
-        (this.aE = new ProgEight(this, 4, 6)).a("New Character", "Character Created!\n \nPress 'select' to enter a name");
-        this.aE.b(ProgEight.I);
-        this.aE.a(ProgEight.u);
-        this.aE.a(ProgEight.P);
+        (this.aE = new ProgEight(this, 4, 6)).a("New Character", "Character Created!\n \nPress 'select' to enter incrementShortZ name");
+        this.aE.b(ProgEight.commandA);
+        this.aE.a(ProgEight.commandB);
+        this.aE.a(ProgEight.commandC);
         (this.M = new ProgEight(this, 4, 7)).a("Welcome", "Welcome to The Elder Scrolls Travels!");
         c("After all the welcome screens");
         this.a("After all the welcome screens", true);
@@ -420,36 +419,36 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         this.R = new ProgEight[6];
         for (int k = 0; k < 4; ++k) {
             (this.R[k] = new ProgEight(this, 5, 9 + k)).a("Name", "Aid: <TAG>", new String[] { "Train", "Give", "Befriend", "Threaten", "Kill" }, (Vector)null);
-            this.R[k].s = this.av;
+            this.R[k].objectA = this.av;
         }
         (this.R[4] = new ProgEight(this, 5, 13)).a("Beneca", "Aid: <TAG>", new String[] { "Give Item", "Take Crystal" }, (Vector)null);
-        this.R[4].s = this.av;
+        this.R[4].objectA = this.av;
         (this.R[5] = new ProgEight(this, 5, 14)).a("Helga", "Aid: <TAG>", new String[] { "Rumors", "Give Crystal", "Enchant", "Bless", "Cure", "Warp", "Recovery" }, (Vector)null);
-        this.R[5].s = this.av;
+        this.R[5].objectA = this.av;
         this.a("After choicesUI", true);
         (this.ap = new ProgEight(this, 4, 23)).a("Oracle", "NPC text here", true);
         (this.t = new ProgEight(this, 3, 31)).a("Options", new String[] { "Stats", "Inventory", "Skills", "Spells", "Save Game", "Load Game", "Help", "Quit Game" }, (Vector)null, false);
-        this.t.a(ProgEight.z);
+        this.t.a(ProgEight.commandD);
         this.a("After OptionsUI", true);
-        this.ay.m = 42;
-        (this.aD = new Form("Enter name")).append((Item)new StringItem((String)null, "Enter a name for your character"));
+        this.ay.volatileInt = 42;
+        (this.aD = new Form("Enter name")).append((Item)new StringItem((String)null, "Enter incrementShortZ name for your character"));
         this.aD.append((Item)new TextField((String)null, (String)null, 10, 0));
-        ((Displayable)this.aD).addCommand(ProgEight.I);
-        ((Displayable)this.aD).addCommand(ProgEight.P);
+        ((Displayable)this.aD).addCommand(ProgEight.commandA);
+        ((Displayable)this.aD).addCommand(ProgEight.commandC);
         ((Displayable)this.aD).setCommandListener((CommandListener)this);
-        (this.ba = new h(this, 4, 305)).a("Unavailable", "No game is available for loading. Press OK to return to main menu.");
-        this.ba.a(ProgEight.I);
+        (this.ba = new ProgEight(this, 4, 305)).a("Unavailable", "No game is available for loading. Press OK to return to main menu.");
+        this.ba.a(ProgEight.commandA);
         this.ba.a((CommandListener)this);
-        this.ba.s = this.U;
+        this.ba.objectA = this.U;
         this.a("After NoSavedGameUI", true);
-        this.ay.c = this.U;
-        this.az.s = this.U;
-        this.y.s = this.az;
-        this.h.s = this.y;
-        this.h.c = this.y;
-        this.aE.s = this.y;
+        this.ay.objectB = this.U;
+        this.az.objectA = this.U;
+        this.y.objectA = this.az;
+        this.h.objectA = this.y;
+        this.h.objectB = this.y;
+        this.aE.objectA = this.y;
         (this.f = new ProgEight(this, 4, 399)).n();
-        this.ay.m = 55;
+        this.ay.volatileInt = 55;
         c("End of loading UI and images");
         this.a("End of allocateAllUIs", true);
     }
@@ -457,19 +456,19 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
     private ProgEight a(final int n) {
         System.gc();
         final ProgEight h = new ProgEight(this, 5, 22);
-        h.N = n;
+        h.intC = n;
         final String[] array = new String[this.k.p];
         for (byte b = 0; b < this.k.p; ++b) {
             final int abs = Math.abs(this.k.H[b]);
             if (this.k.C((int)b)) {
-                array[b] = "E:" + ProgOne.d(abs);
+                array[b] = "stringArray:" + ProgOne.getLinesBString(abs);
             }
             else {
-                array[b] = ProgOne.d(abs);
+                array[b] = ProgOne.getLinesBString(abs);
             }
         }
         h.a(ProgEleven.s[n], "Give What?", array, (Vector)null, true);
-        h.s = this.av;
+        h.objectA = this.av;
         return h;
     }
 
@@ -477,18 +476,18 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         c("Start of newTrainWhat");
         final ProgEight h = new ProgEight(this, 5, 20);
-        h.N = n;
+        h.intC = n;
         final String[] array = new String[3];
         int n2 = 0;
         for (int i = 0; i < 14; ++i) {
             final int b = this.k.b(i, false);
             final String string = ProgTen.E[i] + " (<TAG>)";
             if (k.c(n, i)) {
-                array[n2++] = ProgSix.a(string, "<TAG>", b);
+                array[n2++] = ProgSix.getStringWithInt(string, "<TAG>", b);
             }
         }
         h.a(ProgEleven.s[n], "Train What?", array, (Vector)null, true);
-        h.s = this.av;
+        h.objectA = this.av;
         return h;
     }
 
@@ -496,9 +495,9 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         c("Start of newTakeWhat");
         final ProgEight h = new ProgEight(this, 5, 27);
-        h.N = n;
-        h.a(ProgEleven.s[n], "Take What?", ProgOne.b(), (Vector)null, true);
-        h.s = null;
+        h.intC = n;
+        h.a(ProgEleven.s[n], "Take What?", ProgOne.getLines(), (Vector)null, true);
+        h.objectA = null;
         return h;
     }
 
@@ -506,13 +505,13 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         c("Start of newEnchantWhat");
         final ProgEight h = new ProgEight(this, 5, 350);
-        h.N = n;
+        h.intC = n;
         final String[] array = new String[this.k.p];
         for (byte b = 0; b < this.k.p; ++b) {
-            array[b] = ProgOne.d(Math.abs(this.k.H[b]));
+            array[b] = ProgOne.getLinesBString(Math.abs(this.k.H[b]));
         }
         h.a(ProgEleven.s[n], "Enchant What?", array, (Vector)null, true);
-        h.s = this.av;
+        h.objectA = this.av;
         return h;
     }
 
@@ -530,16 +529,16 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             final byte b2 = this.k.H[b];
             System.out.println("itemid is " + b2);
             if (b2 < 0) {
-                array[b] = "E: " + ProgOne.d(Math.abs(b2));
+                array[b] = "stringArray: " + ProgOne.getLinesBString(Math.abs(b2));
                 System.out.println("item is " + array[b]);
             }
             else {
-                array[b] = ProgOne.d(b2);
+                array[b] = ProgOne.getLinesBString(b2);
                 System.out.println("item is " + array[b]);
             }
         }
         h.a("Inventory", "Items:", array, (Vector)null, true);
-        h.s = this.t;
+        h.objectA = this.t;
         return h;
     }
 
@@ -547,7 +546,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         final ProgEight h = new ProgEight(this, 5, 202);
         h.a("Quit?", "Are you sure?", new String[] { "Yes", "No" }, (Vector)null, true);
-        h.s = s;
+        h.objectA = s;
         return h;
     }
 
@@ -555,7 +554,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         final ProgEight h = new ProgEight(this, 3, 203);
         h.a("Help", ESGame.as, (Vector)null);
-        h.s = s;
+        h.objectA = s;
         return h;
     }
 
@@ -563,7 +562,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         final ProgEight h = new ProgEight(this, 4, 206);
         h.a(ESGame.as[n], ESGame.o[n], true);
-        h.s = this.D;
+        h.objectA = this.D;
         return h;
     }
 
@@ -571,7 +570,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.gc();
         final ProgEight h = new ProgEight(this, 4, 204);
         h.a("Credits", ESGame.n, true);
-        h.s = s;
+        h.objectA = s;
         return h;
     }
 
@@ -586,12 +585,12 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
 
     public void commandAction(final Command command, final Displayable displayable) {
         if (ESGame.ax != null) {
-            if (command == ProgEight.P && ESGame.ax.s != null) {
-                this.a(ESGame.ax.s);
+            if (command == ProgEight.commandC && ESGame.ax.objectA != null) {
+                this.a(ESGame.ax.objectA);
                 return;
             }
-            if (ESGame.ax.B == 2) {
-                if (command == ProgEight.u) {
+            if (ESGame.ax.intB == 2) {
+                if (command == ProgEight.commandB) {
                     final int a = ESGame.ax.a();
                     ESGame.ax.r();
                     switch (a) {
@@ -629,8 +628,8 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                 }
             }
-            else if (ESGame.ax.B == 3) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 3) {
+                if (command == ProgEight.commandB) {
                     final int a2 = ESGame.ax.a();
                     final String[] r = ESGame.ax.r();
                     this.e = null;
@@ -641,13 +640,13 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     this.a((Object)this.y);
                 }
             }
-            else if (ESGame.ax.B == 4) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 4) {
+                if (command == ProgEight.commandB) {
                     final int a3 = ESGame.ax.a();
                     ESGame.ax.r();
                     if (a3 == 0) {
                         this.h.a(0, this.e.m());
-                        this.h.w = 0;
+                        this.h.intK = 0;
                         this.a((Object)this.h);
                     }
                     else {
@@ -656,126 +655,126 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                 }
             }
-            else if (ESGame.ax.B == 5) {
-                if (command == ProgEight.I) {
-                    this.a(ESGame.ax.c);
+            else if (ESGame.ax.intB == 5) {
+                if (command == ProgEight.commandA) {
+                    this.a(ESGame.ax.objectB);
                 }
             }
-            else if (ESGame.ax.B == 6) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 6) {
+                if (command == ProgEight.commandB) {
                     this.a(this.aD);
                 }
             }
-            else if (ESGame.ax.B == 7) {
+            else if (ESGame.ax.intB == 7) {
                 (this.aR = new ProgEight(this, 4, 101)).a("Introduction", ProgEleven.k[7][3], true);
                 this.a((Object)this.aR);
             }
-            else if (ESGame.ax.B == 101) {
-                if (command == ProgEight.I) {
+            else if (ESGame.ax.intB == 101) {
+                if (command == ProgEight.commandA) {
                     this.av.ax = this.k;
                     this.av.i();
                     this.a(this.av);
                 }
             }
-            else if (ESGame.ax.B == 8 || ESGame.ax.B == 360) {
-                if (command == ProgEight.I) {
-                    if (ESGame.ax.c == null) {
+            else if (ESGame.ax.intB == 8 || ESGame.ax.intB == 360) {
+                if (command == ProgEight.commandA) {
+                    if (ESGame.ax.objectB == null) {
                         System.out.println("ERROR: next is null!");
                     }
-                    else if (ESGame.ax.c == null) {
+                    else if (ESGame.ax.objectB == null) {
                         System.out.println("uic.next is null!");
                     }
-                    this.a(ESGame.ax.c);
+                    this.a(ESGame.ax.objectB);
                 }
             }
-            else if (ESGame.ax.B >= 9 && ESGame.ax.B <= 14) {
-                if (command == ProgEight.P) {
-                    this.a(ESGame.ax.s);
+            else if (ESGame.ax.intB >= 9 && ESGame.ax.intB <= 14) {
+                if (command == ProgEight.commandC) {
+                    this.a(ESGame.ax.objectA);
                 }
                 else {
                     this.d(ESGame.ax);
                 }
             }
-            else if (ESGame.ax.B == 20) {
-                if (command == ProgEight.u) {
-                    final int n = ESGame.ax.N;
+            else if (ESGame.ax.intB == 20) {
+                if (command == ProgEight.commandB) {
+                    final int n = ESGame.ax.intC;
                     this.a((Object)(this.ae = this.a(ESGame.ax, n, 21, 5, k.b(n, ESGame.ax.a()))));
                 }
-                else if (command == ProgEight.P) {
-                    final int n2 = ESGame.ax.N;
+                else if (command == ProgEight.commandC) {
+                    final int n2 = ESGame.ax.intC;
                     this.k(n2);
                     this.a((Object)this.R[n2]);
                 }
             }
-            else if (ESGame.ax.B == 22) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 22) {
+                if (command == ProgEight.commandB) {
                     System.out.println("Found give what select");
-                    final int n3 = ESGame.ax.N;
+                    final int n3 = ESGame.ax.intC;
                     final int a4 = ESGame.ax.a();
                     if (a4 >= 0) {
                         this.a((Object)(this.ap = this.a(ESGame.ax, n3, 23, 4, a4)));
                     }
                 }
-                else if (command == ProgEight.P) {
-                    final int n4 = ESGame.ax.N;
+                else if (command == ProgEight.commandC) {
+                    final int n4 = ESGame.ax.intC;
                     this.k(n4);
                     this.a((Object)this.R[n4]);
                 }
             }
-            else if (ESGame.ax.B == 27) {
-                if (command == ProgEight.u) {
-                    this.a((Object)(this.aJ = this.a(ESGame.ax, ESGame.ax.N, 28, 7, ESGame.ax.a() + 87)));
+            else if (ESGame.ax.intB == 27) {
+                if (command == ProgEight.commandB) {
+                    this.a((Object)(this.aJ = this.a(ESGame.ax, ESGame.ax.intC, 28, 7, ESGame.ax.a() + 87)));
                 }
-                else if (command == ProgEight.P) {
-                    final int n5 = ESGame.ax.N;
+                else if (command == ProgEight.commandC) {
+                    final int n5 = ESGame.ax.intC;
                     this.k(n5);
                     this.a((Object)this.R[n5]);
                 }
             }
-            else if (ESGame.ax.B == 350) {
-                if (command == ProgEight.u) {
-                    final int n6 = ESGame.ax.N;
+            else if (ESGame.ax.intB == 350) {
+                if (command == ProgEight.commandB) {
+                    final int n6 = ESGame.ax.intC;
                     final int a5 = ESGame.ax.a();
                     if (a5 >= 0) {
                         this.a((Object)(this.aI = this.a(ESGame.ax, n6, 351, 8, a5)));
                     }
                 }
-                else if (command == ProgEight.P) {
-                    final int n7 = ESGame.ax.N;
+                else if (command == ProgEight.commandC) {
+                    final int n7 = ESGame.ax.intC;
                     this.k(n7);
                     this.a((Object)this.R[n7]);
                 }
             }
-            else if (ESGame.ax.B == 23 || ESGame.ax.B == 21 || ESGame.ax.B == 24 || ESGame.ax.B == 25 || ESGame.ax.B == 28) {
-                if (command == ProgEight.I) {
-                    final int n8 = ESGame.ax.N;
+            else if (ESGame.ax.intB == 23 || ESGame.ax.intB == 21 || ESGame.ax.intB == 24 || ESGame.ax.intB == 25 || ESGame.ax.intB == 28) {
+                if (command == ProgEight.commandA) {
+                    final int n8 = ESGame.ax.intC;
                     this.k(n8);
                     this.a((Object)this.R[n8]);
                 }
             }
-            else if (ESGame.ax.B == 26) {
+            else if (ESGame.ax.intB == 26) {
                 this.a(this.av);
             }
-            else if (ESGame.ax.B == 351 || ESGame.ax.B == 352 || ESGame.ax.B == 353 || ESGame.ax.B == 355) {
-                if (command == ProgEight.I) {
-                    final int n9 = ESGame.ax.N;
+            else if (ESGame.ax.intB == 351 || ESGame.ax.intB == 352 || ESGame.ax.intB == 353 || ESGame.ax.intB == 355) {
+                if (command == ProgEight.commandA) {
+                    final int n9 = ESGame.ax.intC;
                     this.k(n9);
                     this.a((Object)this.R[n9]);
                 }
             }
-            else if (ESGame.ax.B == 30) {
-                if (command == ProgEight.I) {
+            else if (ESGame.ax.intB == 30) {
+                if (command == ProgEight.commandA) {
                     this.a(this.av);
                 }
             }
-            else if (ESGame.ax.B == 41) {
-                if (command == ProgEight.I) {
+            else if (ESGame.ax.intB == 41) {
+                if (command == ProgEight.commandA) {
                     this.k.Q = false;
                     this.a(this.av);
                 }
             }
-            else if (ESGame.ax.B == 31) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 31) {
+                if (command == ProgEight.commandB) {
                     final int a6 = ESGame.ax.a();
                     ESGame.ax.r();
                     switch (a6) {
@@ -829,17 +828,17 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                         }
                     }
                 }
-                else if (command == ProgEight.z) {
+                else if (command == ProgEight.commandD) {
                     this.a(this.av);
                 }
             }
-            else if (ESGame.ax.B == 32) {
-                if (command == ProgEight.I) {
+            else if (ESGame.ax.intB == 32) {
+                if (command == ProgEight.commandA) {
                     this.a((Object)this.t);
                 }
             }
-            else if (ESGame.ax.B == 33) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 33) {
+                if (command == ProgEight.commandB) {
                     final int a7 = ESGame.ax.a();
                     if (a7 >= 0) {
                         this.aB = this.l(a7);
@@ -848,9 +847,9 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                 }
             }
-            else if (ESGame.ax.B == 34) {
-                if (command == ProgEight.u) {
-                    final int intValue = ESGame.ax.n.elementAt(ESGame.ax.a());
+            else if (ESGame.ax.intB == 34) {
+                if (command == ProgEight.commandB) {
+                    final int intValue = ESGame.ax.vectorB.elementAt(ESGame.ax.a());
                     if (intValue == 0) {
                         this.k.i(this.Y);
                         this.a((Object)(this.aY = this.c()));
@@ -881,18 +880,18 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     this.Y = -1;
                 }
             }
-            else if (ESGame.ax.B == 35) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 35) {
+                if (command == ProgEight.commandB) {
                     this.a((Object)(this.N = this.o(ESGame.ax.a())));
                 }
             }
-            else if (ESGame.ax.B == 36) {
-                if (command == ProgEight.I) {
+            else if (ESGame.ax.intB == 36) {
+                if (command == ProgEight.commandA) {
                     this.a((Object)this.L);
                 }
             }
-            else if (ESGame.ax.B == 37) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 37) {
+                if (command == ProgEight.commandB) {
                     final int a8 = ESGame.ax.a();
                     if (a8 >= 0) {
                         this.q = this.e(a8);
@@ -901,25 +900,25 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                 }
             }
-            else if (ESGame.ax.B == 38) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 38) {
+                if (command == ProgEight.commandB) {
                     this.k.b = (byte)(this.k.B(this.g) + 1);
                     this.a((Object)(this.v = this.r()));
                     this.g = -1;
                 }
             }
-            else if (ESGame.ax.B == 39) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 39) {
+                if (command == ProgEight.commandB) {
                     final String p2 = ESGame.ax.p();
-                    ESGame.l[ESGame.ax.N] = -1;
+                    ESGame.l[ESGame.ax.intC] = -1;
                     for (int i = 0; i < ProgTen.y.length; ++i) {
                         if (p2.equals(ProgTen.y[i])) {
-                            ESGame.l[ESGame.ax.N] = i;
+                            ESGame.l[ESGame.ax.intC] = i;
                             break;
                         }
                     }
-                    if (ESGame.ax.N < 2) {
-                        this.a((Object)(this.ag = this.j(ESGame.ax.N + 1 + 1)));
+                    if (ESGame.ax.intC < 2) {
+                        this.a((Object)(this.ag = this.j(ESGame.ax.intC + 1 + 1)));
                     }
                     else {
                         final short[] j = this.k.J;
@@ -938,70 +937,70 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                 }
             }
-            else if (ESGame.ax.B == 202) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 202) {
+                if (command == ProgEight.commandB) {
                     if (ESGame.ax.a() == 0) {
                         this.a((Object)this.f);
                     }
                     else {
-                        this.a(ESGame.ax.s);
+                        this.a(ESGame.ax.objectA);
                     }
                 }
             }
-            else if (ESGame.ax.B == 202) {
-                this.b(); // weird
+            else if (ESGame.ax.intB == 202) {
+                this.getLines(); // weird
             }
-            else if (ESGame.ax.B == 40) {
+            else if (ESGame.ax.intB == 40) {
                 this.a(this.av);
                 this.av.b();
             }
-            else if (ESGame.ax.B == 102) {
+            else if (ESGame.ax.intB == 102) {
                 this.a(this.av);
                 this.av.b();
             }
-            else if (ESGame.ax.B == 203) {
-                if (command == ProgEight.u) {
+            else if (ESGame.ax.intB == 203) {
+                if (command == ProgEight.commandB) {
                     this.a((Object)(this.F = this.g(ESGame.ax.a())));
                 }
                 else {
-                    this.a(ESGame.ax.s);
+                    this.a(ESGame.ax.objectA);
                 }
             }
-            else if (ESGame.ax.B == 206) {
-                this.a(ESGame.ax.s);
+            else if (ESGame.ax.intB == 206) {
+                this.a(ESGame.ax.objectA);
             }
-            else if (ESGame.ax.B == 204) {
-                this.a(ESGame.ax.s);
+            else if (ESGame.ax.intB == 204) {
+                this.a(ESGame.ax.objectA);
             }
-            else if (ESGame.ax.B == 305) {
-                this.a(ESGame.ax.s);
+            else if (ESGame.ax.intB == 305) {
+                this.a(ESGame.ax.objectA);
             }
-            else if (ESGame.ax.B == 205) {
-                this.a(ESGame.ax.s);
+            else if (ESGame.ax.intB == 205) {
+                this.a(ESGame.ax.objectA);
             }
-            else if (ESGame.ax.B == 200 || ESGame.ax.B == 201) {
-                this.a(ESGame.ax.c);
+            else if (ESGame.ax.intB == 200 || ESGame.ax.intB == 201) {
+                this.a(ESGame.ax.objectB);
             }
-            else if (ESGame.ax.B == 399) {
-                this.b();
+            else if (ESGame.ax.intB == 399) {
+                this.getLines();
             }
-            else if (ESGame.ax.B == 499) {
-                this.b();
+            else if (ESGame.ax.intB == 499) {
+                this.getLines();
             }
         }
         else if (displayable == this.w) {
-            this.b();
+            this.getLines();
         }
         else if (displayable == this.ao) {
             this.a(this.av);
         }
         else if (displayable == this.W) {
             if (command == ESGame.aS) {
-                this.b();
+                this.getLines();
             }
         }
         else if (displayable == this.aD) {
-            if (command == ProgEight.I) {
+            if (command == ProgEight.commandA) {
                 final String string = ((TextField)this.aD.get(1)).getString();
                 if (string.length() < 3) {
                     final Alert alert = new Alert("Error", f.a("Your character name must be at least <TAG> letters", "<TAG>", 3), (Image)null, AlertType.ERROR);
@@ -1013,7 +1012,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     this.a((Object)this.M);
                 }
             }
-            else if (command == h.P) {
+            else if (command == h.commandC) {
                 this.a((Object)this.aE);
             }
         }
@@ -1021,7 +1020,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
 
     private void d(final ProgEight h) {
         final int a = h.a();
-        final int n = h.B - 9;
+        final int n = h.intB - 9;
         switch (n) {
             case 0:
             case 1:
@@ -1056,7 +1055,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                     break;
                 }
-                break;
+                //break;
             }
             case 4: {
                 if (a == 0) {
@@ -1076,7 +1075,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                     break;
                 }
-                break;
+                //break;
             }
             case 5: {
                 if (a == 0) {
@@ -1116,7 +1115,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                     break;
                 }
-                break;
+                //break;
             }
         }
     }
@@ -1127,7 +1126,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         final String a = k.a(this.k, n, n3, n4);
         h2.a(ProgEleven.s[n]);
         h2.e(a);
-        h2.N = n;
+        h2.intC = n;
         return h2;
     }
 
@@ -1141,7 +1140,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
     private boolean w() {
         boolean b = true;
         RecordStore openRecordStore = null;
-        ESGame.aQ.m = 0;
+        ESGame.aQ.volatileInt = 0;
         final String m = this.M();
         try {
             if (m == null) {
@@ -1151,7 +1150,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             openRecordStore.getNumRecords();
             this.k = ProgTen.a(openRecordStore.getRecord(1), true);
             this.k.ai = this;
-            ESGame.aQ.m = 20;
+            ESGame.aQ.volatileInt = 20;
             ESGame.aQ.c();
             ESGame.aQ.f();
             final int a = a(openRecordStore, 2);
@@ -1177,12 +1176,12 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
     private boolean l() {
         boolean b = true;
         RecordStore openRecordStore = null;
-        ESGame.al.m = 0;
+        ESGame.al.volatileInt = 0;
         final String f = this.f();
         try {
             openRecordStore = RecordStore.openRecordStore(f, true);
             final byte[] g = this.k.g(true);
-            ESGame.al.m = 20;
+            ESGame.al.volatileInt = 20;
             ESGame.al.c();
             ESGame.al.f();
             openRecordStore.addRecord(g, 0, g.length);
@@ -1194,7 +1193,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             openRecordStore.closeRecordStore();
             openRecordStore = null;
             this.L();
-            ESGame.al.m = 100;
+            ESGame.al.volatileInt = 100;
             ESGame.al.c();
             ESGame.al.f();
         }
@@ -1241,7 +1240,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         this.d.setCurrent((Displayable)this.w);
     }
 
-    static int d(final int i) {
+    static int dES(final int i) {
         System.out.println("In getGameAdvancementLevel, giftPoints = " + i);
         if (i < 9) {
             return 0;
@@ -1279,9 +1278,9 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                 ESGame.u[n].e();
             }
             if (this.aZ != null) {
-                this.aZ.m = 100 * (j + 1) / length;
-                if (this.aZ.m > 100) {
-                    this.aZ.m = 100;
+                this.aZ.volatileInt = 100 * (j + 1) / length;
+                if (this.aZ.volatileInt > 100) {
+                    this.aZ.volatileInt = 100;
                 }
                 this.aZ.c();
                 this.aZ.f();
@@ -1301,9 +1300,9 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                 ESGame.u[n4].k = true;
                 ESGame.u[n4].h();
                 ++n2;
-                ESGame.aQ.m = 100 * n2 / n3;
-                if (ESGame.aQ.m > 100) {
-                    ESGame.aQ.m = 100;
+                ESGame.aQ.volatileInt = 100 * n2 / n3;
+                if (ESGame.aQ.volatileInt > 100) {
+                    ESGame.aQ.volatileInt = 100;
                 }
             }
         }
@@ -1374,8 +1373,8 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
 
     private static void b(final byte[] buf) throws Exception {
         final DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(buf, 0, buf.length));
-        ProgOne.i = dataInputStream.readShort();
-        ProgFour.j = dataInputStream.readShort();
+        ProgOne.shortZ = dataInputStream.readShort();
+        ProgFour.shortStaticRef = dataInputStream.readShort();
         for (int i = 0; i < 7; ++i) {
             ProgEleven.b[i] = dataInputStream.readBoolean();
         }
@@ -1405,7 +1404,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         for (int n4 = 0; n4 < 7; ++n4) {
             if (!ProgEleven.b[n4]) {
                 final ProgNine m = ESGame.u[0];
-                m.w[ProgEleven.j[n4]][ProgEleven.i[n4]] = ProgSix.c((byte)32, m.w[ProgEleven.j[n4]][ProgEleven.i[n4]]);
+                m.w[ProgEleven.j[n4]][ProgEleven.i[n4]] = ProgSix.getAndByte((byte)32, m.w[ProgEleven.j[n4]][ProgEleven.i[n4]]);
             }
         }
     }
@@ -1413,8 +1412,8 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
     private static byte[] k() throws Exception {
         final ByteArrayOutputStream out = new ByteArrayOutputStream(60);
         final DataOutputStream dataOutputStream = new DataOutputStream(out);
-        dataOutputStream.writeShort(ProgOne.i);
-        dataOutputStream.writeShort(ProgFour.j);
+        dataOutputStream.writeShort(ProgOne.shortZ);
+        dataOutputStream.writeShort(ProgFour.shortStaticRef);
         for (int i = 0; i < 7; ++i) {
             dataOutputStream.writeBoolean(ProgEleven.b[i]);
         }
@@ -1452,7 +1451,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             dataOutputStream.writeInt(size);
             final Enumeration elements = ESGame.G[i].elements();
             while (elements.hasMoreElements()) {
-                ProgFour.a(elements.nextElement()).a(dataOutputStream);
+                ProgFour.getProgFour(elements.nextElement()).getProgFour(dataOutputStream);
             }
             final byte[] byteArray = out.toByteArray();
             recordStore.addRecord(byteArray, 0, byteArray.length);
@@ -1461,7 +1460,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             }
             catch (Exception ex) {}
             System.gc();
-            ESGame.al.m = 20 + 30 * (i + 1) / 37;
+            ESGame.al.volatileInt = 20 + 30 * (i + 1) / 37;
             ESGame.al.c();
             ESGame.al.f();
         }
@@ -1481,7 +1480,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             }
             catch (Exception ex2) {}
             System.gc();
-            ESGame.al.m = 50 + 30 * (j + 1) / 37;
+            ESGame.al.volatileInt = 50 + 30 * (j + 1) / 37;
             ESGame.al.c();
             ESGame.al.f();
         }
@@ -1501,7 +1500,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             }
             catch (Exception ex3) {}
             System.gc();
-            ESGame.al.m = 80 + 19 * (k + 1) / 37;
+            ESGame.al.volatileInt = 80 + 19 * (k + 1) / 37;
             ESGame.al.c();
             ESGame.al.f();
         }
@@ -1514,15 +1513,15 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             final DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(record, 0, record.length));
             ESGame.G[i].clear();
             for (int int1 = dataInputStream.readInt(), j = 0; j < int1; ++j) {
-                final ProgFour a = ProgFour.a(dataInputStream);
-                ESGame.G[i].put(String.valueOf(a.a), a.f());
+                final ProgFour a = ProgFour.getProgFourFromDIS(dataInputStream);
+                ESGame.G[i].put(String.valueOf(a.shortA), a.getByteArray());
             }
             try {
                 dataInputStream.close();
             }
             catch (Exception ex) {}
             System.gc();
-            ESGame.aQ.m = 20 + 30 * (i + 1) / 37;
+            ESGame.aQ.volatileInt = 20 + 30 * (i + 1) / 37;
             ESGame.aQ.c();
             ESGame.aQ.f();
         }
@@ -1532,14 +1531,14 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             ESGame.S[k].clear();
             for (int int2 = dataInputStream2.readInt(), l = 0; l < int2; ++l) {
                 final byte[] a2 = a(dataInputStream2, 8);
-                ESGame.S[k].put(ProgSix.b((int)a2[0], (int)a2[1]), a2);
+                ESGame.S[k].put(ProgSix.getStringFromTwoIntAddAComma((int)a2[0], (int)a2[1]), a2);
             }
             try {
                 dataInputStream2.close();
             }
             catch (Exception ex2) {}
             System.gc();
-            ESGame.aQ.m = 50 + 30 * (k + 1) / 37;
+            ESGame.aQ.volatileInt = 50 + 30 * (k + 1) / 37;
             ESGame.aQ.c();
             ESGame.aQ.f();
         }
@@ -1555,7 +1554,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             }
             catch (Exception ex3) {}
             System.gc();
-            ESGame.aQ.m = 80 + 19 * (n3 + 1) / 37;
+            ESGame.aQ.volatileInt = 80 + 19 * (n3 + 1) / 37;
             ESGame.aQ.c();
             ESGame.aQ.f();
         }
@@ -1588,7 +1587,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
     }
 
     private void h() {
-        (this.W = new Form("Done")).append((Item)new StringItem((String)null, "I am done"));
+        (this.W = new Form("Done")).append((Item)new StringItem((String)null, "commandA am done"));
         ((Displayable)this.W).addCommand(ESGame.aS);
         ((Displayable)this.W).setCommandListener((CommandListener)this);
     }
@@ -1607,10 +1606,10 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         System.out.println("Running image loader thread for new dungeon ID: " + this.a);
         this.am = false;
         if (ESGame.j) {
-            ESGame.aQ.m = 80;
+            ESGame.aQ.volatileInt = 80;
         }
         else {
-            this.ab.m = 0;
+            this.ab.volatileInt = 0;
         }
         final byte[] array = new byte[5];
         for (int i = 0; i < 5; ++i) {
@@ -1627,23 +1626,23 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             }
             final Enumeration<byte[]> elements = hashtable.elements();
             while (elements.hasMoreElements()) {
-                final ProgFour a = ProgFour.a(elements.nextElement());
-                if (a.l >= 1 && a.l <= 5) {
+                final ProgFour a = ProgFour.makeStaticProgFourFromByteArray(elements.nextElement());
+                if (a.byteA >= 1 && a.byteA <= 5) {
                     final byte[] array2 = array;
                     final int n = 0;
                     ++array2[n];
                 }
-                else if (a.l >= 6 && a.l <= 10) {
+                else if (a.byteA >= 6 && a.byteA <= 10) {
                     final byte[] array3 = array;
                     final int n2 = 1;
                     ++array3[n2];
                 }
-                else if (a.l >= 11 && a.l <= 25) {
+                else if (a.byteA >= 11 && a.byteA <= 25) {
                     final byte[] array4 = array;
                     final int n3 = 2;
                     ++array4[n3];
                 }
-                else if (a.l >= 26 && a.l <= 40) {
+                else if (a.byteA >= 26 && a.byteA <= 40) {
                     final byte[] array5 = array;
                     final int n4 = 3;
                     ++array5[n4];
@@ -1686,7 +1685,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     for (int n2 = ESGame.ah[i][1], j = 0; j < n2; ++j) {
                         final int n3 = n + j;
                         if (!this.m(n3)) {
-                            ProgFive.q[n3] = ProgSeven.b(ESGame.T[i][j]);
+                            ProgFive.q[n3] = ProgSeven.getProgSevenFromString(ESGame.T[i][j]);
                         }
                         if (!this.ak) {
                             return;
@@ -1698,12 +1697,12 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
                     }
                 }
                 if (ESGame.j) {
-                    ESGame.aQ.m = 80 + (i + 1) * 20 / 5;
+                    ESGame.aQ.volatileInt = 80 + (i + 1) * 20 / 5;
                     ESGame.aQ.c();
                     ESGame.aQ.f();
                 }
                 else {
-                    this.ab.m = (i + 1) * 100 / 5;
+                    this.ab.volatileInt = (i + 1) * 100 / 5;
                     this.ab.c();
                     this.ab.f();
                 }
@@ -1721,7 +1720,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
     void z() {
         for (int length = ProgFive.q.length, i = 0; i < length; ++i) {
             if (ProgFive.q[i] != null) {
-                ProgFive.q[i].g = null;
+                ProgFive.q[i].shortArray = null;
                 ProgFive.q[i] = null;
             }
         }
@@ -1736,7 +1735,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         final byte b2 = array[5];
         final ProgNine k = ESGame.u[i - 1];
         if (array != null) {
-            k.w[b][b2] = ProgSix.c((byte)2, k.w[b][b2]);
+            k.w[b][b2] = ProgSix.getAndByte((byte)2, k.w[b][b2]);
         }
         System.out.println("End of killMonster, size of HT is " + ESGame.G[i - 1].size());
     }
@@ -1771,8 +1770,8 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             array[j] = vector.elementAt(j);
         }
         h.a("Item", b, array, (Vector)vector2);
-        h.A = true;
-        h.s = this.aY;
+        h.booleanB = true;
+        h.objectA = this.aY;
         return h;
     }
 
@@ -1787,7 +1786,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             array[i] = f.elementAt(i);
         }
         h.a("Skills", "Your Skills:", array, (Vector)null, true);
-        h.s = this.t;
+        h.objectA = this.t;
         return h;
     }
 
@@ -1796,7 +1795,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         c("Start of newSkillInfoUI");
         final ProgEight h = new ProgEight(this, 4, 36);
         h.a("Skill Info", this.k.m(this.k.l(n)));
-        h.s = this.L;
+        h.objectA = this.L;
         return h;
     }
 
@@ -1811,7 +1810,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
             array[i] = j.elementAt(i);
         }
         h.a("Spells", "Your Spells:", array, (Vector)null, true);
-        h.s = this.t;
+        h.objectA = this.t;
         return h;
     }
 
@@ -1820,8 +1819,8 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         c("Start of newSpellInfoUI");
         final ProgEight h = new ProgEight(this, 5, 38);
         h.a("Spell Info", this.k.s(this.k.B(n)), new String[] { "Ready Spell" }, (Vector)null);
-        h.A = true;
-        h.s = this.v;
+        h.booleanB = true;
+        h.objectA = this.v;
         return h;
     }
 
@@ -1832,21 +1831,21 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         final String[] q = this.k.q();
         String s2 = null;
         if (i == 1) {
-            s.N = 0;
+            s.intC = 0;
             s2 = "Select an attribute to \nincrease 3 points:";
         }
         else if (i == 2) {
             s2 = "Select an attribute to \nincrease 2 points:";
-            s.N = 1;
+            s.intC = 1;
         }
         else if (i == 3) {
-            s.N = 2;
+            s.intC = 2;
             s2 = "Select an attribute to \nincrease 1 point:";
         }
         s.a("Level Up", s2, q, (Vector)null);
-        s.t.removeCommand(ProgEight.P);
-        s.A = true;
-        return (ProgEight)(s.s = s);
+        s.displayable.removeCommand(ProgEight.commandC);
+        s.booleanB = true;
+        return (ProgEight)(s.objectA = s);
     }
 
     ProgEight e(final String s) {
@@ -1863,7 +1862,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         final String s = ProgEleven.k[7][4];
         final ProgEight h = new ProgEight(this, 4, 200);
         h.a("Victory!", s);
-        h.c = this.v();
+        h.objectB = this.v();
         return h;
     }
 
@@ -1873,16 +1872,16 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         final String s = ProgEleven.k[7][5];
         final ProgEight h = new ProgEight(this, 4, 201);
         h.a("Game Over", s);
-        h.c = this.U;
+        h.objectB = this.U;
         return h;
     }
 
     static DataInputStream a(final String s) throws Exception {
-        final InputStream resourceAsStream = new Object().getClass().getResourceAsStream(ProgSix.b(s));
+        final InputStream resourceAsStream = ESGame.class.getResourceAsStream(ProgSix.formalizePath(s));
         if (resourceAsStream == null) {
             return null;
         }
-        return new DataInputStream(new ByteArrayInputStream(ProgSix.a(resourceAsStream.available(), resourceAsStream)));
+        return new DataInputStream(new ByteArrayInputStream(ProgSix.getByteArrayFromINS(resourceAsStream.available(), resourceAsStream)));
     }
 
     static int h(final int n) {
@@ -1917,9 +1916,9 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         if (o instanceof ProgEight) {
             ESGame.ax = (ProgEight)o;
             final ProgThree j = ProgEight.j();
-            j.a = ESGame.ax;
-            ESGame.ax.t = (Displayable)j;
-            this.d.setCurrent(ESGame.ax.t);
+            j.progEightRef = ESGame.ax;
+            ESGame.ax.displayable = (Displayable)j;
+            this.d.setCurrent(ESGame.ax.displayable);
             ESGame.ax.h();
             ESGame.ax.c();
             ESGame.ax.f();
@@ -1932,7 +1931,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
     }
 
     private static void I() throws Exception {
-        final DataInputStream a = ProgSix.a("/geomin.dat");
+        final DataInputStream a = ProgSix.getDISFromName("/geomin.dat");
         ESGame.ai = new byte[37][6];
         for (int i = 0; i < 37; ++i) {
             for (int j = 0; j < 6; ++j) {
@@ -1943,7 +1942,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
 
     private static void C() throws Exception {
         final InputStream resourceAsStream = ESGame.class.getResourceAsStream("/monsterfilenamesin.dat");
-        final DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(ProgSix.a(resourceAsStream.available(), resourceAsStream)));
+        final DataInputStream dataInputStream = new DataInputStream(new ByteArrayInputStream(ProgSix.getByteArrayFromINS(resourceAsStream.available(), resourceAsStream)));
         ESGame.T = new String[5][7];
         for (int i = 0; i < 5; ++i) {
             for (int j = 0; j < 7; ++j) {
@@ -2040,14 +2039,14 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         sb.append('\n');
         sb.append("Technical Director: Andrew Friedman");
         sb.append('\n');
-        sb.append("(C) 2003 Vir2L Studos, a ZeniMax Media company. The Elder Scrolls and Vir2L are ");
+        sb.append("(longA) 2003 Vir2L Studos, incrementShortZ ZeniMax Media company. The Elder Scrolls and Vir2L are ");
         sb.append("registered trademarks of ZeniMax Media Inc. All rights reserved.");
         sb.append('\n');
         return sb.toString();
     }
 
     private void k(final int n) {
-        final String m = this.R[n].M;
+        final String m = this.R[n].stringA;
         this.R[n].t();
         int n2 = 0;
         if (ProgEleven.b(n)) {
@@ -2059,7 +2058,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         else if (n == 5) {
             n2 = ProgEleven.g;
         }
-        this.R[n].e(ProgSix.a(m, "<TAG>", n2));
+        this.R[n].e(ProgSix.getStringWithInt(m, "<TAG>", n2));
     }
 
     private String f() {
@@ -2071,18 +2070,19 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         else {
             length = listRecordStores.length;
         }
-        String s = "es_gamestate" + ProgSix.a(10000);
+        String s = "es_gamestate" + ProgSix.getIntFromESG(10000);
         while (true) {
             boolean b = false;
             for (int i = 0; i < length; ++i) {
                 if (s.equals(listRecordStores[i])) {
                     b = true;
+                    break;
                 }
             }
             if (!b) {
                 break;
             }
-            s = "es_gamestate" + ProgSix.a(10000);
+            s = "es_gamestate" + ProgSix.getIntFromESG(10000);
         }
         return s;
     }
@@ -2159,18 +2159,18 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         }
         this.m.a(ProgEleven.s[5]);
         this.m.e(a);
-        this.m.c = this.R[5];
-        this.m.N = 5;
-        final ProgEight h = (ProgEight)this.m.c;
-        final String m = h.M;
+        this.m.objectB = this.R[5];
+        this.m.intC = 5;
+        final ProgEight h = (ProgEight)this.m.objectB;
+        final String m = h.stringA;
         h.t();
-        h.e(ProgSix.a(m, "<TAG>", (int)ProgEleven.g));
+        h.e(ProgSix.getStringWithInt(m, "<TAG>", (int)ProgEleven.g));
         this.a((Object)this.m);
     }
 
     private void j() {
         if (ESGame.aT == 4) {
-            this.b();
+            this.getLines();
         }
     }
 
@@ -2187,7 +2187,7 @@ public class ESGame extends ProgOne implements Runnable//, CommandListener
         ah = new int[][] { { 0, 7 }, { 7, 7 }, { 14, 7 }, { 21, 7 }, { 28, 5 } };
         p = new String[] { "/charin.dat", "/droppeditemsin.dat", "/itemsin.dat", "/monstersin.dat", "/npcstrings.dat", "/spellsin.dat", "/geomin.dat", "/dungnamesin.dat" };
         ESGame.l = new int[3];
-        aM = new String[] { "Your fingers look gnarled to you.", "The scales on your arms and back itch.", "Your ears dissolve back into your skull.", "Your jaw hurts as it elongates, and your teeth seem to completely fill your mouth.", "Walking hurts, and the camp denizens are sure looking tasty. \n\nYour dreams are filled with the screams of overseers and others as you follow the delicious scent of blood throughout the camp. You awake cold, curled up, with Vander's head tucked under your arm." };
+        aM = new String[] { "Your fingers look gnarled to you.", "The scales on your arms and back itch.", "Your ears dissolve back into your skull.", "Your jaw hurts as it elongates, and your teeth seem to completely fill your mouth.", "Walking hurts, and the camp denizens are sure looking tasty. \n\nYour dreams are filled with the screams of overseers and others as you follow the delicious scent of blood throughout the camp. You awake cold, curled up, with Vander'objectA head tucked under your arm." };
         ESGame.O = null;
         ESGame.aU = null;
         ESGame.o = new String[12];
